@@ -1,9 +1,66 @@
 /* Sticky footer styles
 -------------------------------------------------- */
+@font-face {
+    font-family: 'proxima_nova_rgregular';
+    src: url('../fonts/proximanova/proximanova-regular-webfont.eot');
+    src: url('../fonts/proximanova/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proximanova/proximanova-regular-webfont.woff') format('woff'),
+         url('../fonts/proximanova/proximanova-regular-webfont.ttf') format('truetype'),
+         url('../fonts/proximanova/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'proxima_novasemibold';
+    src: url('../fonts/proximanova/proximanova-semibold-webfont.eot');
+    src: url('../fonts/proximanova/proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proximanova/proximanova-semibold-webfont.woff') format('woff'),
+         url('../fonts/proximanova/proximanova-semibold-webfont.ttf') format('truetype'),
+         url('../fonts/proximanova/proximanova-semibold-webfont.svg#proxima_novasemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'proxima_novalight';
+    src: url('../fonts/proximanova/proximanova-light-webfont.eot');
+    src: url('../fonts/proximanova/proximanova-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proximanova/proximanova-light-webfont.woff') format('woff'),
+         url('../fonts/proximanova/proximanova-light-webfont.ttf') format('truetype'),
+         url('../fonts/proximanova/proximanova-light-webfont.svg#proxima_novalight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'proxima_nova_rgbold';
+    src: url('../fonts/proximanova/proximanova-bold-webfont.eot');
+    src: url('../fonts/proximanova/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proximanova/proximanova-bold-webfont.woff') format('woff'),
+         url('../fonts/proximanova/proximanova-bold-webfont.ttf') format('truetype'),
+         url('../fonts/proximanova/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 html,
 body {
 	height: 100%;
+	font-family: 'proxima_nova_rgregular';
 	/* The html and body elements cannot have any padding or margin. */
 }
 
@@ -114,11 +171,6 @@ legend{
 	background-repeat: no-repeat;
 	line-height: 24px;
 	font-size: 18px;
-}
-
-
-body{
-	font-family: RobotoRegular,calibri,helvetica,sans-serif;
 }
 
 #footer .container{

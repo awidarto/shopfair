@@ -1,7 +1,7 @@
 <?php
 return array(
-	'title' => 'Peach To Black',
-	'admintitle' => 'Kickstart Shop Commander',
+	'title' => 'SHOPFAIR',
+	'admintitle' => 'ADMIN DASHBOARD',
 	
 	'register_success' => 'Registration Success',
 	'register_failed' => 'Registration Success',
