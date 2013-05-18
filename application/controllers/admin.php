@@ -97,7 +97,7 @@ class Admin_Controller extends Base_Controller {
 
 		// add action column
 		array_push($heads,
-			array('Actions',array('search'=>false,'sort'=>false))
+			array('Actions',array('search'=>false,'sort'=>false,'clear'=>true))
 		);
 
 		$disablesort = array();
@@ -206,10 +206,12 @@ class Admin_Controller extends Base_Controller {
 					}
 					$qval = array('$gte'=>$daystart,'$lte'=>$dayend);
 					//$qval = Input::get('sSearch_'.$idx);
+				}elseif($type == 'datetime'){
+					$datestring = Input::get('sSearch_'.$idx);
+					$qval = new MongoDate(strtotime($datestring));
 				}
 
 				$q[$field] = $qval;
-
 
 			}
 
@@ -220,7 +222,9 @@ class Admin_Controller extends Base_Controller {
 		$model = $this->model;
 
 		/* first column is always sequence number, so must be omitted */
-		$fidx = Input::get('iSortCol_0');
+		$fidx = Input::get('iSortCol_0') - 1;
+
+		$fidx = ($fidx == -1 )?0:$fidx;
 
 		$sort_col = $fields[$fidx][0];
 		$sort_dir = (Input::get('sSortDir_0') == 'asc')?1:-1;
@@ -276,8 +280,10 @@ class Admin_Controller extends Base_Controller {
 							$callback = $field[1]['callback'];
 							$row[] = $this->$callback($doc);
 						}else{
-							if($field[1]['kind'] == 'date'){
+							if($field[1]['kind'] == 'datetime'){
 								$rowitem = date('d-m-Y H:i:s',$doc[$field[0]]->sec);
+							}elseif($field[1]['kind'] == 'date'){
+								$rowitem = date('d-m-Y',$doc[$field[0]]->sec);
 							}elseif($field[1]['kind'] == 'currency'){
 								$num = (double) $doc[$field[0]];
 								$rowitem = number_format($num,2,',','.');
@@ -381,9 +387,11 @@ class Admin_Controller extends Base_Controller {
 			$data = Input::get();
 		}
 
+		$data = $this->beforeValidateAdd($data);
+
 		$controller_name = strtolower($this->controller_name);
 
-	    $validation = Validator::make($input = Input::all(), $this->validator);
+	    $validation = Validator::make($input = $data, $this->validator);
 
 	    if($validation->fails()){
 
@@ -482,7 +490,7 @@ class Admin_Controller extends Base_Controller {
 
 			if($obj = $model->update(array('_id'=>$id),array('$set'=>$data))){
 
-				$obj = $this->afterUpdate($id);
+				$obj = $this->afterUpdate($id,$data);
 
 		    	return Redirect::to($controller_name)->with('notify_success',ucfirst(Str::singular($controller_name)).' saved successfully');
 			}else{
@@ -502,12 +510,17 @@ class Admin_Controller extends Base_Controller {
 		return '';
 	}
 
-	public function afterUpdate($id)
+	public function afterUpdate($id,$data = null)
 	{
 		return $id;
 	}
 
 	public function beforeView($data)
+	{
+		return $data;
+	}
+
+	public function beforeValidateAdd($data)
 	{
 		return $data;
 	}

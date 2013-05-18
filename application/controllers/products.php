@@ -84,6 +84,30 @@ class Products_Controller extends Admin_Controller {
 
 		$data = Input::get();
 
+		$in = array($data['size'],$data['color'],$data['qty'],$data['link']);
+		$keys = array('size','color','qty','link');
+		$types = array('text','text','text','text');
+		$data['variants'] = combiner($in,$keys,$types);
+
+		$in = array($data['related'],$data['relatedId']);
+		$keys = array('related','relatedId');
+		$types = array('text','text');
+		$data['relatedProducts'] = combiner($in,$keys,$types);
+
+		$in = array($data['component'],$data['componentId']);
+		$keys = array('component','componentId');
+		$types = array('text','text');
+		$data['componentProducts'] = combiner($in,$keys,$types);
+
+		$in = array($data['cfield'],$data['cvalue'],$data['cunit']);
+		$keys = array('field','val','unit');
+		$types = array('text','text','text');
+		$data['customFields'] = combiner($in,$keys,$types);
+
+		$customs = customcombiner($data['cfield'],$data['cvalue'],$data['cunit']);
+
+		$data = array_merge($data,$customs);
+
 		// access posted object array
 		$files = Input::file();
 
@@ -102,6 +126,9 @@ class Products_Controller extends Admin_Controller {
 		//$reg_number[] = $regsequence;
 
 		$data['productsequence'] = $regsequence;
+
+		$data['onsale'] = (isset($data['onsale']) && $data['onsale'] == 'Yes')?true:false;
+		$data['groupParent'] = (isset($data['groupParent']) && $data['groupParent'] == 'Yes')?true:false;
 
 		//normalize
 		$data['cache_id'] = '';
@@ -134,13 +161,16 @@ class Products_Controller extends Admin_Controller {
 
 	public function post_edit($id,$data = null)
 	{
+		//print_r(Input::get());
+
+
 		$this->validator = array(
 		    'name' => 'required', 
 		    'productcode' => 'required',
 		    'permalink' => 'required',
 		    'description' => 'required',
 		    'category' => 'required',
-		    'tags' => 'required',
+		    //'tags' => 'required',
 		    'priceCurrency' => 'required',
 		    'retailPrice' => 'required',
 		    'salePrice' => 'required',
@@ -151,6 +181,32 @@ class Products_Controller extends Admin_Controller {
 		//transform data before actually save it
 
 		$data = Input::get();
+
+		$in = array($data['size'],$data['color'],$data['qty'],$data['link']);
+		$keys = array('size','color','qty','link');
+		$types = array('text','text','text','text');
+		$data['variants'] = combiner($in,$keys,$types);
+
+		$in = array($data['related'],$data['relatedId']);
+		$keys = array('related','relatedId');
+		$types = array('text','text');
+		$data['relatedProducts'] = combiner($in,$keys,$types);
+
+		$in = array($data['component'],$data['componentId']);
+		$keys = array('component','componentId');
+		$types = array('text','text');
+		$data['componentProducts'] = combiner($in,$keys,$types);
+
+		$in = array($data['cfield'],$data['cvalue'],$data['cunit']);
+		$keys = array('field','val','unit');
+		$types = array('text','text','text');
+		$data['customFields'] = combiner($in,$keys,$types);
+
+		$customs = customcombiner($data['cfield'],$data['cvalue'],$data['cunit']);
+
+		$data = array_merge($data,$customs);
+
+		//print_r($customs);
 
 		// access posted object array
 		$files = Input::file();
@@ -168,6 +224,9 @@ class Products_Controller extends Admin_Controller {
 				$productpic[$key] = $val;
 			}				
 		}
+
+		$data['onsale'] = (isset($data['onsale']) && $data['onsale'] == 'Yes')?true:false;
+		$data['groupParent'] = (isset($data['groupParent']) && $data['groupParent'] == 'Yes')?true:false;
 
 		$data['productpic'] = $productpic;
 
@@ -198,16 +257,42 @@ class Products_Controller extends Admin_Controller {
 		return $display.'<br />'.$name;
 	}
 
+	public function beforeValidateAdd($data)
+	{
+		$data['size'] = '';
+		$data['color'] = '';
+		$data['qty'] = '';
+		$data['link'] = '';
+		$data['related'] = '';
+		$data['relatedId'] = '';
+		$data['cfield'] = '';
+		$data['cvalue'] = '';
+		$data['cunit'] = '';
+
+		return $data;
+	}
+
 	public function beforeUpdateForm($population){
 		if(isset($population['tags']) && is_array($population['tags']))
 		{
 			$population['tags'] = implode(',', $population['tags'] );
 		}
 
+		$population['size'] = '';
+		$population['color'] = '';
+		$population['qty'] = '';
+		$population['link'] = '';
+		$population['related'] = '';
+		$population['relatedId'] = '';
+		$population['cfield'] = '';
+		$population['cvalue'] = '';
+		$population['cunit'] = '';
+
+
 		return $population;
 	}
 
-	public function afterUpdate($id)
+	public function afterUpdate($id,$data = null)
 	{
 
 		$files = Input::file();
@@ -238,6 +323,37 @@ class Products_Controller extends Admin_Controller {
 
 			}				
 		}
+
+		$inventory = new Inventory();
+
+		if(isset($data['variants']) && count($data['variants']) > 0){
+			
+			$o = array();
+
+			foreach($data['variants'] as $v){
+
+				$v['productId'] = $id;
+
+				$avail = $inventory->count($v);
+
+				$qty = (int) $v['qty'];
+
+				$qty = $qty - $avail;
+
+				$v['status'] = 'available';
+				$v['createdDate'] = new MongoDate();				
+				$v['cartId'] = '';
+
+				for($i = 0; $i < $qty;$i++)
+				{	
+					$v['_id'] = new MongoId(Str::random(24));
+					$inventory->insert($v,array('upsert'=>false));
+				}
+
+			}
+
+		}
+
 
 		return $id;
 
@@ -273,6 +389,31 @@ class Products_Controller extends Admin_Controller {
 				}
 
 			}				
+		}
+
+		$inventory = new Inventory();
+
+		if(isset($obj['variants']) && count($obj['variants']) > 0){
+			
+			$o = array();
+
+			foreach($obj['variants'] as $v){
+
+				$qty = (int) $v['qty'];
+
+				$v['productId'] = $obj['_id']->__toString();
+				$v['createdDate'] = new MongoDate();				
+				$v['status'] = 'available';
+				$v['cartId'] = '';
+
+				for($i = 0; $i < $qty;$i++)
+				{	
+					$v['_id'] = new MongoId(Str::random(24));
+					$inventory->insert($v,array('upsert'=>false));
+				}
+
+			}
+
 		}
 
 		return $obj;

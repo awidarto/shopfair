@@ -35,24 +35,75 @@
         </fieldset>
 
         <fieldset>
+            <legend>Ownership</legend>
+                <div class="annotation">Leave blank for single merchant shop</div>
+                {{ $form->text('ownerMerchant','Merchant Name','',array('class'=>'text input-xlarge','id'=>'ownerMerchant','placeholder'=>'Merchant Name')) }}
+                {{ $form->text('ownerMerchantID','Merchant ID','',array('class'=>'text input-xlarge','id'=>'ownerMerchantID','placeholder'=>'Merchant ID')) }}
+        </fieldset>
+
+        <fieldset>
             <legend>Affiliates</legend>
 
-                {{ $form->text('affiliateMerchant','Merchant Name','',array('class'=>'text','id'=>'affiliateMerchant','placeholder'=>'Merchant Name')) }}
-                {{ $form->text('affiliateMerchantID','Merchant ID','',array('class'=>'text','id'=>'affiliateMerchantID','placeholder'=>'Merchant ID')) }}
-                {{ $form->text('affiliateProductID','Product ID','',array('class'=>'text','id'=>'affiliateProductID','placeholder'=>'Product ID')) }}
-                {{ $form->text('affiliateURL','Merchant Landing Page','',array('class'=>'text','id'=>'affiliateURL','placeholder'=>'Merchant Landing URL')) }}
+                {{ $form->text('affiliateMerchant','Merchant Name','',array('class'=>'text input-xlarge','id'=>'affiliateMerchant','placeholder'=>'Merchant Name')) }}
+                {{ $form->text('affiliateMerchantID','Merchant ID','',array('class'=>'text input-xlarge','id'=>'affiliateMerchantID','placeholder'=>'Merchant ID')) }}
+                {{ $form->text('affiliateProductID','Product ID','',array('class'=>'text input-xlarge','id'=>'affiliateProductID','placeholder'=>'Product ID')) }}
+                {{ $form->text('affiliateURL','Merchant Landing Page','',array('class'=>'text input-xxlarge','id'=>'affiliateURL','placeholder'=>'Merchant Landing URL')) }}
 
         </fieldset>
 
         <fieldset>
-            <legend>Related Products / Mix n Match Items</legend>
+            <legend>Related Products</legend>
 
-              @for($i=1;$i<6;$i++)
+            <table id="relatedTable">
+                <thead>
+                    <tr>
+                        <th>
+                            {{ $form->text('related','Product Name','',array('class'=>'text autocomplete_product', 'id'=>'related','placeholder'=>'Product Name')) }}
+                        </th>
+                        <th>
+                            {{ $form->text('relatedId','Product ID','',array('class'=>'text','id'=>'related_id','placeholder'=>'Related ID')) }}
+                        </th>
+                        <th>
+                            <span class="btn" id="related_add_btn" style="cursor:pointer" ><b class="icon-plus-alt"></b></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
 
-                {{ $form->hidden('relatedId_'.$i,'',array('class'=>'related','id'=>'relatedId_'.$i)) }}
-                {{ $form->text('related_'.$i,'','',array('class'=>'text autocomplete_product','id'=>'related_'.$i,'placeholder'=>'Related '.$i)) }}
-              
-              @endfor
+        </fieldset>
+
+        <fieldset>
+            <legend>Compound Product</legend>
+
+            {{ $form->checkbox('groupParent','This Product is a Compound Product','Yes',null)}}
+        </fieldset>
+
+        <fieldset>
+            <legend>Compound Product Component</legend>
+
+            <table id="componentTable">
+                <thead>
+                    <tr>
+                        <th>
+                            {{ $form->text('component','Product Name','',array('class'=>'text autocomplete_product', 'id'=>'component','placeholder'=>'Product Name')) }}
+                        </th>
+                        <th>
+                            {{ $form->text('componentId','Product ID','',array('class'=>'text','id'=>'component_id','placeholder'=>'Related ID')) }}
+                        </th>
+                        <th>
+                            <span class="btn" id="component_add_btn" style="cursor:pointer" ><b class="icon-plus-alt"></b></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(isset($formdata['componentProducts']))
+                        <?php $classes = array('input-large','input-large'); ?>
+                        {{ makerows($formdata['componentProducts'],$classes) }}
+                    @endif
+                </tbody>
+            </table>
 
         </fieldset>
         
@@ -62,6 +113,7 @@
 
         <fieldset>
             <legend>Product Details</legend>
+
                 {{ $form->select('section','Default Section',Config::get('shoplite.sections'),null,array('id'=>'section'))}}<br />
 
                 {{ $form->select('category','Category.req',Config::get('shoplite.categories'),null,array('id'=>'category'))}}<br />
@@ -102,6 +154,71 @@
 
         </fieldset>
 
+        <fieldset>
+            <legend>Product Variants</legend>
+
+            <datalist id="sizeOptions">
+              <option value="All Size"></option>
+              <option value="XS"></option>
+              <option value="S"></option>
+              <option value="M"></option>
+              <option value="L"></option>
+              <option value="XL"></option>
+              <option value="XXL"></option>
+              <option value="XXXL"></option>
+            </datalist>
+
+            <table id="variantTable">
+                <thead>
+                    <tr>
+                        <th>
+                            {{ $form->text('size','Size','',array('id'=>'size_input','class'=>'input-small','list'=>'sizeOptions'))}}
+                        </th>
+                        <th>
+                            {{ $form->text('color','Color','',array('id'=>'color_input','class'=>'input-small'))}}
+                        </th>
+                        <th>
+                            {{ $form->text('qty','Qty','',array('id'=>'qty_input','class'=>'input-small'))}}
+                        </th>
+                        <th>
+                            {{ $form->text('link','Link to Other Product','',array('id'=>'link_input','class'=>'input-large autocomplete_product_link'))}}
+                        </th>
+                        <th>
+                            <span class="btn" id="add_btn" style="cursor:pointer" ><b class="icon-plus-alt"></b></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Custom Fields</legend>
+
+            <table id="customTable">
+                <thead>
+                    <tr>
+                        <th>
+                            {{ $form->text('cfield','Field Name','',array('id'=>'cfield_input','class'=>'input-large')) }}
+                        </th>
+                        <th>
+                            {{ $form->text('cvalue','Field Value','',array('id'=>'cvalue_input','class'=>'input-small'))}}
+                        </th>
+                        <th>
+                            {{ $form->text('cunit','Field Unit','',array('id'=>'cunit_input','class'=>'input-small','list'=>'unitOptions'))}}
+                        </th>
+                        <th>
+                            <span class="btn" id="custom_add_btn" style="cursor:pointer" ><b class="icon-plus-alt"></b></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </fieldset>
     </div>
 </div>
 
@@ -142,6 +259,35 @@ $(document).ready(function() {
         var slug = string_to_slug(title);
         $('#permalink').val(slug);
     });
+
+    $('#color_input').colorPicker();
+    
+    // dynamic tables
+    $('#add_btn').click(function(){
+        //alert('click');
+        addTableRow($('#variantTable'));
+        return false;
+    });
+
+    // custom field table
+    $('#custom_add_btn').click(function(){
+        //alert('click');
+        addTableRow($('#customTable'));
+        return false;
+    });
+
+    $('#related_add_btn').click(function(){
+        //alert('click');
+        addTableRow($('#relatedTable'));
+        return false;
+    });
+
+    $('#component_add_btn').click(function(){
+        //alert('click');
+        addTableRow($('#componentTable'));
+        return false;
+    });
+
 
 
 });

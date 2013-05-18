@@ -76,7 +76,7 @@
                 <div class="row-fluid inputInline">
                   
                     {{$form->select('priceCurrency','',Config::get('shoplite.currency'),null,array('id'=>'priceCurrency'))}}<br />
-                    {{ $form->text('startingPrice','Retail Price','',array('class'=>'text input-medium','id'=>'retailPrice','placeholder'=>'Starting Price')) }}                  
+                    {{ $form->text('startingPrice','Starting Price','',array('class'=>'text input-medium','id'=>'retailPrice','placeholder'=>'Starting Price')) }}                  
                     {{ $form->text('incrementalPrice','Incremental Value','',array('class'=>'text input-medium','id'=>'salePrice','placeholder'=>'Increment Value')) }}<br />
                   
                 </div>
@@ -87,8 +87,28 @@
 
                 {{$form->select('auctionRun','',Config::get('shoplite.auction_run'),null,array('id'=>'auctionRun'))}}<br />
 
-                {{ $form->text('auctionStart','From','',array('class'=>'text input-medium date','id'=>'auctionStart','placeholder'=>'From')) }}
-                {{ $form->text('auctionEnd','Until','',array('class'=>'text input-medium date','id'=>'auctionEnd','placeholder'=>'To')) }}
+                <div class="row-fluid">
+                  <div class="span4">
+                    {{ $form->text('auctionDate','Auction Date','',array('class'=>'text input-medium date','id'=>'auctionDate','placeholder'=>'Auction Date')) }}
+                  </div>
+                  <div class="span4">
+                    <div class="input-append bootstrap-timepicker">
+                        <label for="auctionStart">From</label>
+                        <input name="auctionStart" id="auctionStart" type="text" class="input-small timepicker">
+                        <span class="add-on"><i class="icon-clock"></i></span>
+                    </div>
+                  </div>
+                  <div class="span4">
+                    <div class="input-append bootstrap-timepicker">
+                        <label for="auctionEnd">From</label>
+                        <input name="auctionEnd" id="auctionEnd" type="text" class="input-small timepicker">
+                        <span class="add-on"><i class="icon-clock"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+
+                {{ $form->textarea('starterMessage','Starter Message','',array('class'=>'text','id'=>'starterMessage','style'=>'height:70px;')) }}
 
         </fieldset>
         <fieldset>

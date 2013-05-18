@@ -194,6 +194,7 @@ class Shop_Controller extends Base_Controller {
 	public function get_home()
 	{
 		$products = new Product();
+		$articles = new Article();
 
 		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
 
@@ -204,12 +205,28 @@ class Shop_Controller extends Base_Controller {
 
 		$mixmatch = $products->find(array('section'=>'mixmatch'),array(),array('createdDate'=>-1),$limit);
 
+		$pow = $products->find(array('section'=>'pow'),array(),array('createdDate'=>-1),$limit);
+
+		$otb = $products->find(array('section'=>'otb'),array(),array('createdDate'=>-1),$limit);
+
+		$kind = $products->find(array('section'=>'kind'),array(),array('createdDate'=>-1),$limit);
+		
+		$mixmatchartikel = $articles->find(array('section'=>'mixmatch'),array(),array('createdDate'=>-1),$limit);
+
+		
+
+		// /$mixandmact
 		$new = array();
 		$featured = array();
 
 		return View::make('shop.home')
 			->with('new',$new)
+			->with('pow',$pow)
+			->with('otb',$otb)
+			->with('kind',$kind)
 			->with('featured',$featured)
+			->with('pow',$pow)
+			// /->with('otb',$otb)
 			->with('mixmatch',$mixmatch);
 	}
 
@@ -376,7 +393,24 @@ class Shop_Controller extends Base_Controller {
 
 		$product = $products->get(array('_id'=>$_id));
 
+		$inventory = new Inventory();
+
+		$variants = $inventory->find(array('productId'=>$_id),array('size'=>true,'color'=>true,'_id'=>false));
+
+		$ca = array();
+		$sa = array();
+
+		foreach($variants as $v){
+			$ca[] = $v['color'];
+			$sa[] = $v['size'];
+		}
+
+		$sizes = array_unique($sa);
+		$colors = array_unique($ca);
+
 		return View::make('shop.detail')
+			->with('sizes',$sizes)
+			->with('colors',$colors)
 			->with('product',$product);
 	}
 
