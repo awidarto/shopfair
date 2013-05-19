@@ -41,12 +41,14 @@ Route::get('/',function(){
         }else if(Auth::user()->role == 'onsite' || Auth::user()->role == 'cashier'){
            return Redirect::to('onsite');
         }else{
-            return Redirect::to('shop/home');
+            return Redirect::to('shop');
         }
     }else{
-       return Redirect::to('shop/home');
+       return Redirect::to('shop');
     }
 });
+
+Route::get('shop',array('uses'=>'shop@home'));
 
 Route::get('cps',function(){
     $getvar = Input::all();
@@ -182,6 +184,8 @@ Route::get('register-success',array('uses'=>'shopper@success'));
 Route::get('register-landing',array('uses'=>'shopper@landing'));
 
 Route::get('article/(:any)',array('uses'=>'reader@article'));
+Route::get('news/(:any)',array('uses'=>'reader@news'));
+Route::get('sponsor/(:any)',array('uses'=>'reader@sponsor'));
 
 /*
 Route::get('/',  function(){
@@ -277,10 +281,10 @@ Route::post('signin', function()
 
 });
 
-Route::get('otb',array('uses'=>'shop@otb'));
-Route::get('pow',array('uses'=>'shop@pow'));
-Route::get('kind',array('uses'=>'shop@kind'));
-Route::get('mixmatch',array('uses'=>'shop@mixmatch'));
+Route::get('outofthebox',array('uses'=>'shop@otb'));
+Route::get('pickoftheweek',array('uses'=>'shop@pow'));
+Route::get('oneofakind',array('uses'=>'shop@kind'));
+Route::get('mixandmatch',array('uses'=>'shop@mixmatch'));
 
 //Route::get('about',array('uses'=>'reader@article(about)'));
 

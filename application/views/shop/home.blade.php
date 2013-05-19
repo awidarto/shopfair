@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="row">
+
 <div class="greatdeals">
   <h1 class="titleshopfair">GREAT DEALS</h1>
   <div class="row">

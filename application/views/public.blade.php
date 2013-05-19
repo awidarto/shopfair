@@ -14,9 +14,11 @@
     {{ HTML::style('css/smart_wizard.css') }}
     {{ HTML::style('css/shopfront.css') }}
     {{ HTML::style('content/css/icomoon.css') }}
+    {{ HTML::style('css/jquery.simplecolorpicker.css') }}
 
     {{ HTML::script('js/foundation/vendor/custom.modernizr.js') }}
     {{ HTML::script('js/jquery-1.8.3.min.js') }}
+    {{ HTML::script('js/jquery.elevateZoom-2.5.5.min.js') }}
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -132,11 +134,12 @@
 
     
 
-    {{ HTML::script('js/select2.min.js') }}
     {{ HTML::script('js/jquery.smartWizard-2.0.js') }}
     <script>
     $(document).foundation();
     </script>
+
+    {{ HTML::script('js/jquery.simplecolorpicker.js') }}
 
   </body>
 </html>

@@ -654,7 +654,7 @@ class Shopper_Controller extends Base_Controller {
 			$_id = new MongoId(Auth::shopper()->id);
 
 			$shopper->update(array('_id'=>$_id),
-				array('$set'=>array('activeCart'=>$newcart['_id'])),
+				array('$set'=>array('activeCart'=>$newcart['_id']->__toString() )),
 				array('upsert'=>true)
 				);
 
@@ -663,6 +663,81 @@ class Shopper_Controller extends Base_Controller {
 			return Response::json(array('result'=>'ERR','message'=>'failed to create cart'));
 		}
 
+	}
+
+	public function post_addtocart()
+	{
+		$in = Input::get();
+
+		$active_cart = '';
+		if(isset(Auth::shopper()->activeCart) && Auth::shopper()->activeCart != ''){
+			$active_cart = Auth::shopper()->activeCart;
+		}else{
+			$thecart = array();
+			$thecart['shopper_id'] = Auth::shopper()->id;
+			$thecart['items'] = array();
+			$thecart['createdDate'] = new MongoDate();
+			$thecart['lastUpdate'] = new MongoDate();
+			$thecart['cartStatus'] = 'open';
+			$thecart['buyerDetail'] = Auth::shopper();
+
+			$cart = new Cart();
+
+			if($newcart = $cart->insert($thecart,array('upsert'=>true))){
+
+				$shopper = new Shopper();
+
+				$_id = new MongoId(Auth::shopper()->id);
+
+				$shopper->update(array('_id'=>$_id),
+					array('$set'=>array('activeCart'=>$newcart['_id'])),
+					array('upsert'=>true)
+					);
+
+				$active_cart = Auth::shopper()->activeCart;
+			}else{
+				return Response::json(array('result'=>'ERR','message'=>'cannot create cart'));
+			}
+		}
+		// continue with shooping cart
+		$inventory = new Inventory();
+
+		$productId = $in['productId'];
+		$size = $in['size'];
+		$color = $in['color'];
+		$orderqty = $in['qty'];
+
+		//$fields = array(),$sorts = array(), $limit = array()
+
+		$limit = array($orderqty, 0);
+		
+		$items = $inventory->find(array('productId'=>$productId,'status'=>'available','size'=>$size,'color'=>$color),array(),array('createdDate'=>1),$limit);
+
+		if(count($items) > 0){
+			foreach($items as $it){
+				$inventory->update(array('_id'=>$it['_id']),array('$set'=>array('status'=>'incart','cartId'=>$active_cart)));
+			}
+		}else{
+			return Response::json(array('result'=>'NOAVAIL','message'=>'Item variant not available any more'));			
+		}
+
+
+	}
+
+	public function post_updateitem()
+	{
+
+	}
+
+	public function post_getvariantcount()
+	{
+		$in = Input::get();
+
+	}
+
+	public function post_getnextvariant()
+	{
+		$in = Input::get();
 	}
 
 	public function get_cart()
@@ -1130,9 +1205,9 @@ class Shopper_Controller extends Base_Controller {
 			$this->crumb = new Breadcrumb();
 		}
 
-		$user = new Attendee();
+		$user = new Shopper();
 
-		$id = (is_null($id))?Auth::attendee()->id:$id;
+		$id = (is_null($id))?Auth::shopper()->id:$id;
 
 		$id = new MongoId($id);
 

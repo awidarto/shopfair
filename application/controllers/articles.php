@@ -123,7 +123,7 @@ class Articles_Controller extends Admin_Controller {
 		return $population;
 	}
 
-	public function afterUpdate($id)
+	public function afterUpdate($id,$data = null)
 	{
 
 		$files = Input::file();

@@ -194,6 +194,7 @@ class Shop_Controller extends Base_Controller {
 	public function get_home()
 	{
 		$products = new Product();
+		$articles = new Article();
 
 		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
 
@@ -204,12 +205,28 @@ class Shop_Controller extends Base_Controller {
 
 		$mixmatch = $products->find(array('section'=>'mixmatch'),array(),array('createdDate'=>-1),$limit);
 
+		$pow = $products->find(array('section'=>'pow'),array(),array('createdDate'=>-1),$limit);
+
+		$otb = $products->find(array('section'=>'otb'),array(),array('createdDate'=>-1),$limit);
+
+		$kind = $products->find(array('section'=>'kind'),array(),array('createdDate'=>-1),$limit);
+		
+		$mixmatchartikel = $articles->find(array('section'=>'mixmatch'),array(),array('createdDate'=>-1),$limit);
+
+		
+
+		// /$mixandmact
 		$new = array();
 		$featured = array();
 
 		return View::make('shop.home')
 			->with('new',$new)
+			->with('pow',$pow)
+			->with('otb',$otb)
+			->with('kind',$kind)
 			->with('featured',$featured)
+			->with('pow',$pow)
+			// /->with('otb',$otb)
 			->with('mixmatch',$mixmatch);
 	}
 
@@ -376,12 +393,267 @@ class Shop_Controller extends Base_Controller {
 
 		$product = $products->get(array('_id'=>$_id));
 
+		$inventory = new Inventory();
+
+		$variants = $inventory->find(array('productId'=>$_id),array('size'=>true,'color'=>true,'_id'=>false));
+
+		$ca = array();
+		$sa = array();
+
+		foreach($variants as $v){
+			$ca[] = $v['color'];
+			$sa[] = $v['size'];
+		}
+
+		$sizes = array_unique($sa);
+		$colors = array_unique($ca);
+
 		return View::make('shop.detail')
+			->with('sizes',$sizes)
+			->with('colors',$colors)
 			->with('product',$product);
 	}
 
-	public function post_itemdel()
+	public function post_size()
 	{
+
+
+	}
+
+	public function post_color()
+	{
+		$in = Input::get();
+
+		$inv = new Inventory();
+
+		$_pid = new MongoId($in['_id']);
+
+		$colors = $inv->find(array('productId'=>$_pid,'size'=>$in['size']),array('color'=>true, '_id'=>false));
+
+		//print_r($colors);
+
+		$ca = array();
+		foreach($colors as $c){
+			$ca[] = $c['color'];
+		}
+
+		$ca = array_unique($ca);
+
+		$html = '';
+		$opt = '<option value="%s">%s</option>';
+		foreach($ca as $c){
+			$html .= sprintf($opt,$c,$c);
+		}
+
+		return Response::json(array('colors'=>$ca,'html'=>$html));
+
+	}
+
+	public function post_qty()
+	{
+		$in = Input::get();
+
+		$inv = new Inventory();
+
+		$_pid = new MongoId($in['_id']);
+
+		$count = $inv->count(array('productId'=>$_pid,'size'=>$in['size'],'color'=>$in['color'],'status'=>'available'));
+
+		$html = '';
+
+		$opt = '<option value="%s">%s</option>';
+		for($i = 1; $i <= $count; $i++){
+			$html .= sprintf($opt,$i,$i);
+		}
+
+		return Response::json(array('qty'=>$count,'html'=>$html));
+
+	}
+
+	public function post_addtocart()
+	{
+		if(Auth::shoppercheck() == false ){
+
+			return Response::json(array('result'=>'NOTSIGNEDIN','message'=>'You are not signed in'));
+
+		}else{
+			$in = Input::get();
+
+		    $item['color'] = $in['color'];
+		    $item['size'] = $in['size'];
+		    $item['productId'] = $in['_id'];
+
+		    $qty = $in['qty'];
+
+	    	if(isset(Auth::shopper()->activeCart) == false || Auth::shopper()->activeCart == ''){
+	    		$cart = $this->newCart();
+
+	    	}else{
+	    		$cart = $this->getCurrentCart();
+	    	}
+
+	    	//$result = $cart;
+
+	    	$result = $this->addToCart($cart,$item,$qty);
+
+	    	$query = $item;
+	    	$query['productId'] = new MongoId($query['productId']);
+	    	$query['status'] = 'available';
+
+	    	$inv = new Inventory();
+
+	    	$result['remaining'] = $inv->count($query);
+
+			$carts = new Cart();
+
+			$upcart = $carts->update(array('_id'=>$result['_id']),array('$set'=>array('items'=>$result['items'])),array('upsert'=>true));
+
+			//return Response::json(array('result'=>'PRODUCTNOTAVAIL','message'=>'Product no longer available'));
+
+			//return Response::json(array('result'=>'PRODUCTLESSQTY','message'=>'Available quantity is less than you ordered'));
+
+			return Response::json(array('result'=>'PRODUCTADDED','message'=>'Product added into Shopping Cart','data'=>$result));
+		}
+
+	}
+
+	public function post_signin()
+	{
+		$in = Input::get();
+
+	    $username = Input::get('username');
+	    $password = Input::get('password');
+
+	    $item['color'] = $in['color'];
+	    $item['size'] = $in['size'];
+	    $item['productId'] = $in['_id'];
+
+	    $qty = $in['qty'];
+
+	    if ( $userdata = Auth::shopperattempt(array('username'=>$username, 'password'=>$password)) )
+	    {
+	    	
+	    	if(Auth::shopper()->activeCart == ''){
+	    		$cart = $this->newCart();
+	    	}else{
+	    		$cart = $this->getCurrentCart();
+	    	}
+
+	    	$result = $this->addToCart($cart,$item,$qty);
+
+			print_r($result);
+
+			return Response::json(array('result'=>'PRODUCTADDED','message'=>'Successfully Signed In and Product Added','data'=>$cart));
+	    }
+	    else
+	    {
+			return Response::json(array('result'=>'FAILEDSIGNEDIN','message'=>'You are not signed in'));
+	    }
+
+	}
+
+	private function addToCart($cartobj, $item, $qty)
+	{
+		$carts = new Cart();
+
+		$inventory = new Inventory();
+
+		$query = $item;
+
+		$query['status'] = 'available';
+		$query['productId'] = new MongoId($query['productId']);
+
+		$pagelength = $qty;
+		$pagestart = 0;
+		
+		$limit = array($pagelength, $pagestart);
+
+		$invitem = $inventory->find($query,array(),array('createdDate'=>1),$limit);
+
+		$item_ids = array_keys($invitem);
+
+		$up = array();
+
+		foreach ($item_ids as $key) {
+			$up[] = array('_id'=>new MongoId($key));
+
+			$setinv = $inventory->update(array('_id'=>new MongoId($key),'status'=>'available'),
+				array(
+					'$set'=>array(
+						'status'=>'incart',
+						'cartId'=>$cartobj['_id']
+					)
+				)
+			);
+		}
+
+		$aquery = array('productId'=>$query['productId'],
+			'cartId'=>$cartobj['_id'],
+			'status'=>'incart',
+			'size'=>$item['size'],
+			'color'=>$item['color']);
+
+		$actual = $inventory->find($aquery);
+
+		$item['items'] = $actual;
+		$item['actual'] = count($actual);
+
+		if(isset($item['ordered'])){
+		    $item['ordered'] += $qty;
+		}else{
+		    $item['ordered'] = $qty;
+		}
+
+	    $cartobj['items'][$item['productId']][$item['size'].'_'.$item['color']] = $item;
+
+	    return $cartobj;
+
+	}
+
+	private function removeFromCart($cartobj, $item, $qty)
+	{
+		$carts = new Cart();
+
+	}
+
+	private function getCurrentCart(){
+
+		$carts = new Cart();
+
+		$cart_id = Auth::shopper()->activeCart;
+
+		$cart = $carts->get(array('_id'=>new MongoId($cart_id) ));
+
+		return $cart;
+	}
+
+	private function newCart()
+	{
+		$thecart = array();
+		$thecart['shopper_id'] = Auth::shopper()->id;
+		$thecart['items'] = array();
+		$thecart['createdDate'] = new MongoDate();
+		$thecart['lastUpdate'] = new MongoDate();
+		$thecart['cartStatus'] = 'open';
+		$thecart['buyerDetail'] = Auth::shopper();
+
+		$cart = new Cart();
+
+		if($newcart = $cart->insert($thecart,array('upsert'=>true))){
+
+			$shopper = new Shopper();
+
+			$_id = new MongoId(Auth::shopper()->id);
+
+			$shopper->update(array('_id'=>$_id),
+				array('$set'=>array('activeCart'=>$newcart['_id']->__toString() )),
+				array('upsert'=>true)
+				);
+
+			return $newcart;
+		}else{
+			return false;
+		}
 
 	}
 

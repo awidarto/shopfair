@@ -126,7 +126,7 @@ class Users_Controller extends Admin_Controller {
 		return $display;
 	}
 
-	public function afterUpdate($id)
+	public function afterUpdate($id,$data = null)
 	{
 
 		$files = Input::file();

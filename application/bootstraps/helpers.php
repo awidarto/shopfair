@@ -1,5 +1,71 @@
 <?php
 
+function makerows($in,$class = array(),$ro = array()){
+	$rows = array();
+
+	$rowtemplate = '<td><input type="text" name="%s[]" value="%s" class="text %s" %s ></td>';
+
+	foreach($in as $val){
+		$row = '';
+		$row = '<tr>';
+		$cnt = 0;
+		foreach($val as $k=>$v){
+			$cls = ( count($class) > 0 && isset($class[$cnt]))?$class[$cnt]:'input-small';
+			$read = ( count($ro) > 0 && isset($ro[$cnt]))?$ro[$cnt]:'readonly="readonly"';
+			$row .= sprintf($rowtemplate,$k,$v,$cls,$read);
+			$cnt++;
+		}
+		$row .= '<td><span class="btn del" style="cursor:pointer"><b class="icon-minus-alt"></b></span></td>';
+		$row .= '</tr>';
+
+		$rows[] = $row;
+	}
+
+	$rows = implode('',$rows);
+
+	return $rows;
+}
+
+function customcombiner($keys,$val,$unit){
+	$out = array();
+
+	if(is_array($keys)){
+		$counter = 0;
+		foreach ($keys as $key) {
+			$out[$key] = array('val'=>$val[$counter],'unit'=>$unit[$counter]);
+		}
+	}
+
+	return $out;
+}
+
+function combiner($in,$keys,$types){
+
+	$out = array();
+
+	if(is_array($in[0])){
+		$count = count($in[0]);
+		$keycount = count($keys);
+
+		if($count > 0){
+			for($i = 0; $i < $count; $i++){
+				$item = array();
+				$kc = 0;
+				foreach($keys as $k){
+					if($types[$kc] == 'text'){
+						$item[$k] = $in[$kc][$i];
+					}else if($types[$kc] == 'checkbox'){
+						$item[$k] = isset($in[$kc][$i])?$in[$kc][$i]:false;
+					}
+					$kc++;
+				}
+				$out[] = $item;
+			}			
+		}			
+	}
+
+	return $out;
+}
 
 
 function rand_string( $length ) {
