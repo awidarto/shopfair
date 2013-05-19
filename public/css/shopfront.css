@@ -61,7 +61,215 @@ html,
 body {
 	height: 100%;
 	font-family: 'proxima_nova_rgregular';
+	color: #555555;
 	/* The html and body elements cannot have any padding or margin. */
+}
+h1.titleshopfair{
+	font-size: 1.5em;
+	font-weight: normal;
+	margin-bottom: 20px;
+	font-family: 'proxima_nova_rgregular';
+}
+/*header
+*/
+.top-bar{
+	background-color: #fff;
+	color:#505050;
+	height: 75px;
+	padding:0 25px;
+
+}
+.logo{
+	padding-top:8px;
+	padding-left: 20px;
+}
+.headercontainer{
+	-moz-box-shadow : 0 2px 1px rgba(0,0,0,.2);
+	-webkit-box-shadow : 0 2px 1px rgba(0,0,0,.2);
+	box-shadow : 0 2px 1px rgba(0,0,0,.2); 
+	width: 100%;
+	max-width: 100%;
+	z-index: 3;
+	position: relative;
+	display: block;
+}
+.fullscreen{
+	max-width: 100%;
+}
+.twittertimeline{
+	font-size: 95%;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #d5d5d5;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+.twittertimeline a{
+	color: #212020;
+}
+.top-bar-section li a:not(.button){
+	background:#fff; 
+	color: #212020;
+	font-weight: normal;
+}
+
+.top-bar-section li a:not(.button):hover{
+	background:#fff; 
+	color: #f68e1f;
+	font-weight: normal;
+}
+.top-bar{
+	background:#fff; 
+}
+.mainnav{
+	padding-top: 40px;
+	background: #fff;
+
+}
+.top-bar-section ul{
+	background: #fff;	
+}
+#featured{
+	position: relative;
+}
+.titlefeatured{
+	width:400px;
+	position: absolute;
+	margin-left: 300px;
+	top:30px;
+}
+.titlefeatured h1{
+	font-size: 1.8em;
+	color: #fff;
+	font-family: 'proxima_nova_rgregular';	
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.mainbuttonshopfair{
+	font-size: 0.8em;
+	background-color: #f68d21;
+	color: #fff;
+	border-color: #df811c;
+	border-width: 0;
+}
+/*DEALS*/
+.greatdeals{
+	margin-top: 15px;
+}
+.dealsitem{
+	-moz-box-shadow : 0 2px 1px rgba(0,0,0,.2);
+	-webkit-box-shadow : 0 2px 1px rgba(0,0,0,.2);
+	box-shadow : 0 2px 1px rgba(0,0,0,.2); 
+	position: relative;
+	margin-bottom: 25px;
+}
+
+.dealsitem h2{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0,0,0,.4);
+	padding: 10px 6px;
+	margin: 0;
+	color: #fff;
+	font-family: 'proxima_nova_rgregular';
+	font-size: 0.7em;
+}
+.dealsitem span.price{
+	font-size: 1.5em;
+	font-weight: normal;	
+}
+/*FESTIVAL*/
+.festivalhome{
+	margin-top: 30px;
+	background: transparent url(../images/festival-bg.png) no-repeat;
+
+}
+.festivalcontent{
+	padding-left: 3.5em;
+	padding-right: 3.5em;
+	padding-top: 70px;
+	text-align: center;
+	color: #4d3a3a;
+	text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.3);
+	width: 75%;
+	margin:  0 auto;
+	text-align: center;
+	float: none;
+	font-size: 0.85em;
+	padding-bottom: 60px;
+}
+.titlefestival{
+	margin-bottom: 30px;
+}
+.festivalcontent p{
+	
+}
+.titlefestival h1.titlefestival h2,.titlefestival img{
+	float: left;
+	color: #4c3131;
+}
+.titlefestival h1{
+	font-size: 2.2em;
+	font-weight: normal;
+	font-family: 'proxima_nova_rgregular';
+	margin-bottom: 0;
+}
+.titlefestival h2{
+	font-size: 1.3em;
+	font-weight: normal;
+	font-family: 'proxima_nova_rgregular';	
+	border-bottom: 1px solid #917d7b;
+}
+.titlefestival h3{
+	font-size: 1.9em;
+	font-weight: normal;
+	font-family: 'proxima_nova_rgregular';	
+
+}
+
+h3.subtitlefestival{
+	font-size: 1.2em;
+	font-weight: normal;
+	font-family: 'proxima_nova_rgregular';	
+
+}
+.festivalcontent a.more{
+	color: #ef1a4a;
+	text-decoration: underline;
+}
+.merchanthome{
+	background-color: rgba(255,255,255,.3);
+	padding: 15px 0;
+	margin-top: 30px
+}
+
+
+/*FOOTER*/
+.sponsorshome{
+	margin-top: 35px;
+	margin-bottom: 65px;
+}
+
+footer{
+	background-color:#f4f4f4;
+	border-top: 1px solid #c4c4c4;
+	padding:60px 0 50px;
+	font-size: 0.85em;
+}
+footer ul li{
+	list-style-type:none; 
+	font-size: 0.9em;
+	margin: 7px 0;
+}
+footer ul li a{
+	color: #9b9b9b;
+	font-size: 0.9em;	
+
+}
+
+.footercontent{
+	padding-left: 3.5em;
+	padding-right: 3.5em;
 }
 
 /* Wrapper for page content to push down footer */
@@ -94,7 +302,7 @@ visibility:hidden;
 	height: 160px;
 }
 #footer {
-	background-color: #fedfcd;
+	background-color: #f4f4f4;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
