@@ -407,6 +407,8 @@ border-radius: 10px;
 }
 .contentinner{
 	margin-bottom: 40px;
+	font-size: 90%;
+	line-height: 24px;
 }
 .contentinner img{
 	margin-bottom: 15px;
