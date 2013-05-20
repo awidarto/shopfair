@@ -8,103 +8,117 @@
 		<div class="tableHeader">
 			<h3 class="formHead">Tweets</h3>
 		</div>
-		<table>
-			<thead>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<ul class="twitter-list">
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+		</ul>
 	</div>
 	<div class="span4">
 		<div class="tableHeader">
 			<h3 class="formHead">Bid Stream</h3>
 		</div>
-		<table>
-			<thead>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span class="title">title</span>
-						<p>
-							Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
-						</p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<ul class="twitter-list">
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="twitter-card">
+					<span class="title">title</span>
+					<p>
+						Accessing the Twitter streaming API with Node.js is a breeze with the nTwitter.
+					</p>
+				</div>
+			</li>
+		</ul>
 
 
 	</div>
@@ -132,15 +146,15 @@
 		<h3>Thresholds</h3>
 		<div>
 			<div class="bidtitle">Threshold 1</div>
-			<div id="bidthreshhold-1">{{ $auction['bidValue_1']}}</div>
+			<div class="bidthvalue" id="bidthreshhold-1">{{ $auction['bidValue_1']}}</div>
 		</div>
 		<div>
 			<div class="bidtitle">Threshold 1</div>
-			<div id="bidthreshhold-2">{{ $auction['bidValue_2']}}</div>
+			<div class="bidthvalue" id="bidthreshhold-2">{{ $auction['bidValue_2']}}</div>
 		</div>
 		<div>
 			<div class="bidtitle">Threshold 1</div>
-			<div id="bidthreshhold-3">{{ $auction['bidValue_3']}}</div>
+			<div class="bidthvalue" id="bidthreshhold-3">{{ $auction['bidValue_3']}}</div>
 		</div>
 	</div>
 </div>

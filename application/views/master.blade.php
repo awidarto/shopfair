@@ -102,7 +102,9 @@
 
   <div class="container-fluid">
       @if(isset($crumb))
-        {{ $this->crumb->generate('bootstrap') }}
+        <div id="breadcrumb-container">
+          {{ $this->crumb->generate('bootstrap') }}
+        </div>
       @endif
 
       <div class="row-fluid">
