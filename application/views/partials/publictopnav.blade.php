@@ -15,7 +15,7 @@
   <section class="top-bar-section">
 
     <ul class="right mainnav">
-      <li><a href="#">ABOUT</a></li>
+      <li><a href="{{ URL::to('reader/article/about') }}">ABOUT</a></li>
       <li><a >//</a></li>
       <li><a href="{{ URL::to('shop/deals') }}">WEEKLY DEALS</a></li>
       <li><a >//</a></li>
