@@ -33,6 +33,14 @@ View::composer('publicdeals',function($view){
 
 });
 
+View::composer('inner',function($view){
+
+    $view->nest('topnav','partials.publictopnav');
+    $view->nest('footer','partials.footer');
+    $view->nest('sponsorshome','partials.sponsorshome');
+
+});
+
 
 View::composer('master',function($view){
 

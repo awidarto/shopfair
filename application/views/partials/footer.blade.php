@@ -40,8 +40,8 @@
           <div class="large-3 columns">
             <ul class=" ">
               <li class="linktitle">SHOPFAIR FESTIVAL</li>
-              <li><a href="#">PROGRAMS</a></li>
-              <li><a href="#">LOCATIONS</a></li>
+              <li><a href="#">LOCATIONS & PROGRAMS</a></li>
+              <li><a href="{{ URL::to('reader/article/gallery') }}">GALLERY</a></li>
               <li><a href="#">ENTERTAINMENTS</a></li>
               <li><a href="#">MERCHANTS</a></li>
             </ul>
