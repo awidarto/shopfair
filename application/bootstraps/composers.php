@@ -24,6 +24,15 @@ View::composer('publichome',function($view){
 
 });
 
+View::composer('publicdeals',function($view){
+
+    $view->nest('topnav','partials.publictopnav');
+    $view->nest('footer','partials.footer');
+    $view->nest('festivalhome','partials.festivalhome');
+    $view->nest('sponsorshome','partials.sponsorshome');
+
+});
+
 
 View::composer('master',function($view){
 

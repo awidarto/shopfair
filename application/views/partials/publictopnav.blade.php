@@ -4,7 +4,7 @@
     <!-- Title Area -->
     <li class="name">
       <h1 class="logo">
-        <a href="#">
+        <a href="{{ URL::to('shop/home') }}">
           {{ HTML::image('images/logo.gif','shopfair',array('class'=>'logo-header')) }}
         </a>
       </h1>
@@ -17,11 +17,12 @@
     <ul class="right mainnav">
       <li><a href="#">ABOUT</a></li>
       <li><a >//</a></li>
-      <li><a href="#">WEEKLY DEALS</a></li>
+      <li><a href="{{ URL::to('shop/deals') }}">WEEKLY DEALS</a></li>
       <li><a >//</a></li>
       <li><a href="#">TODAY'S AUCITON</a></li>
       <li><a >//</a></li>
       <li><a href="#">SHOPFAIR FESTIVAL</a></li>
+      <li><a class="countfestival" href="#">30 DAYS LEFT TO FESTIVAL</a></li>
     </ul>
   </section>
 </nav>

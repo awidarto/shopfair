@@ -81,7 +81,7 @@ h1.titleshopfair{
 }
 .logo{
 	padding-top:8px;
-	padding-left: 20px;
+	
 }
 .headercontainer{
 	-moz-box-shadow : 0 2px 1px rgba(0,0,0,.2);
@@ -132,28 +132,41 @@ h1.titleshopfair{
 	position: relative;
 }
 .titlefeatured{
-	width:400px;
+	width:350px;
 	position: absolute;
-	margin-left: 300px;
-	top:30px;
+	margin-left: 330px;
+	top:50px;
+	font-size: 0.9em;
 }
 .titlefeatured h1{
-	font-size: 1.8em;
+	font-size: 2.1em;
+	line-height: 28px;
 	color: #fff;
 	font-family: 'proxima_nova_rgregular';	
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
+
 .mainbuttonshopfair{
-	font-size: 0.8em;
+	font-size: 0.75em;
 	background-color: #f68d21;
 	color: #fff;
 	border-color: #df811c;
 	border-width: 0;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+
+}
+.top-bar-section li a:not(.button).countfestival
+{
+	color: #e24b6c;
 }
 /*DEALS*/
 .greatdeals{
 	margin-top: 15px;
 }
+
 .dealsitem{
 	-moz-box-shadow : 0 2px 1px rgba(0,0,0,.2);
 	-webkit-box-shadow : 0 2px 1px rgba(0,0,0,.2);
@@ -161,7 +174,9 @@ h1.titleshopfair{
 	position: relative;
 	margin-bottom: 25px;
 }
-
+.shopfairmonday .dealsitem{
+	margin-bottom: 35px;	
+}
 .dealsitem h2{
 	position: absolute;
 	top: 0;
@@ -177,6 +192,13 @@ h1.titleshopfair{
 .dealsitem span.price{
 	font-size: 1.5em;
 	font-weight: normal;	
+}
+.dealsitem span.timer{
+	background: transparent url(../images/clock.png) no-repeat 0 25%;	
+	padding-left: 15px;
+	color: #fff;
+	font-weight: normal;
+	font-size: 1em;
 }
 /*FESTIVAL*/
 .festivalhome{
@@ -271,6 +293,83 @@ footer ul li a{
 	padding-left: 3.5em;
 	padding-right: 3.5em;
 }
+/*DEALS PAGE*/
+
+.months{
+	-moz-transform : rotate(90deg);
+-o-transform : rotate(90deg);
+-webkit-transform : rotate(90deg);
+transform : rotate(90deg); 
+}
+
+.auctiontimeline{
+	background-color: #dededb;
+	width: 100%;
+	float: left;
+	height: 53px;
+}
+
+.auctiontimeline li{
+	float: left;
+	list-style-type:none; 
+	font-size: 0.9em;
+	
+	color: #8a8a8a;
+}
+.auctiontimeline .months{
+	padding:16px 11px 20px;
+	color: #fff;
+	height: 100%;
+	background-color: #c1c1c1;
+}
+.auctiontimeline li a{
+	color: #8a8a8a;
+	padding:18px 20px;
+	display: inline-block;
+	
+}
+.auctiontimeline li a:hover,.auctiontimeline li a.active{
+	background-color: #fff;
+	border-bottom: 1px solid #f6416c;
+	
+}
+.todaysauction{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.auctiondetails{
+	font-size: 90%;
+}
+.auctiondetails h1{
+	font-size: 2.2em;
+	
+	font-family: 'proxima_nova_rgregular';
+	margin-top: 0;	
+	margin-bottom: 5px;
+}
+.timeleftauction{
+	color: #f6416c;
+	font-size: 1.7em;
+	border-top: 1px solid #f3f3f3;
+	width:50%;
+	padding-top: 10px;
+}
+
+.secondticking{
+	color: #898989;
+}
+.timeleftpar{
+	color: #222222;
+}
+.todaysauction a.mainbuttonshopfair{
+	font-size: 1em;
+	margin-top: 15px;
+	-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+
 
 /* Wrapper for page content to push down footer */
 #wrap {
