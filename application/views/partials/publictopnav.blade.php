@@ -19,9 +19,9 @@
       <li><a >//</a></li>
       <li><a href="{{ URL::to('shop/deals') }}">WEEKLY DEALS</a></li>
       <li><a >//</a></li>
-      <li><a href="#">TODAY'S AUCTION</a></li>
+      <li><a href="{{ URL::to('reader/article/todays-auction') }}">TODAY'S AUCTION</a></li>
       <li><a >//</a></li>
-      <li><a href="#">SHOPFAIR FESTIVAL</a></li>
+      <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">SHOPFAIR FESTIVAL</a></li>
       <li><a class="countfestival" href="#">30 DAYS LEFT TO FESTIVAL</a></li>
     </ul>
   </section>
