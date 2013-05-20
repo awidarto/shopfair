@@ -1232,6 +1232,12 @@ span.btn.del{
 	border: 2px solid #222;
 }
 
-#addtocart{
+img#addtocart{
 	cursor: pointer;
 }
+
+td span.title{
+	font-weight: bold;
+}
+
+

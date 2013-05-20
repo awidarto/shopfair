@@ -304,12 +304,17 @@ class Auctions_Controller extends Admin_Controller {
 	}
 
 	public function get_panel($id){
+
 		$auctions = new Auction();
 
 		$_id = new MongoId($id);
 		$auction = $auctions->get(array('_id'=>$_id));
 
+		$this->crumb->add(strtolower($this->controller_name).'/panel/'.$id,'Panel',false);
+		$this->crumb->add(strtolower($this->controller_name).'/panel/'.$id,$auction['title'],false);
+
 		return View::make('auctions.panel')
+			->with('crumb',$this->crumb)
 			->with('auction',$auction);
 
 	}
