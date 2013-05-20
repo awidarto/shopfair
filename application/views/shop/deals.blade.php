@@ -28,16 +28,17 @@
 <div class="row">
   <div class="todaysauction">
     <div class="row">
+      @foreach($auction as $m)
       <div class="large-6 columns">
         <div class="dealsitem">
-          {{ HTML::image('images/products/6.png','',array('class'=>'')) }}
+          <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
         </div>
       </div>
 
       <div class="large-6 columns">
         <div class="auctiondetails">
           <span>Today’s Auction:</span>
-          <h1>BLACKBERRY Z10</h1>
+          <h1>{{ $m['name']}} </h1>
           <div class="timeleftauction">
             <span>00<span class="secondticking">:</span> 10 <span class="secondticking">:</span> 00 <span class="secondticking">:</span> 00 </span> <span class="timeleftpar">TIME LEFT</span>
           </div>
@@ -48,6 +49,8 @@
           </p>
         </div>
       </div>
+      @endforeach
+
     </div>  
   </div>
 </div>
