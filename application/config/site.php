@@ -1,7 +1,7 @@
 <?php
 return array(
-	'title' => 'SHOPFAIR',
-	'admintitle' => 'ADMIN DASHBOARD',
+	'title' => 'ShopFair',
+	'admintitle' => 'Kickstart Commander',
 	
 	'register_success' => 'Registration Success',
 	'register_failed' => 'Registration Success',
