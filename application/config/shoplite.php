@@ -22,14 +22,14 @@ return array(
 		),
 	'categories'=>array(
 			'6colomn'=>'6 Columns',
-			'4colomn'=>'4 Columns',
+			'3colomn'=>'3 Columns',
 			'2colomn'=>'2 Columns',
 			
 		),
 	'search_categories'=>array(
 			''=>'All',
 			'6colomn'=>'6 Columns',
-			'4colomn'=>'4 Columns',
+			'3colomn'=>'3 Columns',
 			'2colomn'=>'2 Columns'
 		),
 	'cartstatus'=>array(

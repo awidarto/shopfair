@@ -59,195 +59,48 @@
 <div class="greatdeals shopfairmonday">
   <h1 class="titleshopfair">#SHOPFAIRMONDAY</h1>
   <div class="row">
-    <div class="large-6 columns">
-      <div class="dealsitem">
-      <a href="">
-      <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-      {{ HTML::image('images/products/4.png','',array('class'=>'')) }}
-      </a>
-      </div>
-    </div>
-    <div class="large-6 columns">
-      <div class="dealsitem">
-      <a href="">
-      <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-      {{ HTML::image('images/products/5.png','',array('class'=>'')) }}
-      </a>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="large-3 columns">
-      <div class="dealsitem">
-      <a href="">
-      <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-      {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-      </a>
-      </div>
-    </div>
-    <div class="large-3 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-        {{ HTML::image('images/products/2.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-3 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-        {{ HTML::image('images/products/3.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-3 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-        {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
+    
+    @foreach($deals1 as $m)
+      <div class="large-6 columns">
+        <div class="dealsitem">
+          <a href="{{$m['affiliateURL']}}">
+            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>
+            <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/med_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+          </a>
+        </div>
+      </div>  
+    @endforeach
+
   </div>
 
   <div class="row">
-    <div class="large-3 columns">
-      <div class="dealsitem">
-      <a href="">
-      <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-      {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-      </a>
-      </div>
-    </div>
-    <div class="large-3 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-        {{ HTML::image('images/products/2.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-3 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-        {{ HTML::image('images/products/3.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-3 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days and 20 hours</span></h2>
-        {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
+    @foreach($deals2 as $m)
+      <div class="large-3 columns">
+        <div class="dealsitem">
+          <a href="{{$m['affiliateURL']}}">
+            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>
+            <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/med_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+          </a>
+        </div>
+      </div>  
+    @endforeach
   </div>
 
   <div class="row">
-    <div class="large-2 columns">
-      <div class="dealsitem">
-      <a href="">
-      <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-      {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-      </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/2.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/3.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
+    @foreach($deals3 as $m)
+      <div class="large-2 columns">
+        <div class="dealsitem">
+          <a href="{{$m['affiliateURL']}}">
+            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>
+            <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/med_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+          </a>
+        </div>
+      </div>  
+    @endforeach
   </div>
 
 
-  <div class="row">
-    <div class="large-2 columns">
-      <div class="dealsitem">
-      <a href="">
-      <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-      {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-      </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/2.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/3.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-    <div class="large-2 columns">
-      <div class="dealsitem">
-        <a href="">
-        <h2>Cuts 35 L’Agencies<br/><span class="timer">sale ends in 4 days</span></h2>
-        {{ HTML::image('images/products/1.png','',array('class'=>'')) }}
-        </a>
-      </div>
-    </div>
-  </div>
+  
 
 </div>
 </div>
