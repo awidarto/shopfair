@@ -369,6 +369,9 @@ transform : rotate(90deg);
 -moz-border-radius: 10px;
 border-radius: 10px;
 }
+a.mainbuttonshopfair:hover{
+background-color: #f04f74;
+}
 
 /*INNER*/
 .boxcontainer{
