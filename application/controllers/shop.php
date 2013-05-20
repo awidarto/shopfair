@@ -198,20 +198,13 @@ class Shop_Controller extends Base_Controller {
 
 		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
 
-		$pagelength= 3;
+		$pagelength= 8;
 		$pagestart = 0;
 
 		$limit = array($pagelength, $pagestart);
 
-		$mixmatch = $products->find(array('section'=>'mixmatch'),array(),array('createdDate'=>-1),$limit);
+		$deals = $products->find(array('section'=>'deals'),array(),array('createdDate'=>-1),$limit);
 
-		$pow = $products->find(array('section'=>'pow'),array(),array('createdDate'=>-1),$limit);
-
-		$otb = $products->find(array('section'=>'otb'),array(),array('createdDate'=>-1),$limit);
-
-		$kind = $products->find(array('section'=>'kind'),array(),array('createdDate'=>-1),$limit);
-		
-		$mixmatchartikel = $articles->find(array('section'=>'mixmatch'),array(),array('createdDate'=>-1),$limit);
 
 		
 
@@ -221,6 +214,36 @@ class Shop_Controller extends Base_Controller {
 
 		return View::make('shop.home')
 			->with('new',$new)
+			->with('deals',$deals)
+			
+			;
+	}
+
+
+	public function get_deals()
+	{
+		$products = new Product();
+		$articles = new Article();
+
+		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
+
+		$pagelength= 6;
+		$pagestart = 0;
+
+		$limit = array($pagelength, $pagestart);
+
+		$deals1 = $products->find(array('section'=>'deals'),array(),array('createdDate'=>-1),$limit);
+		$deals2 = $products->find(array('section'=>'deals'),array(),array('createdDate'=>-1),$limit);
+
+
+		
+
+		// /$mixandmact
+		$new = array();
+		$featured = array();
+
+		return View::make('shop.deals')
+			->with('new',$new)
 			->with('pow',$pow)
 			->with('otb',$otb)
 			->with('kind',$kind)
@@ -229,7 +252,6 @@ class Shop_Controller extends Base_Controller {
 			// /->with('otb',$otb)
 			->with('mixmatch',$mixmatch);
 	}
-
 	public function get_collection($category = 'all',$page = 0,$search = null)
 	{
 		$new = array();

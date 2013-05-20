@@ -80,7 +80,8 @@
       <div class="row-fluid">
          <div class="span8">
             <div id="header-container">
-              <h5><i class="icon-cart logo-type"></i>{{ Config::get('site.title')}}</h5>
+              {{ HTML::image('images/logo-admin.png','ipalogo',array('class'=>'logo-header')) }}
+              <h5>{{ Config::get('site.title')}}</h5>
               @yield('topnav')
             </div>
          </div>

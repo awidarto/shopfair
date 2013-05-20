@@ -11,11 +11,9 @@ return array(
 			'GBP'=>'GBP'
 		),
 	'sections'=>array(
-			'regular'=>'Regular',
-			'mixmatch'=>'Mix n Match',
-			'pow'=> 'Pick of The Week',
-			'otb'=> 'Out of The Box',
-			'kind'=> 'One of A Kind'
+			'deals'=>'Deals',
+			'auction'=>'Auction',
+			
 		),
 	'search_sections'=>array(
 			''=>'All',

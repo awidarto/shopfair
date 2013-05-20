@@ -14,11 +14,9 @@
     {{ HTML::style('css/smart_wizard.css') }}
     {{ HTML::style('css/shopfront.css') }}
     {{ HTML::style('content/css/icomoon.css') }}
-    {{ HTML::style('css/jquery.simplecolorpicker.css') }}
 
     {{ HTML::script('js/foundation/vendor/custom.modernizr.js') }}
     {{ HTML::script('js/jquery-1.8.3.min.js') }}
-    {{ HTML::script('js/jquery.elevateZoom-2.5.5.min.js') }}
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -49,14 +47,7 @@
      
      
       <div class="row fullscreen">
-        <div id="featured">
-            {{ HTML::image('images/banners/bannerhome1.jpg','shopfair',array()) }}
-            <div class="titlefeatured">
-              <h1>THE BEST OF GIORGIO ARMANI</h1>
-              <p>Whether you're packing for a short work trip or an extended getaway</p>
-              <a class="button mainbuttonshopfair round">VIEW THIS DEAL</a>
-            </div>
-        </div>
+        
         
         <div class="large-12 columns">
           
@@ -78,22 +69,8 @@
         </div>
      
      
-      <!-- End Mobile Header -->
+        <!-- End Mobile Header -->
      
-      </div>
-      </div><br>
-     
-      <div class="row">
-        <div class="large-12 columns">
-          <div class="twittertimeline">
-            {{ HTML::image('images/twitIco.png','shopfairtwitter',array('class'=>'')) }}
-            <span><a href="#">@ShopFairID</a> Penyerapan Belanja Pemerintah Ditargetkan Capai 50 Persen - Republika Online http://dlvr.it/3L63Zl </span>
-          </div>
-
-          <div class="row">
-     
-          </div>
-
         </div>
       </div>
 
@@ -101,7 +78,6 @@
 
       @yield('content')
      
-      @yield('festivalhome')
 
 
       @yield('sponsorshome')
@@ -134,12 +110,11 @@
 
     
 
+    {{ HTML::script('js/select2.min.js') }}
     {{ HTML::script('js/jquery.smartWizard-2.0.js') }}
     <script>
     $(document).foundation();
     </script>
-
-    {{ HTML::script('js/jquery.simplecolorpicker.js') }}
 
   </body>
 </html>

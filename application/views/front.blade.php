@@ -56,7 +56,8 @@
       <div class="row-fluid">
          <div class="span8">
             <div id="header-container">
-              <h5><i class="icon-cart logo-type"></i>{{ Config::get('site.admintitle')}}</h5>
+              {{ HTML::image('images/logo-admin.png','ipalogo',array('class'=>'logo-header')) }}
+              <h5>{{ Config::get('site.admintitle')}}</h5>
               <div class="dropdown">
                 <a class="header-dropdown dropdown-toggle accent-color" data-toggle="dropdown" href="#">
                   Login
