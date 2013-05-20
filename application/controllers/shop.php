@@ -203,7 +203,7 @@ class Shop_Controller extends Base_Controller {
 
 		$limit = array($pagelength, $pagestart);
 
-		$deals = $products->find(array('section'=>'deals'),array(),array('createdDate'=>-1),$limit);
+		$deals = $products->find(array('section'=>'deals','category'=>array('$ne'=>'6colomn')),array(),array('createdDate'=>-1),$limit);
 
 
 		
