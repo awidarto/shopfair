@@ -17,26 +17,20 @@ return array(
 		),
 	'search_sections'=>array(
 			''=>'All',
-			'regular'=>'Regular',
-			'mixmatch'=>'Mix n Match',
-			'pow'=> 'Pick of The Week',
-			'otb'=> 'Out of The Box',
-			'kind'=> 'One of A Kind'
+			'deals'=>'Deals',
+			'auction'=>'Auction'
 		),
 	'categories'=>array(
-			'regular'=>'Regular',
-			'mixmatch'=>'Mix n Match',
-			'pow'=> 'Pick of The Week',
-			'otb'=> 'Out of The Box',
-			'kind'=> 'One of A Kind'
+			'6colomn'=>'6 Columns',
+			'3colomn'=>'3 Columns',
+			'2colomn'=>'2 Columns',
+			
 		),
 	'search_categories'=>array(
 			''=>'All',
-			'regular'=>'Regular',
-			'mixmatch'=>'Mix n Match',
-			'pow'=> 'Pick of The Week',
-			'otb'=> 'Out of The Box',
-			'kind'=> 'One of A Kind'
+			'6colomn'=>'6 Columns',
+			'3colomn'=>'3 Columns',
+			'2colomn'=>'2 Columns'
 		),
 	'cartstatus'=>array(
 			'open'=>'Regular',

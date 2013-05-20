@@ -149,7 +149,7 @@
   {{ HTML::script('scripts/google-code-prettify/prettify.js') }}
   {{ HTML::script('scripts/jquery.mousewheel.js') }}
   {{ HTML::script('scripts/jquery.scrollTo.js') }}
-  {{ HTML::script('js/jquery.colorpicker.js') }}
+  {{ HTML::script('js/jquery.colorPicker.js') }}
 
   {{ HTML::script('js/bootstrap-timepicker.js') }}   
   {{ HTML::script('js/bootstrap-datetimepicker.min.js') }}   

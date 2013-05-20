@@ -232,25 +232,19 @@ class Shop_Controller extends Base_Controller {
 
 		$limit = array($pagelength, $pagestart);
 
-		$deals1 = $products->find(array('section'=>'deals'),array(),array('createdDate'=>-1),$limit);
-		$deals2 = $products->find(array('section'=>'deals'),array(),array('createdDate'=>-1),$limit);
-
-
-		
+		$deals1 = $products->find(array('section'=>'deals','category'=>'6colomn'),array(),array('createdDate'=>-1),$limit);
+		$deals2 = $products->find(array('section'=>'deals','category'=>'3colomn'),array(),array('createdDate'=>-1),$limit);
+		$deals3 = $products->find(array('section'=>'deals','category'=>'2colomn'),array(),array('createdDate'=>-1),$limit);
 
 		// /$mixandmact
 		$new = array();
 		$featured = array();
 
 		return View::make('shop.deals')
-			->with('new',$new)
-			->with('pow',$pow)
-			->with('otb',$otb)
-			->with('kind',$kind)
-			->with('featured',$featured)
-			->with('pow',$pow)
-			// /->with('otb',$otb)
-			->with('mixmatch',$mixmatch);
+			->with('deals1',$deals1)
+			->with('deals2',$deals2)
+			->with('deals3',$deals3);
+
 	}
 	public function get_collection($category = 'all',$page = 0,$search = null)
 	{
