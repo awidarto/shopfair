@@ -198,7 +198,7 @@ class Shop_Controller extends Base_Controller {
 
 		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
 
-		$pagelength= 3;
+		$pagelength= 8;
 		$pagestart = 0;
 
 		$limit = array($pagelength, $pagestart);
