@@ -24,6 +24,7 @@ return array(
 			'6colomn'=>'6 Columns',
 			'3colomn'=>'3 Columns',
 			'2colomn'=>'2 Columns',
+			'shopfairmonday'=>'ShopFair Monday'
 			
 		),
 	'search_categories'=>array(

@@ -1,5 +1,5 @@
 @section('footer')
-<footer class="row fullscreen">
+<footer class="row">
   <div class="large-12 columns footercontent">
     
     <div class="row">

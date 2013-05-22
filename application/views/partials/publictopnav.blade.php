@@ -15,14 +15,13 @@
   <section class="top-bar-section">
 
     <ul class="right mainnav">
-      <li><a href="{{ URL::to('reader/article/about') }}">ABOUT</a></li>
+      <li><a href="{{ URL::to('shop/sales') }}">SALES</a></li>
       <li><a >//</a></li>
-      <li><a href="{{ URL::to('shop/deals') }}">WEEKLY DEALS</a></li>
+      <li><a href="{{ URL::to('shop/auction') }}">AUCTION</a></li>
       <li><a >//</a></li>
-      <li><a href="{{ URL::to('reader/article/todays-auction') }}">TODAY'S AUCTION</a></li>
+      <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">FESTIVAL</a></li>
       <li><a >//</a></li>
-      <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">SHOPFAIR FESTIVAL</a></li>
-      <li><a class="countfestival" href="#">30 DAYS LEFT TO FESTIVAL</a></li>
+      <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">SHOPPING TIPS</a></li>
     </ul>
   </section>
 </nav>

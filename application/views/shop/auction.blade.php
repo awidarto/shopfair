@@ -41,15 +41,15 @@
 
       <div class="large-6 columns">
         <div class="auctiondetails">
-          <span>#SHOPFAIR MONDAY:</span>
+          <span>Today’s Auction:</span>
           <h1>{{ $m['name']}} </h1>
           <div class="timeleftauction">
             <span>00<span class="secondticking">:</span> 10 <span class="secondticking">:</span> 00 <span class="secondticking">:</span> 00 </span> <span class="timeleftpar">TIME LEFT</span>
           </div>
-          <a class="joinauction button mainbuttonshopfair" href="#">I WANT THIS !</a>
-          <p>This Item is :</br>
-            - Only 10 units available</br>
-            - Slashed down 30% from retail price</br>
+          <a class="joinauction button mainbuttonshopfair" href="#">JOIN THE AUCTION</a>
+          <p>How to participate?</br>
+            - Fill in some database</br>
+            - Use your twitter and then mention us</br>
           </p>
         </div>
       </div>
@@ -64,6 +64,8 @@
 <div class="row">
 
 <div class="greatdeals shopfairmonday">
+
+<!--
   <h1 class="titleshopfair">#SHOPFAIRMONDAY</h1>
   <div class="row">
     
@@ -79,8 +81,8 @@
     @endforeach
 
   </div>
-
-  <h1 class="titleshopfair">#FEATURED</h1>
+-->
+  <h1 class="titleshopfair">NEXT AUCTIONS</h1>
   <div class="row">
     @foreach($deals2 as $m)
       <div class="large-3 columns">
@@ -94,7 +96,7 @@
     @endforeach
   </div>
 
-  <h1 class="titleshopfair">#ALLSEASONS</h1>
+<!--
   <div class="row">
     @foreach($deals3 as $m)
       <div class="large-2 columns">
@@ -107,7 +109,7 @@
       </div>  
     @endforeach
   </div>
-
+-->
 
   
 

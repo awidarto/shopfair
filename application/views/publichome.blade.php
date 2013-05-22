@@ -46,8 +46,8 @@
       </div>
      
      
-      <div class="row fullscreen">
-        <div id="featured">
+    <div class="row ">
+        <div id="featured" class="large-9 columns">
             {{ HTML::image('images/banners/bannerhome1.jpg','shopfair',array()) }}
             <div class="titlefeatured">
               <h1>THE BEST OF GIORGIO ARMANI</h1>
@@ -55,45 +55,77 @@
               <a class="button mainbuttonshopfair round">VIEW THIS DEAL</a>
             </div>
         </div>
-        
-        <div class="large-12 columns">
-          
+        <div id="auction-featured" class="large-3 columns">
+            <div class="section-container accordion" data-section="accordion" id="auction-accordion">
+                <section>
+                    <p class="title" data-section-title><a href="#">#AUCTION</a></p>
+                    <div class="content acc-content" data-section-content>
+                        <div class="auctiondetails">
+                            <h1>{{ $m['name']}} </h1>
+                            <div class="timeleftauction">
+                            <span>00<span class="secondticking">:</span> 10 <span class="secondticking">:</span> 00 <span class="secondticking">:</span> 00 </span> <span class="timeleftpar">TIME LEFT</span>
+                            </div>
+                            <a class="joinauction button mainbuttonshopfair" href="#">JOIN AUCTION</a>
+                            <p>This Item is :</br>
+                                - Only 1 units available</br>
+                                - Starting from {{ $m['salePrice'] }}</br>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <p class="title" data-section-title><a href="#">#SHOPFAIR MONDAY</a></p>
+                    <div class="content acc-content" data-section-content>
+                        <div class="auctiondetails">
+                            <h1>{{ $m['name']}} </h1>
+                            <div class="timeleftauction">
+                            <span>00<span class="secondticking">:</span> 10 <span class="secondticking">:</span> 00 <span class="secondticking">:</span> 00 </span> <span class="timeleftpar">TIME LEFT</span>
+                            </div>
+                            <a class="joinauction button mainbuttonshopfair" href="#">I WANT THIS !</a>
+                            <p>This Item is :</br>
+                                - Only 10 units available</br>
+                                - Slashed down 30% from retail price</br>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
      
         <!-- Desktop Slider -->
      
-          
-     
         <!-- End Desktop Slider -->
-     
      
         <!-- Mobile Header -->
      
      
-        <div class="row">
-          <div class="small-12 show-for-small"><br>
+        <!-- End Mobile Header -->
+     
+    </div>
+
+    <div class="row show-for-small">
+        <div class="small-12"><br>
             <img src="http://placehold.it/1000x600&text=For Small Screens" />
-          </div>
         </div>
+    </div>     
+
+    <br>
      
-     
-      <!-- End Mobile Header -->
-     
-      </div>
-      </div><br>
-     
+    <div class="row">
+    <div class="large-12 columns">
+
+
+    <div class="twittertimeline">
+        {{ HTML::image('images/twitIco.png','shopfairtwitter',array('class'=>'')) }}
+        <span><a href="#">@ShopFairID</a> Penyerapan Belanja Pemerintah Ditargetkan Capai 50 Persen - Republika Online http://dlvr.it/3L63Zl </span>
+    </div>
+
       <div class="row">
-        <div class="large-12 columns">
-          <div class="twittertimeline">
-            {{ HTML::image('images/twitIco.png','shopfairtwitter',array('class'=>'')) }}
-            <span><a href="#">@ShopFairID</a> Penyerapan Belanja Pemerintah Ditargetkan Capai 50 Persen - Republika Online http://dlvr.it/3L63Zl </span>
-          </div>
 
-          <div class="row">
-     
-          </div>
-
-        </div>
       </div>
+
+    </div>
+    </div>
 
 
 
