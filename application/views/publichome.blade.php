@@ -34,7 +34,7 @@
 
   </head>
   <body>
-    <div class="row headercontainer">
+    <div class="row headercontainer show-for-medium-up" style="width:1168px;">
       <div class="large-12 columns">
      
         <!-- Navigation -->
@@ -45,8 +45,18 @@
         </div>
       </div>
      
+    <div class="row headercontainer show-for-small">
+      <div class="large-12 columns">
      
-    <div class="row ">
+        <!-- Navigation -->
+          @yield('topnav')
+     
+        <!-- End Navigation -->
+
+        </div>
+      </div>
+     
+    <div class="row-fluid fullscreen show-for-medium-up">
         <div id="featured" class="large-9 columns">
             {{ HTML::image('images/banners/bannerhome1.jpg','shopfair',array()) }}
             <div class="titlefeatured">
