@@ -56,7 +56,7 @@
         </div>
       </div>
      
-    <div class="row-fluid fullscreen show-for-medium-up">
+    <div class="row show-for-medium-up" style="width:1168px;">
         <div id="featured" class="large-9 columns">
             {{ HTML::image('images/banners/bannerhome1.jpg','shopfair',array()) }}
             <div class="titlefeatured">
