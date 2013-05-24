@@ -21,6 +21,11 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     }
     // Try to find the head, otherwise default to the documentElement
     (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
+
+    var script_tag2 = document.createElement('script');
+    script_tag2.setAttribute("type","text/javascript");
+    script_tag2.setAttribute("src","http://46.23.76.180/shopfair/js/SimpleCarousel.js");
+    (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag2);
     
 } else {
     // The jQuery version on the window is the one we want to use
@@ -42,12 +47,6 @@ function scriptLoadHandler() {
 /******** Our main function ********/
 function main() { 
     jQuery(document).ready(function($) { 
-        
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        s.src = "http://scriptlocation/das.js";
-        // Use any selector
-        $("head").append(s);
         
 
         /******* Load CSS *******/

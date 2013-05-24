@@ -7,7 +7,7 @@
  * Version 0.3
  */
 (function($){
-window.$.fn.simplecarousel = function( params ) {
+$.fn.simplecarousel = function( params ) {
     // set config
     var defaults = {
         width: 700,
@@ -141,4 +141,4 @@ window.$.fn.simplecarousel = function( params ) {
             slide('next');
         }, config.auto);
 }
-})(window.jQuery);
+})(jQuery);
