@@ -5,7 +5,7 @@
 var jQuery;
 
 /******** Load jQuery if not present *********/
-if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
+if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.8.3') {
     var script_tag = document.createElement('script');
     script_tag.setAttribute("type","text/javascript");
     script_tag.setAttribute("src",
@@ -22,10 +22,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     // Try to find the head, otherwise default to the documentElement
     (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
 
-    var script_tag2 = document.createElement('script');
-    script_tag2.setAttribute("type","text/javascript");
-    script_tag2.setAttribute("src","http://46.23.76.180/shopfair/js/SimpleCarousel.js");
-    (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag2);
+   
     
 } else {
     // The jQuery version on the window is the one we want to use
@@ -40,13 +37,23 @@ function scriptLoadHandler() {
     jQuery = window.jQuery.noConflict(true);
 
     
+
     // Call our main function
     main(); 
 }
 
 /******** Our main function ********/
 function main() { 
+    
+
     jQuery(document).ready(function($) { 
+        
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "http://localhost/shopfair/public/js/simple.carousel.js";
+        // Use any selector
+        $("head").append(s);
+        
         
 
         /******* Load CSS *******/
@@ -65,14 +72,7 @@ function main() {
           $('#shopfairwidgetcontent').html("This data comes from another server: " + data.html);
         });
 
-        $("ul.example1").simplecarousel({
-            width:40,
-            height:40,
-            visible: 3,
-            auto: 3000,
-            next: $('.next'),
-            prev: $('.prev')
-        });
+        
     });
 }
 

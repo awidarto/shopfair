@@ -141,4 +141,4 @@ $.fn.simplecarousel = function( params ) {
             slide('next');
         }, config.auto);
 }
-})();
+})(jQuery);
