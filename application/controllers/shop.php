@@ -230,6 +230,8 @@ class Shop_Controller extends Base_Controller {
 		$pagelength= 6;
 		$pagestart = 0;
 
+		
+
 		$limit = array($pagelength, $pagestart);
 
 		$deals1 = $products->find(array('section'=>'deals','category'=>'6colomn'),array(),array('createdDate'=>-1),$limit);
