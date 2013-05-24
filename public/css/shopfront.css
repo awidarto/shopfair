@@ -128,9 +128,30 @@ h1.titleshopfair{
 .top-bar-section ul{
 	background: #fff;	
 }
+
+.acc-content{
+	height: 221px;
+	font-size: 11px;
+}
+
+#auction-featured{
+	padding: 0px;
+}
+
 #featured{
 	position: relative;
+	padding: 0px;
 }
+
+#featured img{
+	height: 320px;
+	margin: 0px;
+}
+
+#auction-accordion{
+	height:100%;
+}
+
 .titlefeatured{
 	width:350px;
 	position: absolute;
@@ -204,6 +225,7 @@ h1.titleshopfair{
 .festivalhome{
 	margin-top: 30px;
 	background: transparent url(../images/festival-bg.png) no-repeat;
+	background-size: 100%;
 
 }
 .festivalcontent{
@@ -755,4 +777,13 @@ a.continueshopping{
 }
 .productlist .span3 p{
 	margin: 0;
+}
+
+.banner-box-placeholder{
+	height: 240px;
+	margin: 0px;
+	margin-bottom: 25px;
+	display: block;
+	vertical-align: middle;
+	text-align: center;
 }

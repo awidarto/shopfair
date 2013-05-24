@@ -14,6 +14,7 @@
     {{ HTML::style('css/smart_wizard.css') }}
     {{ HTML::style('css/shopfront.css') }}
     {{ HTML::style('content/css/icomoon.css') }}
+    {{ HTML::style('css/general_enclosed_foundicons.css') }}
 
     {{ HTML::script('js/foundation/vendor/custom.modernizr.js') }}
     {{ HTML::script('js/jquery-1.8.3.min.js') }}
@@ -34,7 +35,7 @@
 
   </head>
   <body>
-    <div class="row headercontainer">
+    <div class="row headercontainer show-for-medium-up" style="width:1168px;">
       <div class="large-12 columns">
      
         <!-- Navigation -->
@@ -45,9 +46,16 @@
         </div>
       </div>
      
+    <div class="row headercontainer show-for-small">
+        <div class="large-12 columns">
+        <!-- Navigation -->
+          @yield('topnav')     
+        <!-- End Navigation -->
+        </div>
+    </div>
      
-      <div class="row fullscreen">
-        <div id="featured">
+    <div class="row show-for-medium-up" style="width:1168px;">
+        <div id="featured" class="large-9 columns">
             {{ HTML::image('images/banners/bannerhome1.jpg','shopfair',array()) }}
             <div class="titlefeatured">
               <h1>THE BEST OF GIORGIO ARMANI</h1>
@@ -55,45 +63,45 @@
               <a class="button mainbuttonshopfair round">VIEW THIS DEAL</a>
             </div>
         </div>
-        
-        <div class="large-12 columns">
-          
+        <div id="auction-featured" class="large-3 columns">
+
+            @yield('accordion')
+        </div>
      
         <!-- Desktop Slider -->
      
-          
-     
         <!-- End Desktop Slider -->
-     
      
         <!-- Mobile Header -->
      
      
-        <div class="row">
-          <div class="small-12 show-for-small"><br>
+        <!-- End Mobile Header -->
+     
+    </div>
+
+    <div class="row show-for-small">
+        <div class="small-12"><br>
             <img src="http://placehold.it/1000x600&text=For Small Screens" />
-          </div>
         </div>
+    </div>     
+
+    <br>
      
-     
-      <!-- End Mobile Header -->
-     
-      </div>
-      </div><br>
-     
+    <div class="row">
+    <div class="large-12 columns">
+
+
+    <div class="twittertimeline">
+        {{ HTML::image('images/twitIco.png','shopfairtwitter',array('class'=>'')) }}
+        <span><a href="#">@ShopFairID</a> Penyerapan Belanja Pemerintah Ditargetkan Capai 50 Persen - Republika Online http://dlvr.it/3L63Zl </span>
+    </div>
+
       <div class="row">
-        <div class="large-12 columns">
-          <div class="twittertimeline">
-            {{ HTML::image('images/twitIco.png','shopfairtwitter',array('class'=>'')) }}
-            <span><a href="#">@ShopFairID</a> Penyerapan Belanja Pemerintah Ditargetkan Capai 50 Persen - Republika Online http://dlvr.it/3L63Zl </span>
-          </div>
 
-          <div class="row">
-     
-          </div>
-
-        </div>
       </div>
+
+    </div>
+    </div>
 
 
 

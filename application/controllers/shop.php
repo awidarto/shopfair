@@ -34,6 +34,8 @@ class Shop_Controller extends Base_Controller {
 
 	public function __construct(){
 		//$this->filter('before','auth');
+		date_default_timezone_set('Asia/Jakarta');
+
 		$this->crumb = new Breadcrumb();
 		$this->crumb->add('shop','Shop');
 	}
@@ -198,7 +200,7 @@ class Shop_Controller extends Base_Controller {
 
 		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
 
-		$pagelength= 8;
+		$pagelength= 6;
 		$pagestart = 0;
 
 		$limit = array($pagelength, $pagestart);
@@ -220,7 +222,7 @@ class Shop_Controller extends Base_Controller {
 	}
 
 
-	public function get_deals()
+	public function get_sales()
 	{
 		$products = new Product();
 		$articles = new Article();
@@ -238,7 +240,7 @@ class Shop_Controller extends Base_Controller {
 		$deals2 = $products->find(array('section'=>'deals','category'=>'3colomn'),array(),array('createdDate'=>-1),$limit);
 		$deals3 = $products->find(array('section'=>'deals','category'=>'2colomn'),array(),array('createdDate'=>-1),$limit);
 
-		$auction = $products->find(array('section'=>'auction'),array(),array('createdDate'=>-1),$limit);
+		$auction = $products->find(array('section'=>'deals','category'=>'shopfairmonday'),array(),array('createdDate'=>-1),$limit);
 
 		// /$mixandmact
 		$new = array();
@@ -252,6 +254,38 @@ class Shop_Controller extends Base_Controller {
 			;
 
 	}
+
+	public function get_auction()
+	{
+		$products = new Product();
+		$articles = new Article();
+
+		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
+
+		$pagelength= 6;
+		$pagestart = 0;
+
+		$limit = array($pagelength, $pagestart);
+
+		$deals1 = $products->find(array('section'=>'deals','category'=>'6colomn'),array(),array('createdDate'=>-1),$limit);
+		$deals2 = $products->find(array('section'=>'deals','category'=>'3colomn'),array(),array('createdDate'=>-1),$limit);
+		$deals3 = $products->find(array('section'=>'deals','category'=>'2colomn'),array(),array('createdDate'=>-1),$limit);
+
+		$auction = $products->find(array('section'=>'auction'),array(),array('createdDate'=>-1),$limit);
+
+		// /$mixandmact
+		$new = array();
+		$featured = array();
+
+		return View::make('shop.auction')
+			->with('deals1',$deals1)
+			->with('deals2',$deals2)
+			->with('deals3',$deals3)
+			->with('auction',$auction)
+			;
+
+	}
+
 	public function get_collection($category = 'all',$page = 0,$search = null)
 	{
 		$new = array();

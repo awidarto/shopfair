@@ -38,7 +38,7 @@ class Shop_Controller extends Base_Controller {
 		$this->crumb->add('shop','Shop');
 	}
 
-	public function get_index($product, $merchant)
+	public function get_index()
 	{
 		$tracker = new Tracker();
 		$product = new Product();
@@ -62,6 +62,8 @@ class Shop_Controller extends Base_Controller {
 		$t['flowstatus'] = 'redirected';
 
 		$tracker->insert($t);
+
+		Redirect::to($p['affiliateURL']);
 
 
 	}
