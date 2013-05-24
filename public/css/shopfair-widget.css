@@ -756,3 +756,23 @@ a.continueshopping{
 .productlist .span3 p{
 	margin: 0;
 }
+.example1 {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+li {
+    text-align:center;
+}
+
+li span {
+    display:block;
+    margin:5px;
+    background:red;
+}
+
+.next,
+.prev {
+    cursor:pointer;
+}
