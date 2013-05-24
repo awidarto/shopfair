@@ -13,8 +13,8 @@
   </ul>
 
   <section class="top-bar-section">
-
-    <ul class="right mainnav">
+    {{ HTML::image('images/banner_header.jpg','',array('class'=>'right bannerHeader')) }}<br/>
+    <ul class="right mainnav mainavwithbanner">
       <li><a href="{{ URL::to('shop/sales') }}">SALES</a></li>
       <li><a >//</a></li>
       <li><a href="{{ URL::to('shop/auction') }}">AUCTION</a></li>

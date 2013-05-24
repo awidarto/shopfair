@@ -780,10 +780,23 @@ a.continueshopping{
 }
 
 .banner-box-placeholder{
-	height: 240px;
+	height: 250px;
+	width: 300px;
+	padding:0;
 	margin: 0px;
 	margin-bottom: 25px;
 	display: block;
 	vertical-align: middle;
 	text-align: center;
+}
+
+.centeralign{
+	margin:0 auto;
+	text-align: center;
+}
+.bannerHeader{
+	margin-top: 10px;
+}
+.mainavwithbanner{
+	padding-top: 4px;
 }
