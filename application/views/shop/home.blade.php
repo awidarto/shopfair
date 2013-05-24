@@ -8,7 +8,7 @@
   <div class="row">
     <div class="large-9 columns">
       @foreach($deals as $m)
-        <div class="large-4 columns">
+        <div class="large-4 columns productlisthome">
           <div class="dealsitem">
             <a href="{{$m['affiliateURL']}}">
               <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>

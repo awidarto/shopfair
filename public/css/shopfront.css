@@ -778,7 +778,9 @@ a.continueshopping{
 .productlist .span3 p{
 	margin: 0;
 }
-
+.productlisthome{
+margin-bottom: 10px;
+}
 .banner-box-placeholder{
 	height: 250px;
 	width: 300px;
