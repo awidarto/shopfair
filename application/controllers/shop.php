@@ -34,6 +34,8 @@ class Shop_Controller extends Base_Controller {
 
 	public function __construct(){
 		//$this->filter('before','auth');
+		date_default_timezone_set('Asia/Jakarta');
+
 		$this->crumb = new Breadcrumb();
 		$this->crumb->add('shop','Shop');
 	}

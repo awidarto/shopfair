@@ -1,8 +1,8 @@
 @section('accordion')
-
+<?php $today = date('N',time()); ?>
 <div id="accordion">
-	<section id="item1">
-		<p class="pointer"><i class="gen-enclosed foundicon-right-arrow"></i></p>
+	<section id="item1" {{ ($today == 1)?'class="ac_hidden"':'' }} >
+		<p class="pointer"><b class="gen-enclosed foundicon-right-arrow"></b></p>
 		<h1><a href="#">AUCTION</a></h1>
 	    <div class="content-details">
 	        <h3>BLACKBERRY Z10</h3>
@@ -16,7 +16,7 @@
 	        </p>
 	    </div>
 	</section>
-	<section id="item2" class="ac_hidden">
+	<section id="item2" {{ ($today == 1)?'':'class="ac_hidden"' }} >
 		<p class="pointer"><i class="gen-enclosed foundicon-right-arrow"></i></p>
 		<h1><a href="#">SHOPFAIR MONDAY</a></h1>
 
@@ -37,7 +37,14 @@
 </div>
 
 <style type="text/css">
-#accordion section, #accordion .pointer, #accordion h1, #accordion p {
+/*
+#accordion h1, 
+#accordion p,
+*/
+#accordion .pointer, 
+#accordion section
+{
+	
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
