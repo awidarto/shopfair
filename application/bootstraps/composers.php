@@ -18,6 +18,7 @@ View::composer('public',function($view){
 View::composer('publichome',function($view){
 
     $view->nest('topnav','partials.publictopnav');
+    $view->nest('accordion','partials.homeaccordion');
     $view->nest('footer','partials.footer');
     $view->nest('festivalhome','partials.festivalhome');
     $view->nest('sponsorshome','partials.sponsorshome');
