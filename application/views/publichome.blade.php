@@ -14,6 +14,7 @@
     {{ HTML::style('css/smart_wizard.css') }}
     {{ HTML::style('css/shopfront.css') }}
     {{ HTML::style('content/css/icomoon.css') }}
+    {{ HTML::style('css/general_enclosed_foundicons.css') }}
 
     {{ HTML::script('js/foundation/vendor/custom.modernizr.js') }}
     {{ HTML::script('js/jquery-1.8.3.min.js') }}

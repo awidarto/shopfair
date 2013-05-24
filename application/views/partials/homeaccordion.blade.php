@@ -2,8 +2,8 @@
 
 <div id="accordion">
 	<section id="item1">
-		<p class="pointer">&#9654;</p>
-		<h1><a href="#">#AUCTION</a></h1>
+		<p class="pointer"><i class="gen-enclosed foundicon-right-arrow"></i></p>
+		<h1><a href="#">AUCTION</a></h1>
 	    <div class="content-details">
 	        <h3>BLACKBERRY Z10</h3>
 	        <div class="timeleftauction">
@@ -17,8 +17,8 @@
 	    </div>
 	</section>
 	<section id="item2" class="ac_hidden">
-		<p class="pointer">&#9654;</p>
-		<h1><a href="#">#SHOPFAIR MONDAY</a></h1>
+		<p class="pointer"><i class="gen-enclosed foundicon-right-arrow"></i></p>
+		<h1><a href="#">SHOPFAIR MONDAY</a></h1>
 
 	    <div class="content-details">
 	        <h3>THULE SLING BAG</h3>
@@ -57,6 +57,8 @@
 	padding: 10px 10px 10px 30px;
 }
 
+
+
 #accordion h1 a {
 	color:#222;
 	font-family: proxima_nova_rgregular;
@@ -87,12 +89,21 @@
 	height:38px;
 }
 
+#accordion section.ac_hidden h1{
+	background-color:rgba(128,128,128,0.3);	
+}
+
+
 #accordion .pointer {
 	padding:0;
 	margin:10px 0 0 6px;
 	line-height:20px;
 	width:13px;
 	position:absolute;
+}
+
+#accordion .pointer i{
+	color: maroon;
 }
 
 #accordion section:not(.ac_hidden) h1 {
