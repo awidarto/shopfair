@@ -783,4 +783,7 @@ a.continueshopping{
 	height: 240px;
 	margin: 0px;
 	margin-bottom: 25px;
+	display: block;
+	vertical-align: middle;
+	text-align: center;
 }

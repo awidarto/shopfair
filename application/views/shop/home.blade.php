@@ -20,8 +20,8 @@
 
     </div>
     <div class="large-3 columns">
-      <div class="panel banner-box-placeholder"></div>
-      <div class="panel banner-box-placeholder"></div>
+      <div class="panel banner-box-placeholder"> This is an Ad </div>
+      <div class="panel banner-box-placeholder"> This is an Ad </div>
     </div>
 
   </div>
