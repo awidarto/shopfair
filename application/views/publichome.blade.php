@@ -67,16 +67,6 @@
 
             @yield('accordion')
         </div>
-     
-        <!-- Desktop Slider -->
-     
-        <!-- End Desktop Slider -->
-     
-        <!-- Mobile Header -->
-     
-     
-        <!-- End Mobile Header -->
-     
     </div>
 
     <div class="row show-for-small">
@@ -88,19 +78,18 @@
     <br>
      
     <div class="row">
-    <div class="large-12 columns">
+        <div class="large-12 columns">
 
+            <div class="twittertimeline">
+                {{ HTML::image('images/twitIco.png','shopfairtwitter',array('class'=>'')) }}
+                <span><a href="#">@ShopFairID</a> Penyerapan Belanja Pemerintah Ditargetkan Capai 50 Persen - Republika Online http://dlvr.it/3L63Zl </span>
+            </div>
 
-    <div class="twittertimeline">
-        {{ HTML::image('images/twitIco.png','shopfairtwitter',array('class'=>'')) }}
-        <span><a href="#">@ShopFairID</a> Penyerapan Belanja Pemerintah Ditargetkan Capai 50 Persen - Republika Online http://dlvr.it/3L63Zl </span>
-    </div>
+            <div class="row">
 
-      <div class="row">
+            </div>
 
-      </div>
-
-    </div>
+        </div>
     </div>
 
 

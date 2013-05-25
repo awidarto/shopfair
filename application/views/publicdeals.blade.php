@@ -34,7 +34,7 @@
 
   </head>
   <body>
-    <div class="row headercontainer">
+    <div class="row headercontainer show-for-medium-up" style="width:1168px;">
       <div class="large-12 columns">
      
         <!-- Navigation -->
@@ -45,34 +45,15 @@
         </div>
       </div>
      
-     
-      <div class="row fullscreen">
-        
-        
+    <div class="row headercontainer show-for-small">
         <div class="large-12 columns">
-          
-     
-        <!-- Desktop Slider -->
-     
-          
-     
-        <!-- End Desktop Slider -->
-     
-     
-        <!-- Mobile Header -->
-     
-     
-        <div class="row">
-          <div class="small-12 show-for-small"><br>
-            <img src="http://placehold.it/1000x600&text=For Small Screens" />
-          </div>
+        <!-- Navigation -->
+          @yield('topnav')     
+        <!-- End Navigation -->
         </div>
+    </div>
      
-     
-        <!-- End Mobile Header -->
-     
-        </div>
-      </div>
+    <br>
 
 
 

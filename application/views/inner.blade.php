@@ -36,7 +36,7 @@
 
   </head>
   <body>
-    <div class="row headercontainer">
+    <div class="row headercontainer show-for-medium-up" style="width:1168px;">
       <div class="large-12 columns">
      
         <!-- Navigation -->
@@ -46,7 +46,14 @@
 
         </div>
       </div>
-
+     
+    <div class="row headercontainer show-for-small">
+        <div class="large-12 columns">
+        <!-- Navigation -->
+          @yield('topnav')     
+        <!-- End Navigation -->
+        </div>
+    </div>
 
       <div class="row">
         <div class="large-3 columns">
