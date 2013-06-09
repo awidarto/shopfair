@@ -36,6 +36,7 @@
       <div class="large-6 columns">
         <div class="dealsitem">
           <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+
         </div>
       </div>
 
@@ -70,8 +71,15 @@
     @foreach($deals1 as $m)
       <div class="large-6 columns">
         <div class="dealsitem">
-          <a href="{{$m['affiliateURL']}}">
-            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>
+          <a href="{{ URL::to('track/aff/'.$m['_id'])}}">
+            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span>
+              <br />
+                @if($m['affiliateMerchant'] == '')
+                  <span class="merchant">by ShopFair</span>
+                @else
+                  <span class="merchant">by {{ $m['affiliateMerchant'] }}</span>
+                @endif
+            </h2>
             <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
           </a>
         </div>
@@ -85,8 +93,15 @@
     @foreach($deals2 as $m)
       <div class="large-3 columns">
         <div class="dealsitem">
-          <a href="{{$m['affiliateURL']}}">
-            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>
+          <a href="{{ URL::to('track/aff/'.$m['_id'])}}">
+            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span>
+              <br />
+                @if($m['affiliateMerchant'] == '')
+                  <span class="merchant">by ShopFair</span>
+                @else
+                  <span class="merchant">by {{ $m['affiliateMerchant'] }}</span>
+                @endif
+            </h2>
             <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/med_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
           </a>
         </div>
@@ -99,8 +114,15 @@
     @foreach($deals3 as $m)
       <div class="large-2 columns">
         <div class="dealsitem">
-          <a href="{{$m['affiliateURL']}}">
-            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>
+          <a href="{{ URL::to('track/aff/'.$m['_id'])}}">
+            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span>
+              <br />
+                @if($m['affiliateMerchant'] == '')
+                  <span class="merchant">by ShopFair</span>
+                @else
+                  <span class="merchant">by {{ $m['affiliateMerchant'] }}</span>
+                @endif
+            </h2>
             <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/med_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
           </a>
         </div>

@@ -1,0 +1,12 @@
+{
+	"name"        : "Bundocs",
+	"description" : "Offline Bundle Documentation Viewer for Laravel",
+	"author"      : "Mior Muhammad Zaki",
+	"url"         : "http://bundles.laravel.com/bundle/bundocs",
+	"repository"  : "https://github.com/orchestral/bundocs",
+	"version"     : "1.0.0",
+	"config"      : {
+		"handles"      : "bundocs",
+		"configurable" : false
+	}
+}

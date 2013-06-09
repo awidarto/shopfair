@@ -305,6 +305,20 @@
 			}
 		});
 
+		$('.auto_merchant_name').autocomplete({
+			source: base + 'ajax/merchant',
+			select: function(event, ui){
+				$('#ownerMerchantID').val(ui.item.id);
+			}
+		});
+
+		$('.auto_affiliate_name').autocomplete({
+			source: base + 'ajax/merchant',
+			select: function(event, ui){
+				$('#affiliateMerchantID').val(ui.item.id);
+				$('#affiliateMerchantCode').val(ui.item.code);
+			}
+		});
 
 		$('.auto_userdata').autocomplete({
 			source: base + 'ajax/userdata',

@@ -19,18 +19,21 @@ class Merchants_Controller extends Admin_Controller {
 	{
 
 		$this->heads = array(
+			array('Name',array('search'=>true,'sort'=>true)),
+			array('Affiliate Code',array('search'=>true,'sort'=>true)),
 			array('First Name',array('search'=>true,'sort'=>true)),
 			array('Last Name',array('search'=>true,'sort'=>true)),
 			array('Email',array('search'=>true,'sort'=>true)),
-			array('Address 1',array('search'=>true,'sort'=>true)),
-			array('Address 2',array('search'=>true,'sort'=>true)),
-			array('City',array('search'=>true,'sort'=>true)),
-			array('ZIP',array('search'=>true,'sort'=>true)),
-			array('Country',array('search'=>true,'sort'=>true)),
-			array('Mobile',array('search'=>true,'sort'=>true)),
+		//	array('Address 1',array('search'=>true,'sort'=>true)),
+		//	array('Address 2',array('search'=>true,'sort'=>true)),
+		//	array('City',array('search'=>true,'sort'=>true)),
+		//	array('ZIP',array('search'=>true,'sort'=>true)),
+		//	array('Country',array('search'=>true,'sort'=>true)),
+		//	array('Mobile',array('search'=>true,'sort'=>true)),
 			array('Phone',array('search'=>true,'sort'=>true)),
-			array('Created',array('search'=>true,'sort'=>true)),
-			array('Last Update',array('search'=>true,'sort'=>true)),
+		
+			array('Created',array('search'=>true,'sort'=>true,'date'=>true)),
+			array('Last Update',array('search'=>true,'sort'=>true,'date'=>true)),
 		);
 
 		return parent::get_index();
@@ -40,15 +43,17 @@ class Merchants_Controller extends Admin_Controller {
 	public function post_index()
 	{
 		$this->fields = array(
+			array('name',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true,'attr'=>array('class'=>'expander'))),
+			array('affiliateCode',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
 			array('firstname',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true,'attr'=>array('class'=>'expander'))),
 			array('lastname',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
 			array('email',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
-			array('address_1',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
-			array('address_2',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
-			array('city',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
-			array('zip',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
-			array('country',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
-			array('mobile',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
+		//	array('address_1',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
+		//	array('address_2',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
+		//	array('city',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
+		//	array('zip',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
+		//	array('country',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
+		//	array('mobile',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
 			array('phone',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
 			array('createdDate',array('kind'=>'date','query'=>'like','pos'=>'both','show'=>true)),
 			array('lastUpdate',array('kind'=>'date','query'=>'like','pos'=>'both','show'=>true)),
@@ -61,11 +66,10 @@ class Merchants_Controller extends Admin_Controller {
 	{
 
 		$this->validator = array(
+	    	'name' => 'required',
 	    	'firstname' => 'required',
 	    	'lastname' => 'required',
 	        'email' => 'required|email|unique:shopper',
-	        'pass' => 'required|same:repass',
-	        'repass'=> 'required',
 	        'address_1' => 'required',
 	        'city' => 'required',
 	        'zip' => 'required',
@@ -79,7 +83,6 @@ class Merchants_Controller extends Admin_Controller {
 		}
 
 		$data['agreetnc'] = (isset($data['agreetnc']) && $data['agreetnc'] == 'on')?true:false;
-		$data['saveinfo'] = (isset($data['saveinfo']) && $data['saveinfo'] == 'on')?true:false;
 
 
 		return parent::post_add($data);
@@ -88,6 +91,7 @@ class Merchants_Controller extends Admin_Controller {
 	public function post_edit($id,$data = null){
 
 	    $this->validator = array(
+	    	'name' => 'required',
 	    	'firstname' => 'required',
 	    	'lastname' => 'required',
 	        'address_1' => 'required',
@@ -118,7 +122,8 @@ class Merchants_Controller extends Admin_Controller {
 		$pic =	'<a class="icon-"  href="'.URL::to($controller_name.'/picture/'.$data['_id']).'"><i>&#x0062;</i><span>Update Picture</span>';
 		$pass =	'<a class="icon-"  href="'.URL::to($controller_name.'/pass/'.$data['_id']).'"><i>&#x006a;</i><span>Change Password</span>';
 
-		$actions = $edit.$products.$delete.$pic.$pass;
+		$actions = $edit.$delete;
+		//.$products.$delete.$pic.$pass;
 		return $actions;
 	}
 

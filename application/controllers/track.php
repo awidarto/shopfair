@@ -1,6 +1,6 @@
 <?php
 
-class Shop_Controller extends Base_Controller {
+class Track_Controller extends Base_Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ class Shop_Controller extends Base_Controller {
 		$product = new Product();
 	}
 
-	public function get_aff($product, $merchant)
+	public function get_aff($product)
 	{
 		$tracker = new Tracker();
 		$products = new Product();
@@ -55,7 +55,7 @@ class Shop_Controller extends Base_Controller {
 
 		$t['productinfo'] = $p;
 		$t['userclick_timestamp'] = new MongoDate();
-		$t['merchant_id'] = $merchant;
+		$t['merchant_id'] = $p['affiliateMerchantID'];
 
 		$sess = Str::random(15);
 		$t['session'] = $sess;
@@ -63,7 +63,8 @@ class Shop_Controller extends Base_Controller {
 
 		$tracker->insert($t);
 
-		Redirect::to($p['affiliateURL']);
-
-
+		header('Location: '.$p['affiliateURL']);
+		exit();
 	}
+
+}

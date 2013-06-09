@@ -55,6 +55,8 @@ return array(
 	        ),
 	    ),
 	),
+	'oneauth' => array('auto' => true),
+	//'bundocs' => array('auto' => true, 'handles' => 'bundocs'),
 	'formatter' => array('auto' => true),
 	'feeder' => array(
 		// when the bundle is started all Feeder classes are automatically loaded

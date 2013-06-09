@@ -32,7 +32,7 @@
 |
 */
 
-Route::controller(array('register','shop','shoppers','shopper','merchants','reader','sponsors','news','articles','carts','auctions','promotions','products','report','import','export','dashboard','user','users','message','search','activity','category','content','ajax'));
+Route::controller(array('register','track','shop','shoppers','shopper','merchants','feed','reader','sponsors','news','articles','carts','auctions','promotions','products','report','import','export','dashboard','user','users','message','search','activity','category','content','ajax'));
 
 Route::get('/',function(){
     if(Auth::check()){
@@ -49,6 +49,12 @@ Route::get('/',function(){
 });
 
 Route::get('shop',array('uses'=>'shop@home'));
+
+Route::get('shopping',array('uses'=>'shop@sales'));
+
+Route::get('feeds/(:any?)/(:any?)',array('uses'=>'feed@feeds'));
+
+Route::get('auctions',array('uses'=>'shop@auction'));
 
 Route::get('cps',function(){
     $getvar = Input::all();

@@ -35,110 +35,74 @@ class Feed_Controller extends Base_Controller {
 		//$this->filter('before','auth');
 	}
 
-	public function get_index(){
+	public function get_feeds($feedtype = 'atom',$channel = 'news')
+	{
+		// feedtype : rss20, rss092 ,atom
+		// channel : product, news, article
+
 		$feed = Feed::make();
 
 		$feed->logo(asset('img/logo.jpg'))
 		     ->icon(URL::home().'favicon.ico')
-		     ->webmaster('Your Name')
-		     ->author   ('Your Name')
+		     ->webmaster('Shopfair.net')
+		     ->author('Shopfair.net')
 		     ->rating('SFW')
 		     ->pubdate(time())
 		     ->ttl(60)
-		     ->title('My App Feed')
-		     ->description('Newest stuff on MyApp.com')
-		     ->copyright('(c) '.date('Y').' MyApp.com')
+		     ->title('Shopfair.net Feed')
+		     ->description('Shopping at Shopfair.net')
+		     ->copyright('(c) '.date('Y').' Shopfair.net')
 		     ->permalink(URL::home().'/feed')
-		     ->category('PHP')
+		     ->category('eCommerce')
 		     ->language('en_EN')
 		     ->baseurl(URL::home());
 
 		// get latest 20 posts
-		$posts = Post::order_by('created_at','desc')->take(20)->get();
 
-		foreach ($posts as $post) {
-		  $feed->entry()->published($post->created_at)
-		                ->content()->add('text', $post->text)->up()
-		                ->content()->add('html', HTML::decode($post->text).'<br><a href="'.action('posts@view', array($post->slug)).'"><img src="'.asset('uploads/'.(($post->attachment_id) ? (Upload::find($post->attachment_id)->small_filename) : "empty.jpg" )).'" /></a>')->up()
-		                ->title()->add('text',$post->title)->up()
-		                ->permalink(action('posts@view', array($post->slug)))
-		                ->author()->name('By '.$post->author)->up()
-		                ->updated($post->updated_at);
+		//$posts = Post::order_by('created_at','desc')->take(20)->get();
+
+		$author = 'Shopfair.net';
+		$slug = 'slug';
+		$title = 'title';
+
+		if ($channel == 'news') {
+			$model = new News();
+			$reader = 'reader@news';
+		}else if($channel == 'article'){
+			$model = new Articles();
+			$reader = 'reader@article';
+		}else{	
+			$model = new Product();
+			$reader = 'shop@detail';
+			$slug = 'permalink';
+			$title = 'name';
 		}
 
-		$feed->Rss20();
+		$limit = array(20,0);
+
+		$feeds = $model->find(array(),array(),array('createdDate'=>-1),$limit);
+
+		foreach ($feeds as $post) {
+			$feed->entry()->published(date('Y-m-d H:i:s',$post['createdDate']->sec))
+                ->content()->add('text', $post['description'])->up()
+                ->content()->add('html', HTML::decode($post['bodycopy']).'<br><a href="'.action($reader, array($post[$slug])).'"><img src="" /></a>')->up()
+                ->title()->add('text',$post[$title])->up()
+                ->permalink(action($reader, array($post[$slug])))
+                ->author()->name('By '.$author)->up()
+                ->updated( date('Y-m-d H:i:s',$post['lastUpdate']->sec) );
+		}
+
+		if($feedtype == 'rss20'){
+			$feed->Rss20();
+		}elseif ($feedtype == 'rss092') {
+			$feed->Rss092();
+		}else{
+			$feed->Atom();
+		}
 		// this is a shortcut for calling $feed->feed()->send(...);
 		// you can also just $feed->Rss20(), Rss092() or Atom();		
 
 
-	}
-
-	public function get_atom()
-	{
-		$feed = Feed::make();
-
-		$feed->logo(asset('img/logo.jpg'))
-		     ->icon(URL::home().'favicon.ico')
-		     ->webmaster('Your Name')
-		     ->author   ('Your Name')
-		     ->rating('SFW')
-		     ->pubdate(time())
-		     ->ttl(60)
-		     ->title('My App Feed')
-		     ->description('Newest stuff on MyApp.com')
-		     ->copyright('(c) '.date('Y').' MyApp.com')
-		     ->permalink(URL::home().'/feed')
-		     ->category('PHP')
-		     ->language('en_EN')
-		     ->baseurl(URL::home());
-
-		$posts = Post::order_by('created_at','desc')->take(20)->get();
-
-		foreach ($posts as $post) {
-		  $feed->entry()->title()->add('text',$post->title)->up()
-		  		        ->updated($post->updated_at)
-		  		       	->permalink(action('posts@view', array($post->slug)))
-		                ->author()->name('By '.$post->author)->up()
-		                ->content()->add('html', HTML::decode($post->text).'<br><a href="'.action('posts@view', array($post->slug)).'"><img src="'.asset('uploads/'.(($post->attachment_id) ? (Upload::find($post->attachment_id)->small_filename) : "empty.jpg" )).'" /></a>');
-		}
-
-		$feed->Atom();
-	}	
-
-	public function get_rss092()
-	{
-		$feed = Feed::make();
-
-		$feed->logo(asset('img/logo.jpg'))
-		     ->icon(URL::home().'favicon.ico')
-		     ->webmaster('Your Name')
-		     ->author   ('Your Name')
-		     ->rating('SFW')
-		     ->pubdate(time())
-		     ->ttl(60)
-		     ->title('My App Feed')
-		     ->description('Newest stuff on MyApp.com')
-		     ->copyright('(c) '.date('Y').' MyApp.com')
-		     ->permalink(URL::home().'/feed')
-		     ->category('PHP')
-		     ->language('en_EN')
-		     ->baseurl(URL::home());
-
-		$posts = Post::order_by('created_at','desc')->take(20)->get();
-
-		foreach ($posts as $post) {
-		  $feed->entry()->published($post->created_at)
-		                ->content()->add('text', $post->text)->up()
-		                ->content()->add('html', HTML::decode($post->text).'<br><a href="'.action('posts@view', array($post->slug)).'"><img src="'.asset('uploads/'.(($post->attachment_id) ? (Upload::find($post->attachment_id)->small_filename) : "empty.jpg" )).'" /></a>')->up()
-		                ->title()->add('text',$post->title)->up()
-		                ->permalink(action('posts@view', array($post->slug)))
-		                ->author()->name('By '.$post->author)->up()
-		                ->updated($post->updated_at);
-		}
-
-		$feed->Rss092();
-		// this is a shortcut for calling $feed->feed()->send(...);
-		// you can also just $feed->Rss20(), Rss092() or Atom();
 	}
 
 }

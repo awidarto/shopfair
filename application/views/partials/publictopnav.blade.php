@@ -15,9 +15,9 @@
   <section class="top-bar-section">
     {{ HTML::image('images/banner_header.jpg','',array('class'=>'right bannerHeader')) }}<br/>
     <ul class="right mainnav mainavwithbanner">
-      <li><a href="{{ URL::to('shop/sales') }}">SALES</a></li>
+      <li><a href="{{ URL::to('shopping') }}">SHOPPING</a></li>
       <li><a >//</a></li>
-      <li><a href="{{ URL::to('shop/auction') }}">AUCTION</a></li>
+      <li><a href="{{ URL::to('auctions') }}">AUCTION</a></li>
       <li><a >//</a></li>
       <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">FESTIVAL</a></li>
       <li><a >//</a></li>

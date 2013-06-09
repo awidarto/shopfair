@@ -82,6 +82,24 @@ class Ajax_Controller extends Base_Controller {
 		return Response::json($result);		
 	}
 
+	public function get_merchant()
+	{
+		$q = Input::get('term');
+
+		$user = new Merchant();
+		$qemail = new MongoRegex('/'.$q.'/i');
+
+		$res = $user->find(array('$or'=>array(array('name'=>$qemail),array('affiliateCode'=>$qemail),array('email'=>$qemail),array('fullname'=>$qemail)) ),array('name','email','fullname','affiliateCode'));
+
+		$result = array();
+
+		foreach($res as $r){
+			$result[] = array('id'=>$r['_id']->__toString(),'code'=>$r['affiliateCode'],'value'=>$r['name'],'email'=>$r['email'],'label'=>$r['name']);
+		}
+
+		return Response::json($result);		
+	}
+
 	public function get_email()
 	{
 		$q = Input::get('term');
