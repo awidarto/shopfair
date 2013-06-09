@@ -29,6 +29,11 @@
     </div>
 
     <div class="span6">
+        <fieldset>
+            <legend>Sponsor Detail</legend>
+              {{ $form->text('sponsorURL','Sponsor Website URL','',array('class'=>'text input-xxlarge','id'=>'sponsorURL','placeholder'=>'Sponsor Website URL')) }}
+
+        </fieldset>
 
         <fieldset>
             <legend>Publishing</legend>
