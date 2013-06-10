@@ -216,7 +216,7 @@ class Reader_Controller extends Base_Controller {
 		$model = new Sponsor();
 
 		$article = $model->get(array('slug'=>$slug));
-		return View::make('articles.read')
+		return View::make('articles.sponsor')
 			->with('article',$article);
 
 	}

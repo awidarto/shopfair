@@ -67,4 +67,27 @@ class Track_Controller extends Base_Controller {
 		exit();
 	}
 
+	public function get_sp($sponsor)
+	{
+		$tracker = new Tracker();
+		$products = new Sponsor();
+
+		$p = $products->get(array('_id'=>new MongoId($sponsor)));
+		
+		$t = array();
+
+		$t['sponsorinfo'] = $p;
+		$t['userclick_timestamp'] = new MongoDate();
+		$t['sponsor_id'] = $p['_id'];
+
+		$sess = Str::random(15);
+		$t['session'] = $sess;
+		$t['flowstatus'] = 'redirected';
+
+		$tracker->insert($t);
+
+		header('Location: '.$p['sponsorURL']);
+		exit();
+	}
+
 }

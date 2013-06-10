@@ -87,7 +87,7 @@
     @foreach($deals2 as $m)
       <div class="large-3 columns">
         <div class="dealsitem">
-          <a href="{{$m['affiliateURL']}}">
+          <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
             <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span>
               <br />
                 @if($m['affiliateMerchant'] == '')
