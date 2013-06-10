@@ -802,3 +802,12 @@ margin-bottom: 10px;
 .mainavwithbanner{
 	padding-top: 4px;
 }
+
+ul#sponsorlogolist{
+	list-style-type: none;
+}
+
+ul#sponsorlogolist li{
+	float:left;
+	margin-right: 50px;
+}

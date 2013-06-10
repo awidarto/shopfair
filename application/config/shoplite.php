@@ -50,6 +50,7 @@ return array(
 		),
 
 	'picsizes'=>array(
+		array('prefix'=>'splogo_','w'=>125,'h'=>90,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'sm_','w'=>50,'h'=>90,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'med_','w'=>270,'h'=>251,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'wide_','w'=>570,'h'=>267,'opt'=>'fit','ext'=>'.jpg','q'=>90),
