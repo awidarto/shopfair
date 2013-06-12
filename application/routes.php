@@ -54,7 +54,7 @@ Route::get('shopping',array('uses'=>'shop@sales'));
 
 Route::get('feeds/(:any?)/(:any?)',array('uses'=>'feed@feeds'));
 
-Route::get('auctions',array('uses'=>'shop@auction'));
+Route::get('auction',array('uses'=>'shop@auction'));
 
 Route::get('cps',function(){
     $getvar = Input::all();
