@@ -69,7 +69,7 @@ class Feed_Controller extends Base_Controller {
 			$model = new News();
 			$reader = 'reader@news';
 		}else if($channel == 'article'){
-			$model = new Articles();
+			$model = new Article();
 			$reader = 'reader@article';
 		}else{	
 			$model = new Product();
@@ -84,7 +84,7 @@ class Feed_Controller extends Base_Controller {
 
 		foreach ($feeds as $post) {
 			$feed->entry()->published(date('Y-m-d H:i:s',$post['createdDate']->sec))
-                ->content()->add('text', $post['description'])->up()
+                ->content()->add('text', isset($post['description'])?$post['description']:'n/a')->up()
                 ->content()->add('html', HTML::decode($post['bodycopy']).'<br><a href="'.action($reader, array($post[$slug])).'"><img src="" /></a>')->up()
                 ->title()->add('text',$post[$title])->up()
                 ->permalink(action($reader, array($post[$slug])))
