@@ -27,3 +27,38 @@ t.stream(
         });
     }
 );
+
+/*
+budget airlines
+
+Lion Air
+Air Asia
+Valuair
+Jetstar
+Tiger
+Merpati
+Mandala
+Citilink
+
+telco
+
+Telkomsel
+Kartuhalo
+Halo
+Indosat
+IM3
+Matrix
+M3
+Excel
+XL
+Smartfren
+3
+Axis
+Esia
+
+partai
+
+PKS
+Partai Keadilan Sejahtera
+*/
+

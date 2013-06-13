@@ -240,7 +240,7 @@ class Shop_Controller extends Base_Controller {
 		$deals2 = $products->find(array('section'=>'deals','category'=>'3colomn'),array(),array('createdDate'=>-1),$limit);
 		$deals3 = $products->find(array('section'=>'deals','category'=>'2colomn'),array(),array('createdDate'=>-1),$limit);
 
-		$auction = $products->find(array('section'=>'deals','category'=>'shopfairmonday'),array(),array('createdDate'=>-1),$limit);
+		$auction = $products->get(array('section'=>'deals','category'=>'shopfairmonday'),array(),array('createdDate'=>-1));
 
 		// /$mixandmact
 		$new = array();
@@ -271,7 +271,7 @@ class Shop_Controller extends Base_Controller {
 		$deals2 = $products->find(array('section'=>'deals','category'=>'3colomn'),array(),array('createdDate'=>-1),$limit);
 		$deals3 = $products->find(array('section'=>'deals','category'=>'2colomn'),array(),array('createdDate'=>-1),$limit);
 
-		$auction = $products->find(array('section'=>'auction'),array(),array('createdDate'=>-1),$limit);
+		$auction = $products->get(array('section'=>'auction'),array(),array('createdDate'=>-1));
 
 		// /$mixandmact
 		$new = array();
