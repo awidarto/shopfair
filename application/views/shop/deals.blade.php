@@ -35,9 +35,10 @@
       <?php 
         $m = $auction;
       ?>
+      
       <div class="large-6 columns">
         <div class="dealsitem">
-          <img src="{{ URL::base().'/storage/products/'.$m['_id']->__toString().'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+          <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
 
         </div>
       </div>
