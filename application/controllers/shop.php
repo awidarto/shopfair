@@ -205,18 +205,10 @@ class Shop_Controller extends Base_Controller {
 
 		$limit = array($pagelength, $pagestart);
 
-		$deals = $products->find(array('section'=>'deals','category'=>array('$ne'=>'6colomn')),array(),array('createdDate'=>-1),$limit);
-
-
-		
-
-		// /$mixandmact
-		$new = array();
-		$featured = array();
+		$featured = $products->find(array('section'=>'sale','category'=>'featured'),array(),array('createdDate'=>-1),$limit);
 
 		return View::make('shop.home')
-			->with('new',$new)
-			->with('deals',$deals)
+			->with('featured',$featured)
 			
 			;
 	}
