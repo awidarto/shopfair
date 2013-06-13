@@ -37,10 +37,20 @@
         $m = array_pop($auctions);
       ?>
       <div class="large-6 columns">
+
         <div class="dealsitem">
-          <img src="{{ URL::base().'/storage/auctions/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+          <a href="{{ URL::to('auction/detail/'.$m['_id'])}}" >
+            <h2>{{ $m['name']}}<br/>
+              <span class="price">Starting IDR {{ $m['startingPrice']}} </span>
+              <br />
+              <span class="merchant">by ShopFair</span>
+            </h2>
+              <img src="{{ URL::base().'/storage/auctions/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+          </a>
         </div>
+
       </div>
+
 
       <div class="large-6 columns">
         <div class="auctiondetails">
