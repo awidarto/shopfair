@@ -56,6 +56,8 @@ Route::get('feeds/(:any?)/(:any?)',array('uses'=>'feed@feeds'));
 
 Route::get('auction',array('uses'=>'shop@auction'));
 
+Route::get('auction/detail/(:any?)',array('uses'=>'shop@auctiondetail'));
+
 Route::get('cps',function(){
     $getvar = Input::all();
     $att = new Attendee();

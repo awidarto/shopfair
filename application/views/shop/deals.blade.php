@@ -33,9 +33,9 @@
   <div class="todaysauction">
     <div class="row">
       <?php 
-        $m = $auction;
+        $m = $shopfairmondayhead;
       ?>
-      
+
       <div class="large-6 columns">
         <div class="dealsitem">
           <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
@@ -50,7 +50,9 @@
           <div class="timeleftauction">
             <span>00<span class="secondticking">:</span> 10 <span class="secondticking">:</span> 00 <span class="secondticking">:</span> 00 </span> <span class="timeleftpar">TIME LEFT</span>
           </div>
-          <a class="joinauction button mainbuttonshopfair" href="#">I WANT THIS !</a>
+          <a class="joinauction button mainbuttonshopfair"  href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
+            I WANT THIS !
+          </a>
           <p>This Item is :</br>
             - Only 10 units available</br>
             - Slashed down 30% from retail price</br>
@@ -70,7 +72,7 @@
   <h1 class="titleshopfair">#SHOPFAIRMONDAY</h1>
   <div class="row">
     
-    @foreach($deals1 as $m)
+    @foreach($shopfairmonday as $m)
       <div class="large-6 columns">
         <div class="dealsitem">
           <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
@@ -92,7 +94,7 @@
 
   <h1 class="titleshopfair">#FEATURED</h1>
   <div class="row">
-    @foreach($deals2 as $m)
+    @foreach($featured as $m)
       <div class="large-3 columns">
         <div class="dealsitem">
           <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
@@ -113,7 +115,7 @@
 
   <h1 class="titleshopfair">#ALLSEASONS</h1>
   <div class="row">
-    @foreach($deals3 as $m)
+    @foreach($allseason as $m)
       <div class="large-2 columns">
         <div class="dealsitem">
           <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >

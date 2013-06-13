@@ -33,11 +33,12 @@
   <div class="todaysauction">
     <div class="row">
       <?php
-        $m = $auction;
+
+        $m = array_pop($auctions);
       ?>
       <div class="large-6 columns">
         <div class="dealsitem">
-          <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+          <img src="{{ URL::base().'/storage/auctions/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
         </div>
       </div>
 
@@ -48,7 +49,7 @@
           <div class="timeleftauction">
             <span>00<span class="secondticking">:</span> 10 <span class="secondticking">:</span> 00 <span class="secondticking">:</span> 00 </span> <span class="timeleftpar">TIME LEFT</span>
           </div>
-          <a class="joinauction button mainbuttonshopfair" href="#">JOIN THE AUCTION</a>
+          <a data-reveal-id="myModal" class="joinauction button mainbuttonshopfair" href="{{ URL::to('auction/detail/'.$m['_id'])}}">JOIN THE AUCTION</a>
           <p>How to participate?</br>
             - Fill in some database</br>
             - Use your twitter and then mention us</br>
@@ -66,59 +67,23 @@
 
 <div class="greatdeals shopfairmonday">
 
-<!--
-  <h1 class="titleshopfair">#SHOPFAIRMONDAY</h1>
-  <div class="row">
-    
-    @foreach($deals1 as $m)
-      <div class="large-6 columns">
-        <div class="dealsitem">
-          <a href="{{$m['affiliateURL']}}">
-            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>
-            <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/wide_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
-          </a>
-        </div>
-      </div>  
-    @endforeach
-
-  </div>
--->
   <h1 class="titleshopfair">#NEXT AUCTIONS</h1>
   <div class="row">
-    @foreach($deals2 as $m)
+    @foreach($auctions as $m)
       <div class="large-3 columns">
         <div class="dealsitem">
-          <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
-            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span>
+          <a href="{{ URL::to('auction/detail/'.$m['_id'])}}" >
+            <h2>{{ $m['name']}}<br/>
+              <span class="price">Starting IDR {{ $m['startingPrice']}} </span>
               <br />
-                @if($m['affiliateMerchant'] == '')
-                  <span class="merchant">by ShopFair</span>
-                @else
-                  <span class="merchant">by {{ $m['affiliateMerchant'] }}</span>
-                @endif
-
+              <span class="merchant">by ShopFair</span>
             </h2>
-            <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/med_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
+            <img src="{{ URL::base().'/storage/auctions/'.$m['_id'].'/med_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
           </a>
         </div>
       </div>  
     @endforeach
   </div>
-
-<!--
-  <div class="row">
-    @foreach($deals3 as $m)
-      <div class="large-2 columns">
-        <div class="dealsitem">
-          <a href="{{$m['affiliateURL']}}">
-            <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span></h2>
-            <img src="{{ URL::base().'/storage/products/'.$m['_id'].'/med_pic0'.$m['defaultpic'].'.jpg' }}" alt="{{ $m['name']}}" class=""  />
-          </a>
-        </div>
-      </div>  
-    @endforeach
-  </div>
--->
 
   
 

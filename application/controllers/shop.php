@@ -236,28 +236,24 @@ class Shop_Controller extends Base_Controller {
 
 		$limit = array($pagelength, $pagestart);
 
-		$deals1 = $products->find(array('section'=>'deals','category'=>'6colomn'),array(),array('createdDate'=>-1),$limit);
-		$deals2 = $products->find(array('section'=>'deals','category'=>'3colomn'),array(),array('createdDate'=>-1),$limit);
-		$deals3 = $products->find(array('section'=>'deals','category'=>'2colomn'),array(),array('createdDate'=>-1),$limit);
+		$shopfairmonday = $products->find(array('section'=>'sale','category'=>'shopfairmonday'),array(),array('createdDate'=>-1),$limit);
+		$featured = $products->find(array('section'=>'sale','category'=>'featured'),array(),array('createdDate'=>-1),$limit);
+		$allseason = $products->find(array('section'=>'sale','category'=>'allseason'),array(),array('createdDate'=>-1),$limit);
 
-		$auction = $products->get(array('section'=>'deals','category'=>'shopfairmonday'),array(),array('createdDate'=>-1));
-
-		// /$mixandmact
-		$new = array();
-		$featured = array();
+		$shopfairmondayhead = $products->get(array('section'=>'sale','category'=>'shopfairmonday'),array(),array('createdDate'=>-1));
 
 		return View::make('shop.deals')
-			->with('deals1',$deals1)
-			->with('deals2',$deals2)
-			->with('deals3',$deals3)
-			->with('auction',$auction)
+			->with('shopfairmonday',$shopfairmonday)
+			->with('featured',$featured)
+			->with('allseason',$allseason)
+			->with('shopfairmondayhead',$shopfairmondayhead)
 			;
 
 	}
 
 	public function get_auction()
 	{
-		$products = new Product();
+		$auction = new Auction();
 		$articles = new Article();
 
 		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
@@ -267,20 +263,22 @@ class Shop_Controller extends Base_Controller {
 
 		$limit = array($pagelength, $pagestart);
 
-		$deals1 = $products->find(array('section'=>'deals','category'=>'6colomn'),array(),array('createdDate'=>-1),$limit);
-		$deals2 = $products->find(array('section'=>'deals','category'=>'3colomn'),array(),array('createdDate'=>-1),$limit);
-		$deals3 = $products->find(array('section'=>'deals','category'=>'2colomn'),array(),array('createdDate'=>-1),$limit);
-
-		$auction = $products->get(array('section'=>'auction'),array(),array('createdDate'=>-1));
-
-		// /$mixandmact
-		$new = array();
-		$featured = array();
+		$auctions = $auction->find(array(),array(),array('auctionDate'=>-1),$limit);
 
 		return View::make('shop.auction')
-			->with('deals1',$deals1)
-			->with('deals2',$deals2)
-			->with('deals3',$deals3)
+			->with('auctions',$auctions)
+			;
+
+	}
+
+	public function get_auctiondetail($id)
+	{
+		$auctions = new Auction();
+
+		$_id = new MongoId($id);
+
+		$auction = $auctions->get(array(),array(),array());
+		return View::make('shop.auctiondetail')
 			->with('auction',$auction)
 			;
 

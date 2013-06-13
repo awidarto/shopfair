@@ -11,27 +11,25 @@ return array(
 			'GBP'=>'GBP'
 		),
 	'sections'=>array(
-			'deals'=>'Deals',
-			'auction'=>'Auction',
-			
+			'sale'=>'Sale',
+			'auction'=>'Auction',			
 		),
 	'search_sections'=>array(
 			''=>'All',
-			'deals'=>'Deals',
+			'sale'=>'Sale',
 			'auction'=>'Auction'
 		),
 	'categories'=>array(
-			'6colomn'=>'6 Columns',
-			'3colomn'=>'3 Columns',
-			'2colomn'=>'2 Columns',
+			'allseason'=>'All Season',
+			'featured'=>'Featured',
 			'shopfairmonday'=>'ShopFair Monday'
 			
 		),
 	'search_categories'=>array(
 			''=>'All',
-			'6colomn'=>'6 Columns',
-			'3colomn'=>'3 Columns',
-			'2colomn'=>'2 Columns'
+			'allseason'=>'All Season',
+			'featured'=>'Featured',
+			'shopfairmonday'=>'ShopFair Monday'
 		),
 	'cartstatus'=>array(
 			'open'=>'Regular',
