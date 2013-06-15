@@ -32,7 +32,7 @@
 |
 */
 
-Route::controller(array('register','track','shop','shoppers','shopper','merchants','feed','reader','sponsors','news','articles','carts','auctions','promotions','products','report','import','export','dashboard','user','users','message','search','activity','category','content','ajax'));
+Route::controller(array('register','track','connect','shop','shoppers','shopper','merchants','feed','reader','sponsors','news','articles','carts','auctions','promotions','products','report','import','export','dashboard','user','users','message','search','activity','category','content','ajax'));
 
 Route::get('/',function(){
     if(Auth::check()){

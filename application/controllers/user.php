@@ -115,6 +115,17 @@ class User_Controller extends Base_Controller {
 		print json_encode($result);
 	}
 
+
+	public function get_social_register()
+	{
+
+	}
+
+	public function get_social_login()
+	{
+
+	}
+
 	public function get_users()
 	{
 

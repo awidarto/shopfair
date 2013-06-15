@@ -195,7 +195,8 @@ return array(
 		'View'       	=> 'Laravel\\View',
 		'Former' 		=> 'Former\\Former',
 		'Formly' 		=> 'Flare\\Formly',
-		'Breadcrumb' 		=> 'Bread\\Crumb',
+		'Breadcrumb' 	=> 'Bread\\Crumb',
+		'OneAuthController'		=> 'OneAuth\\Auth\\Controller',
 		//'Breadcrumb'	=> 'Noherczeg\\Breadcrumb\\Breadcrumb'
 	),
 
