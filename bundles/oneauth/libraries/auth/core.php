@@ -91,13 +91,7 @@ class Core
 		$client_array['secret']        = $user_data['token']->secret ?: null;
 		$client_array['refresh_token'] = $user_data['token']->refresh_token ?: null;
 
-		$client = $clients->insert(
-			array(
-				'uid'      => $user_data['info']['uid'],
-				'provider' => $user_data['provider'],
-				'user_id'  => 0,					
-			)
-		);
+		$client = $clients->insert( $client_array );
 
 
 		Event::fire('oneauth.logged', array($client, $user_data));
