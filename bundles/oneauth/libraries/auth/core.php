@@ -39,30 +39,66 @@ class Core
 	 */
 	public static function login($user_data)
 	{
+		/*
 		$client = Client::where('provider', '=', $user_data['provider'])
 					->where('uid', '=', $user_data['info']['uid'])
 					->first();
+		*/
+
+		$user_array = array(
+			'provider'=>$user_data['provider'],
+			'uid'=>$user_data['info']['uid']
+		);
+
+		$clients = new Client();
+
+		$client = $clients->get($user_array);
 
 		if (is_null($client))
 		{
+			/*
 			$client = new Client(array(
 				'uid'      => $user_data['info']['uid'],
 				'provider' => $user_data['provider'],
 				'user_id'  => 0,
 			));
+			*/
+
+			$client_array = array(
+				'uid'      => $user_data['info']['uid'],
+				'provider' => $user_data['provider'],
+				'user_id'  => 0,					
+			);
+
 		}
 
 		// Link to user using Auth.
 		if ( ! is_null($user = IoC::resolve('oneauth.driver: auth.user')))
 		{
-			$client->user_id = $user->id;
+			//$client->user_id = $user->id;
+			$client_array['user_id'] = $user->id;
 		}
 
+		/*
 		$client->access_token  = $user_data['token']->access_token ?: null;
 		$client->secret        = $user_data['token']->secret ?: null;
 		$client->refresh_token = $user_data['token']->refresh_token ?: null;
 
 		$client->save();
+		*/
+
+		$client_array['access_token']  = $user_data['token']->access_token ?: null;
+		$client_array['secret']        = $user_data['token']->secret ?: null;
+		$client_array['refresh_token'] = $user_data['token']->refresh_token ?: null;
+
+		$client = $clients->insert(
+			array(
+				'uid'      => $user_data['info']['uid'],
+				'provider' => $user_data['provider'],
+				'user_id'  => 0,					
+			)
+		);
+
 
 		Event::fire('oneauth.logged', array($client, $user_data));
 
