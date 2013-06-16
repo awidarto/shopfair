@@ -1,8 +1,8 @@
 <?php 
 namespace OneAuth\Auth;
-use Mongovel\Model as MongoModel;
+use \Mongovel\Model as MongoModel;
 
-class Client extends Mongo
+class Client extends MongoModel
 {
 	//public static $table = 'oneauth_clients';
 
