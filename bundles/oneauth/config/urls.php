@@ -11,7 +11,7 @@ return array(
 	*/
 	'registration' => 'user/social_register',
 	'login'        => 'user/social_login',
-	'callback'     => 'auth/callback',
+	'callback'     => 'connect/callback',
 	
 	'registered'   => '/',
 	'logged_in'    => '/',
