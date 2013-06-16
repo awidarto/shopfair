@@ -71,8 +71,8 @@ return array(
 		),
 
 		'twitter' => array(
-			'key'    => '',
-			'secret' => '',
+			'key'    => 'VCjQLbs1dGSbUZHUK9kDw',
+			'secret' => 'gUN2TQeY62HuUqIOvzAHDdozqD5OVx6fbxvVZqXBo',
 		),
 
 		'vimeo' => array(
