@@ -6,6 +6,6 @@ class Client extends MongoModel
 {
 	//public static $table = 'oneauth_clients';
 
-	public static $_collection = 'oneauth_clients';
+	protected $_collection = 'oneauth_clients';
 
 }
