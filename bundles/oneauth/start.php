@@ -73,7 +73,7 @@ if ( ! IoC::registered('oneauth.driver: auth.check'))
 	// Check whether current user is logged-in to the system or a guest
 	IoC::register('oneauth.driver: auth.check', function ()
 	{
-		return Auth::check();
+		return Auth::shoppercheck();
 	});
 }
 
@@ -82,7 +82,7 @@ if ( ! IoC::registered('oneauth.driver: auth.user'))
 	// Get logged in user, if the user doesn't logged in yet, return null
 	IoC::register('oneauth.driver: auth.user', function ()
 	{
-		return Auth::user();
+		return Auth::shopper();
 	});
 }
 
