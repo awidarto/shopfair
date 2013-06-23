@@ -56,11 +56,13 @@
         <div class="auctiondetails">
           <span>#SHOPFAIR MONDAY:</span>
           <h1>{{ $m['name']}} </h1>
+      <!--
           <div class="timeleftauction">
             <span>00<span class="secondticking">:</span> 10 <span class="secondticking">:</span> 00 <span class="secondticking">:</span> 00 </span> <span class="timeleftpar">TIME LEFT</span>
           </div>
+      -->
           @if($m['affiliateMerchant'] == '')
-            <a class="joinauction button mainbuttonshopfair"  href="{{ URL::to('shop/detail/'.$m['_id'])}}" target="_blank" >
+            <a class="joinauction button mainbuttonshopfair"  href="{{ URL::to('shop/detail/'.$m['_id'])}}" >
           @else
             <a class="joinauction button mainbuttonshopfair" href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
           @endif
@@ -90,7 +92,7 @@
         <div class="dealsitem">
 
         @if($m['affiliateMerchant'] == '')
-          <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" target="_blank" >
+          <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" >
         @else
           <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
         @endif
@@ -116,7 +118,7 @@
       <div class="large-3 columns">
         <div class="dealsitem">
           @if($m['affiliateMerchant'] == '')
-            <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" target="_blank" >
+            <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" >
           @else
             <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
           @endif
@@ -141,7 +143,7 @@
       <div class="large-2 columns">
         <div class="dealsitem">
           @if($m['affiliateMerchant'] == '')
-            <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" target="_blank" >
+            <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" >
           @else
             <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
           @endif
