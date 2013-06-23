@@ -1,0 +1,167 @@
+.product-title i{
+	font-weight: normal;
+	font-size: 27px;
+	font-style: normal;
+}
+table.shoppingcart{
+	border: 1px solid #000;
+}
+table.shoppingcart td.image{
+	text-align: center;
+}
+table.shoppingcart td.image img{
+	border: 1px solid #aeaeae;
+}
+table.shoppingcart tr{
+border-bottom: 1px solid #e0e0e0;
+display: block;
+padding: 10px 0;
+}
+table.shoppingcart td,table.shoppingcart th{
+	text-align: left;
+}
+
+.select2-container{
+	margin-left: 0;
+}
+table.shoppingcart tr.headshoppingcart{
+	background-color: #eceaeb;
+	padding: 10px;
+}
+table.shoppingcart td{
+	padding:9px;
+}
+.paymentmethod{
+	margin-top: 25px;
+	margin-bottom: 50px;
+}
+.paymentmethod h4{
+	color:#1a3059;
+}
+.method3{
+	text-align: right;
+}
+.method3 h4{
+	display: inline-block;
+	font-size: 15px;
+}
+a.checkoutnow{
+	display: block;
+	background: transparent url(../images/checkout-btn.png) no-repeat;
+	width: 145px;
+	height: 41px;
+	float: right;
+	text-indent: -9999999px;
+	margin-bottom: 10px;
+}
+a.continueshopping{
+	display: block;
+	background: transparent url(../images/continue-shop.png) no-repeat;
+	width: 145px;
+	height: 41px;
+	float: right;
+	text-indent: -9999999px;
+}
+.buttonshopcart{
+	display: block;
+	float: right;
+}
+.productlist{
+	margin-bottom: 40px;
+}
+.productlist .span3 h3{
+	margin:15px 0 0 0;
+	color: #1a3059;
+	line-height: 20px;
+}
+.productlist .span3 p{
+	margin: 0;
+}
+
+.color-chip{
+	display: block;
+	padding:4px;
+	/*width:25px;*/
+}
+
+.qty-box {
+	width: 35px;
+}
+
+table.var-box{
+	width:100%;
+}
+
+table.var-box tr{
+	border: none;
+}
+
+table.var-box td{
+	vertical-align: middle;
+	padding: 4px;
+	border: none;
+}
+
+table#shoppingcart th{
+	text-align: center;
+}
+
+table#shoppingcart td{
+	padding-top: 15px;
+	vertical-align: top;
+}
+
+table#shoppingcart tr{
+	border-bottom: thin solid #ddd;
+}
+
+table#shoppingcart td.price{
+	text-align: right;
+}
+
+table#shoppingcart thead{
+	border-bottom: thin solid #ccc;
+	margin-bottom: 25px;
+}
+
+table#shoppingcart h5{
+	margin: 0px;
+}
+
+.removebox{
+	vertical-align: middle;
+	text-align: center;
+}
+
+.central{
+	text-align: center;	
+}
+
+.price h4{
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.price{
+	padding: 0px;
+	margin: 0px;
+}
+
+input.total-prices, .subtotal{
+	text-align: right;
+}
+
+.big-code{
+	font-size: 24px;
+	font-weight: bold;
+	color:blue;
+	text-align: center;
+}
+
+.simplecolorpicker div{
+    border: 1px dotted #222;
+}
+
+.simplecolorpicker div:hover, .simplecolorpicker div.selected{
+    border: 2px solid #F5C1AC;
+}

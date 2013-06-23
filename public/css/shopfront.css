@@ -831,3 +831,68 @@ span.title-span{
 span.item-value{
 	font-weight: normal;
 }
+
+.removebox{
+	vertical-align: middle;
+	text-align: center;
+}
+
+.central{
+	text-align: center;	
+}
+
+.price h4{
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.price{
+	padding: 0px;
+	margin: 0px;
+}
+
+input.total-prices, .subtotal{
+	text-align: right;
+}
+
+.big-code{
+	font-size: 24px;
+	font-weight: bold;
+	color:blue;
+	text-align: center;
+}
+
+.simplecolorpicker div{
+    border: 1px dotted #222;
+}
+
+.simplecolorpicker div:hover, .simplecolorpicker div.selected{
+    border: 2px solid #F5C1AC;
+}
+
+.color-chip{
+	display: block;
+	padding:4px;
+	/*width:25px;*/
+}
+
+.qty-box {
+	width: 35px;
+}
+
+.cart-box{
+	font-family: proxima_nova_rgregular;
+}
+
+.cart-box h1, .cart-box h2,.cart-box h3,.cart-box h4,.cart-box h5{
+	font-family: proxima_nova_rgregular;
+}
+
+.cart-box h1{
+	font-size: 24px;
+}
+
+table#shoppingcart{
+	width: 100%;
+}
+

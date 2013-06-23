@@ -1,33 +1,6 @@
-@layout('publicdeals')
+@layout('publiccommon')
 
 @section('content')
-
-<!-- 
-<div class="row">
-  <div class="auction">
-    <ul class="auctiontimeline">
-      <li class="months">MAY</li>
-      <li> <a class="active" href="#">WEEK 1</a></li>
-      <li> <a href="#">WEEK 2</a></li>
-      <li> <a href="#">WEEK 3</a></li>
-      <li> <a href="#">WEEK 4</a></li>
-
-      <li class="months">JUN</li>
-      <li> <a href="#">WEEK 1</a></li>
-      <li> <a href="#">WEEK 2</a></li>
-      <li> <a href="#">WEEK 3</a></li>
-      <li> <a href="#">WEEK 4</a></li>
-
-      <li class="months">JUL</li>
-      <li> <a href="#">WEEK 1</a></li>
-      <li> <a href="#">WEEK 2</a></li>
-      <li> <a href="#">WEEK 3</a></li>
-      
-    </ul>
-  </div>
-</div>
-
--->
 
 <div class="row">
   <div class="todaysauction">
@@ -81,8 +54,8 @@
 
 
             <div class="optionselectproduct detailproduct clearfix row-fluid">
-              <div class="small-2 columns">
-                <span class="titleselectbox">SELECT SIZE</span><br/>        
+              <div class="small-3 columns">
+                <span class="titleselectbox">TYPE / SIZE</span><br/>        
                 <select name="size" class="span12" >
                   <option value="-" selected="selected">-</option>
                   @foreach($sizes as $size)
@@ -91,8 +64,8 @@
                 </select>
               </div>
 
-              <div class="small-5 columns">
-                <span class="titleselectbox">SELECT COLOR</span><br/>        
+              <div class="small-4 columns">
+                <span class="titleselectbox">COLOR</span><br/>       
                 <select name="color" disable="disable" >
                 </select>
               </div>
@@ -143,7 +116,8 @@
               @if(Auth::shoppercheck() == false)
 
                 $('#addtocart').click(function(){
-                  $('#signInModal').modal();
+                  $('#signInModal').foundation('reveal', 'open');
+                  //$('#signInModal').modal();
                 })
 
                 $('#signInNow').on('click',function(){
@@ -158,7 +132,7 @@
                         console.log(data);
                         if(data.result == 'NOTSIGNEDIN'){
                           alert(data.message);
-                          $('#signInModal').modal('close');
+                          $('#signInModal').foundation('reveal','close');
                         }
 
                         if(data.result == 'PRODUCTADDED'){
@@ -222,7 +196,7 @@
               </script>
 
               <div class="small-3 columns">
-                <span class="titleselectbox">SELECT QUANTITY</span><br/>        
+                <span class="titleselectbox">QUANTITY</span><br/>        
                 <select class="span12" name="qty">
                   <option value="-" selected="selected">-</option>
                 </select>
@@ -254,6 +228,11 @@
     return false;
   });
 
+  $('#close-modal').bind('click',function(e){
+    $('#signInModal').foundation('reveal','close');
+    return false;
+  });
+
   $('.addimage').on({
     'click': function(e){
         //find rel
@@ -268,7 +247,8 @@
   });
 </script>
 
-<div id="signInModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="signInLabel" aria-hidden="true">
+<!--
+<div id="unsignInModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="signInLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="signInLabel">Sign In</h3>
@@ -277,7 +257,6 @@
     <p>Please sign in before making order, thank you.</p>
     <p>{{ Form::label('username', 'Email') }}</p>
     <p>{{ Form::text('username','',array('id'=>'signInUsername')) }}</p>
-    <!-- password field -->
     <p>{{ Form::label('password', 'Password') }}</p>
     <p>{{ Form::password('password',array('id'=>'signInPassword')) }}</p>
 
@@ -286,6 +265,32 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">No Thanks !</button>
     <button class="btn btn-primary" id="signInNow">Sign In Now !</button>
   </div>
+</div>
+-->
+
+<div id="signInModal" class="reveal-modal row" style="width:40%;">
+
+    <div class="row">
+        <div class="small-12 columns">
+
+            <fieldset>
+                <legend>Login</legend>
+
+                    {{ $form->text('username','Email.req','',array('class'=>'text','id'=>'username')) }}
+
+                    {{ $form->password('password','Password.req','',array('class'=>'text')) }}
+          
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+            </fieldset>
+
+            <div class="form-actions" style="text-align:right">
+              Yet to have an account ? {{ HTML::link('signup','Sign Up Here') }}.
+            </div>
+
+        </div>
+    </div>
+
+  <a class="close-reveal-modal">&#215;</a>
 </div>
 
 

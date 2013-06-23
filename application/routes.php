@@ -34,23 +34,25 @@
 
 Route::controller(array('register','track','connect','shop','shoppers','shopper','merchants','feed','reader','sponsors','news','articles','carts','auctions','promotions','products','report','import','export','dashboard','user','users','message','search','activity','category','content','ajax'));
 
+Route::get('shopping',array('uses'=>'shop@sales'));
+
 Route::get('/',function(){
     if(Auth::check()){
-        if(Auth::user()->role == 'root' || Auth::user()->role == 'super' || Auth::user()->role == 'exhibitionadmin'){
-           return Redirect::to('dashboard');
-        }else if(Auth::user()->role == 'onsite' || Auth::user()->role == 'cashier'){
-           return Redirect::to('onsite');
+        if(Auth::user()->role == 'root' || Auth::user()->role == 'super'){
+            //return Redirect::to('dashboard');
+            return Route::forward('get','dashboard');
         }else{
-            return Redirect::to('shop');
+            return Route::forward('get','shopping');
         }
     }else{
-       return Redirect::to('shop');
+        //return Redirect::to('shop');
+        return Route::forward('get','shopping');
     }
 });
 
+
 Route::get('shop',array('uses'=>'shop@home'));
 
-Route::get('shopping',array('uses'=>'shop@sales'));
 
 Route::get('feeds/(:any?)/(:any?)',array('uses'=>'feed@feeds'));
 
@@ -143,6 +145,11 @@ Route::get('general',array('uses'=>'content@public'));
 Route::get('signup',array('uses'=>'shopper@add'));
 Route::post('register',array('uses'=>'shopper@add'));
 
+Route::get('paymentsubmitted',array('uses'=>'shopper@paymentsubmitted'));
+Route::get('register-success',array('uses'=>'shopper@success'));
+Route::get('register-landing',array('uses'=>'shopper@landing'));
+
+
 Route::get('myprofile/edit',array('uses'=>'shopper@edit'));
 Route::post('myprofile/edit',array('uses'=>'shopper@edit'));
 
@@ -212,6 +219,10 @@ Route::get('signin',array('uses'=>'shopper@login'));
 
 Route::post('signin', function()
 {
+    print_r(Input::get());
+
+    //exit();
+
     // get POST data
     $username = Input::get('username');
     $password = Input::get('password');
@@ -225,6 +236,7 @@ Route::post('signin', function()
     }
     else
     {
+        //print 'error';
         // auth failure! lets go back to the login
         return Redirect::to('signin')
             ->with('login_errors', true);

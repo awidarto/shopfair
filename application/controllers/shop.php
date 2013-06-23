@@ -437,6 +437,8 @@ class Shop_Controller extends Base_Controller {
 		$_id = new MongoId($id);
 		$products = new Product();
 
+		$form = new Formly();
+
 		$product = $products->get(array('_id'=>$_id));
 
 		$inventory = new Inventory();
@@ -480,6 +482,7 @@ class Shop_Controller extends Base_Controller {
 			->with('sizes',$sizes)
 			->with('colors',$colors)
 			->with('variants',$variants)
+			->with('form',$form)
 			->with('product',$product);
 	}
 
@@ -508,7 +511,7 @@ class Shop_Controller extends Base_Controller {
 
 		$sel = '';
 		$cnt = 0;
-		$defsel = '-';
+		$defsel = '';
 		foreach($ca as $c){
 			$sel = ($cnt == 0)?'selected':'';
 			$cnt++;
@@ -537,6 +540,7 @@ class Shop_Controller extends Base_Controller {
 
 		$sel = '';
 		$cnt = 0;
+		$defsel = '';
 		for($i = 1; $i <= $count; $i++){
 			$sel = ($cnt == 0)?'selected':'';
 			$cnt++;

@@ -10,7 +10,7 @@
 {{$form->open('signin','POST')}}
 
 <div class="row">
-    <div class="span3">
+    <div class="small-4 small-offset-4 columns">
 
         <fieldset>
             <legend>Login</legend>
@@ -18,11 +18,12 @@
                 {{ $form->text('username','Email.req','',array('class'=>'text','id'=>'username')) }}
 
                 {{ $form->password('password','Password.req','',array('class'=>'text')) }}
+      
+                <button type="submit" class="btn btn-primary">Sign In</button>
         </fieldset>
 
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Sign In</button>
-          <button type="button" class="btn">Cancel</button>
+        <div class="form-actions" style="text-align:right">
+          Yet to have an account ? {{ HTML::link('signup','Sign Up Here') }}.
         </div>
 
     </div>
