@@ -89,7 +89,7 @@
     $(document).foundation();
     </script>
 
-    {{ HTML::script('js/jquery.simplecolorPicker.js') }}
+    {{ HTML::script('js/jquery.simplecolorpicker.js') }}
 
   </body>
 </html>
