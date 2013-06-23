@@ -115,7 +115,11 @@
     @foreach($featured as $m)
       <div class="large-3 columns">
         <div class="dealsitem">
-          <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
+          @if($m['affiliateMerchant'] == '')
+            <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" target="_blank" >
+          @else
+            <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
+          @endif
             <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span>
               <br />
                 @if($m['affiliateMerchant'] == '')
@@ -136,7 +140,11 @@
     @foreach($allseason as $m)
       <div class="large-2 columns">
         <div class="dealsitem">
-          <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
+          @if($m['affiliateMerchant'] == '')
+            <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" target="_blank" >
+          @else
+            <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
+          @endif
             <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span>
               <br />
                 @if($m['affiliateMerchant'] == '')
