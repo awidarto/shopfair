@@ -18,6 +18,19 @@ View::composer('public',function($view){
 
 });
 
+View::composer('publiccommon',function($view){
+    $sponsors = new Sponsor();
+
+    $sponsorlist = $sponsors->find();
+
+    $view->nest('topnav','partials.publictopnav');
+    $view->nest('footer','partials.footer');
+    $view->nest('festivalhome','partials.festivalhome');
+    $view->nest('sponsorshome','partials.sponsorshome',array('sponsors'=>$sponsorlist) );
+
+});
+
+
 View::composer('publichome',function($view){
 
     $sponsors = new Sponsor();

@@ -14,10 +14,10 @@
     {{ HTML::style('css/smart_wizard.css') }}
     {{ HTML::style('css/shopfront.css') }}
     {{ HTML::style('content/css/icomoon.css') }}
+    {{ HTML::style('css/jquery.simplecolorpicker.css') }}
 
     {{ HTML::script('js/foundation/vendor/custom.modernizr.js') }}
     {{ HTML::script('js/jquery-1.8.3.min.js') }}
-
     {{ HTML::script('js/jquery.elevateZoom-2.5.5.min.js') }}
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -36,7 +36,7 @@
 
   </head>
   <body>
-    <div class="row headercontainer show-for-medium-up" style="width:1168px;">
+    <div class="row headercontainer">
       <div class="large-12 columns">
      
         <!-- Navigation -->
@@ -46,21 +46,12 @@
 
         </div>
       </div>
-     
-    <div class="row headercontainer show-for-small">
-        <div class="large-12 columns">
-        <!-- Navigation -->
-          @yield('topnav')     
-        <!-- End Navigation -->
-        </div>
-    </div>
-     
-    <br>
 
 
 
       @yield('content')
      
+      @yield('festivalhome')
 
 
       @yield('sponsorshome')
@@ -69,12 +60,8 @@
       <!-- Footer -->
       @yield('footer')
      
-    <div id="myModal" class="reveal-modal">
-      <h2>Login</h2>
-      <a href="{{ URL::to('connect/session/twitter') }}">Twitter</a>
-      <a class="close-reveal-modal">&#215;</a>
-    </div>
 
+    
 
     {{ HTML::script('js/jquery-ui-1.9.2.custom.min.js') }}
   
@@ -97,11 +84,12 @@
 
     
 
-    {{ HTML::script('js/select2.min.js') }}
     {{ HTML::script('js/jquery.smartWizard-2.0.js') }}
     <script>
     $(document).foundation();
     </script>
+
+    {{ HTML::script('js/jquery.simplecolorpicker.js') }}
 
   </body>
 </html>

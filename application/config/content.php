@@ -66,34 +66,26 @@ return array(
 		),
 	'sponsors'=>array(
 			'sections'=>array(
-					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'sponsor'=>'Sponsor',
+					'partner'=>'Partner'
 				),
 			'categories'=>array(
-					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'sponsor'=>'Sponsor',
+					'mainsponsor'=>'Main Sponsor',
+					'shoppartner'=>'Online Shop',
+					'mediapartner'=>'Publishing Media'
 				),
 			'search_sections'=>array(
 					''=>'All',
-					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'sponsor'=>'Sponsor',
+					'partner'=>'Partner'
 				),
 			'search_categories'=>array(
 					''=>'All',
-					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'sponsor'=>'Sponsor',
+					'mainsponsor'=>'Main Sponsor',
+					'shoppartner'=>'Online Shop',
+					'mediapartner'=>'Publishing Media'
 				)
 		),
 

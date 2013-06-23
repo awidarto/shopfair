@@ -59,7 +59,11 @@
           <div class="timeleftauction">
             <span>00<span class="secondticking">:</span> 10 <span class="secondticking">:</span> 00 <span class="secondticking">:</span> 00 </span> <span class="timeleftpar">TIME LEFT</span>
           </div>
-          <a class="joinauction button mainbuttonshopfair"  href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
+          @if($m['affiliateMerchant'] == '')
+            <a class="joinauction button mainbuttonshopfair"  href="{{ URL::to('shop/detail/'.$m['_id'])}}" target="_blank" >
+          @else
+            <a class="joinauction button mainbuttonshopfair" href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
+          @endif
             I WANT THIS !
           </a>
           <p>This Item is :</br>
@@ -84,7 +88,12 @@
     @foreach($shopfairmonday as $m)
       <div class="large-6 columns">
         <div class="dealsitem">
+
+        @if($m['affiliateMerchant'] == '')
+          <a href="{{ URL::to('shop/detail/'.$m['_id'])}}" target="_blank" >
+        @else
           <a href="{{ URL::to('track/aff/'.$m['_id'])}}" target="_blank" >
+        @endif
             <h2>{{ $m['name']}}<br/><span class="price">IDR {{ $m['salePrice']}} </span>
               <br />
                 @if($m['affiliateMerchant'] == '')

@@ -1,4 +1,5 @@
-@layout('public')
+@layout('publiccommon')
+
 @section('content')
 
 @if (Session::has('login_errors'))
@@ -9,7 +10,7 @@
 {{$form->open('signin','POST')}}
 
 <div class="row">
-    <div class="span12">
+    <div class="span3">
 
         <fieldset>
             <legend>Login</legend>

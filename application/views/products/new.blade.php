@@ -37,17 +37,16 @@
         <fieldset>
             <legend>Ownership</legend>
                 <div class="annotation">Leave blank for single merchant shop</div>
-                {{ $form->text('ownerMerchant','Merchant Name','',array('class'=>'text input-xlarge auto_merchant_name','id'=>'ownerMerchant','placeholder'=>'Merchant Name')) }}
+                {{ $form->text('ownerMerchant','Merchant Name','',array('class'=>'text input-xlarge','id'=>'ownerMerchant','placeholder'=>'Merchant Name')) }}
                 {{ $form->text('ownerMerchantID','Merchant ID','',array('class'=>'text input-xlarge','id'=>'ownerMerchantID','placeholder'=>'Merchant ID')) }}
         </fieldset>
 
         <fieldset>
             <legend>Affiliates</legend>
 
-                {{ $form->text('affiliateMerchant','Merchant Name','',array('class'=>'text input-xlarge auto_affiliate_name','id'=>'affiliateMerchant','placeholder'=>'Merchant Name')) }}
+                {{ $form->text('affiliateMerchant','Merchant Name','',array('class'=>'text input-xlarge','id'=>'affiliateMerchant','placeholder'=>'Merchant Name')) }}
                 {{ $form->text('affiliateMerchantID','Merchant ID','',array('class'=>'text input-xlarge','id'=>'affiliateMerchantID','placeholder'=>'Merchant ID')) }}
-                {{ $form->text('affiliateMerchantCode','Affiliate Code','',array('class'=>'text input-xlarge','id'=>'affiliateMerchantCode','placeholder'=>'Merchant Affiliate Code')) }}
-                {{ $form->text('affiliateProductID','Affiliated Product ID','',array('class'=>'text input-xlarge','id'=>'affiliateProductID','placeholder'=>'Product ID')) }}
+                {{ $form->text('affiliateProductID','Product ID','',array('class'=>'text input-xlarge','id'=>'affiliateProductID','placeholder'=>'Product ID')) }}
                 {{ $form->text('affiliateURL','Merchant Landing Page','',array('class'=>'text input-xxlarge','id'=>'affiliateURL','placeholder'=>'Merchant Landing URL')) }}
 
         </fieldset>

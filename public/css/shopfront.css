@@ -366,6 +366,7 @@ transform : rotate(90deg);
 .auctiondetails{
 	font-size: 90%;
 }
+
 .auctiondetails h1{
 	font-size: 2.2em;
 	
@@ -373,6 +374,15 @@ transform : rotate(90deg);
 	margin-top: 0;	
 	margin-bottom: 5px;
 }
+
+.auctiondetails h2{
+	font-size: 1.2em;
+	
+	font-family: 'proxima_nova_rgregular';
+	margin-top: 0;	
+	margin-bottom: 5px;
+}
+
 .timeleftauction{
 	color: #f6416c;
 	font-size: 1.7em;

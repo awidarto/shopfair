@@ -451,19 +451,36 @@ class Shop_Controller extends Base_Controller {
 			$sa[] = $v['size'];
 		}
 
+		$related = array();
+		if(isset($product['relatedProducts']) && count($product['relatedProducts']) > 0){
+			foreach($product['relatedProducts'] as $r){
+				$r_id = new MongoId($r['relatedId']);
+				$related[] = $products->get(array('_id'=>$r_id));
+			}
+		}
+
+		$product['relatedProducts'] = $related;
+
+		$component = array();
+		if(isset($product['componentProducts']) && count($product['componentProducts']) > 0){
+			foreach($product['componentProducts'] as $r){
+				$r_id = new MongoId($r['componentId']);
+				$component[] = $products->get(array('_id'=>$r_id));
+			}
+		}
+
+		$product['componentProducts'] = $component;
+
+		$availcolors = array();
+
 		$sizes = array_unique($sa);
 		$colors = array_unique($ca);
 
 		return View::make('shop.detail')
 			->with('sizes',$sizes)
 			->with('colors',$colors)
+			->with('variants',$variants)
 			->with('product',$product);
-	}
-
-	public function post_size()
-	{
-
-
 	}
 
 	public function post_color()
@@ -486,12 +503,21 @@ class Shop_Controller extends Base_Controller {
 		$ca = array_unique($ca);
 
 		$html = '';
-		$opt = '<option value="%s">%s</option>';
+		$opt = '<option value="%s" %s >%s</option>';
+
+
+		$sel = '';
+		$cnt = 0;
+		$defsel = '-';
 		foreach($ca as $c){
-			$html .= sprintf($opt,$c,$c);
+			$sel = ($cnt == 0)?'selected':'';
+			$cnt++;
+
+			$defsel = ($sel == 'selected')?$c:'-';
+			$html .= sprintf($opt , $c , $sel , $c);
 		}
 
-		return Response::json(array('colors'=>$ca,'html'=>$html));
+		return Response::json(array('colors'=>$ca,'html'=>$html, 'defsel'=>$defsel));
 
 	}
 
@@ -507,12 +533,19 @@ class Shop_Controller extends Base_Controller {
 
 		$html = '';
 
-		$opt = '<option value="%s">%s</option>';
+		$opt = '<option value="%s" %s >%s</option>';
+
+		$sel = '';
+		$cnt = 0;
 		for($i = 1; $i <= $count; $i++){
-			$html .= sprintf($opt,$i,$i);
+			$sel = ($cnt == 0)?'selected':'';
+			$cnt++;
+
+			$defsel = ($sel == 'selected')?$i:'';
+			$html .= sprintf($opt,$i, $sel,$i);
 		}
 
-		return Response::json(array('qty'=>$count,'html'=>$html));
+		return Response::json(array('qty'=>$count,'html'=>$html, 'defsel'=>$defsel));
 
 	}
 
@@ -533,7 +566,6 @@ class Shop_Controller extends Base_Controller {
 
 	    	if(isset(Auth::shopper()->activeCart) == false || Auth::shopper()->activeCart == ''){
 	    		$cart = $this->newCart();
-
 	    	}else{
 	    		$cart = $this->getCurrentCart();
 	    	}
@@ -563,6 +595,218 @@ class Shop_Controller extends Base_Controller {
 
 	}
 
+	public function post_removeitem()
+	{
+
+		$id = Input::get('id');
+
+		$c = explode('_', $id);
+
+		$productId = $c[0];
+		$size = $c[1];
+		$color = $c[2];
+
+
+		$cart = $this->getCurrentCart();
+
+		//print_r($cart);
+
+		if($cart){
+			unset($cart['items'][$productId][$size.'_'.$color]);
+		}
+
+		//print_r($cart);
+
+		$carts = new Cart();
+
+		$upcart = $carts->update(array('_id'=>$cart['_id']),array('$set'=>array('items'=>$cart['items'])),array('upsert'=>true));
+
+		if($upcart){
+			$inventory = new Inventory();
+
+			$query = array(
+				'productId'=>new MongoId($productId),
+				'color'=>$color,
+				'size'=>$size,
+				'cartId'=>$cart['_id']
+			);
+
+			$invitems = $inventory->find($query);
+
+			$set = array(
+				'cartId'=>'',
+				'status'=>'available'
+				);
+
+			foreach($invitems as $inv){
+				$inventory->update(array('_id'=>$inv['_id']),array('$set'=>$set));
+			}
+
+			$id = str_replace('#', '', $id);
+			return Response::json(array('result'=>'OK','message'=>'Item removed','row'=>$id.'_row' ));
+		}else{
+			return Response::json(array('result'=>'ERR','message'=>'Failed to remove item'));
+		}
+	}
+
+	public function post_updateqty()
+	{
+
+		$in = Input::get();
+		$c = explode('_', $in['id']);
+
+		$productId = $c[0];
+		$size = $c[1];
+		$color = $c[2];
+
+		$qty = $in['qty'];
+
+		$cart = $this->getCurrentCart();
+
+		//print_r($cart);
+
+		$currentorder = $cart['items'][$productId][$size.'_'.$color]['ordered'];
+		$currentqty = $cart['items'][$productId][$size.'_'.$color]['actual'];
+
+		/*
+		print $qty."\r\n";
+		print $currentorder."\r\n";
+		print $currentqty."\r\n";
+		*/
+		$inventory = new Inventory();
+
+		if($qty < $currentqty){
+
+			//release some items
+
+			$query = array(
+				'productId'=>new MongoId($productId),
+				'color'=>$color,
+				'size'=>$size,
+				'cartId'=>$cart['_id']
+			);
+
+			$invs = $inventory->find($query);
+
+			$set = array(
+				'cartId'=>'',
+				'status'=>'available'
+				);
+
+			$removed = $currentqty - $qty;
+
+			for($i = 0;$i < $removed;$i++){
+				$inv = array_pop($invs);
+				$inventory->update(array('_id'=>$inv['_id']),array('$set'=>$set));
+			}
+
+			$aquery = array(
+				'productId'=>$query['productId'],
+				'cartId'=>$cart['_id'],
+				'status'=>'incart',
+				'size'=>$size,
+				'color'=>$color
+			);
+
+			$actual = $inventory->find($aquery);
+
+			$actual_count = $inventory->count($aquery);
+
+			if($cart){
+				$cart['items'][$productId][$size.'_'.$color]['ordered'] = $qty;
+				$cart['items'][$productId][$size.'_'.$color]['actual'] = $actual_count;
+			}
+
+			//print_r($cart);			
+
+			$prices = $this->recalculate($cart);
+
+			$carts = new Cart();
+
+			$upcart = $carts->update(array('_id'=>$cart['_id']),array('$set'=>array('items'=>$cart['items'],'prices'=>$prices)),array('upsert'=>true));
+			
+			if($upcart){
+				return Response::json(array('result'=>'OK:ITEMREMOVED','message'=>$removed.' items removed from current order','prices'=>$prices));
+			}else{
+				return Response::json(array('result'=>'ERR','message'=>'Fail to update quantity'));
+			}
+		}elseif($qty > $currentqty){
+			// check next available 
+			$added = $qty - $currentqty;
+
+			//print $added;
+
+			//exit();
+			//print_r($cart);
+
+			$item['productId'] = $productId;
+			$item['color'] = $color;
+			$item['size'] = $size;
+			//$item['cartId'] = $cart['_id'];
+
+	    	$result = $this->addToCart($cart,$item,$added);
+
+			$prices = $this->recalculate($result);
+	    	//print_r($result);
+
+			$carts = new Cart();
+
+			$upcart = $carts->update(array('_id'=>$result['_id']),array('$set'=>array('items'=>$result['items'],'prices'=>$prices)),array('upsert'=>true));
+
+			if($upcart){
+				return Response::json(array('result'=>'OK:ITEMADDED','message'=>$added.' items added to current order','prices'=>$prices));
+			}else{
+				return Response::json(array('result'=>'ERR','message'=>'Fail to update quantity'));
+			}
+
+		}elseif($qty == $currentqty){
+			return Response::json(array('result'=>'NOCHANGES'));
+		}
+
+	}
+
+	public function recalculate($cart)
+	{
+		$product = new Product();
+
+		$prices = array();
+
+		$total_due = 0;
+		foreach ($cart['items'] as $key => $val) {
+
+			$prod = $product->get(array('_id'=>new MongoId($key)));
+
+			foreach($val as $k=>$v){
+				$kx = str_replace('#', '', $k);
+				$prices[$key][$k]['unit_price'] = $prod['retailPrice'];
+				$prices[$key][$k]['unit_price_fmt'] = $prod['priceCurrency'].' '.number_format($prod['retailPrice'],2,',','.');
+
+				$subtotal = $prod['retailPrice']*$v['actual'];
+
+				$prices[$key][$k]['sub_total_price'] = $subtotal;
+				$prices[$key][$k]['sub_total_price_fmt'] = $prod['priceCurrency'].' '.number_format($subtotal,2,',','.');
+				$prices[$key.'_'.$kx.'_sub']['sub_total_price_fmt'] = $prod['priceCurrency'].' '.number_format($subtotal,2,',','.'); 
+
+				$total_due += $subtotal;
+			}
+
+		}
+
+		$prices['total_due'] = $total_due;
+		$prices['total_due_fmt'] = $prod['priceCurrency'].' '.number_format($total_due,2,',','.');
+
+		$shipping = 30000;
+		$prices['shipping'] = $shipping;
+		$prices['shipping_fmt'] = $prod['priceCurrency'].' '.number_format($shipping,2,',','.');
+
+		$total_billing = $total_due + $shipping;
+		$prices['total_billing'] = $total_billing;
+		$prices['total_billing_fmt'] = $prod['priceCurrency'].' '.number_format($total_billing,2,',','.');
+
+
+		return $prices;
+	}
+
 	public function post_signin()
 	{
 		$in = Input::get();
@@ -587,7 +831,7 @@ class Shop_Controller extends Base_Controller {
 
 	    	$result = $this->addToCart($cart,$item,$qty);
 
-			print_r($result);
+			//print_r($result);
 
 			return Response::json(array('result'=>'PRODUCTADDED','message'=>'Successfully Signed In and Product Added','data'=>$cart));
 	    }
@@ -641,16 +885,14 @@ class Shop_Controller extends Base_Controller {
 
 		$actual = $inventory->find($aquery);
 
-		$item['items'] = $actual;
-		$item['actual'] = count($actual);
+		$actual_count = $inventory->count($aquery);
 
-		if(isset($item['ordered'])){
-		    $item['ordered'] += $qty;
+		if(isset($cartobj['items'][$item['productId']][$item['size'].'_'.$item['color']]['ordered'])){
+		    $cartobj['items'][$item['productId']][$item['size'].'_'.$item['color']]['ordered'] += $qty;
 		}else{
-		    $item['ordered'] = $qty;
+		    $cartobj['items'][$item['productId']][$item['size'].'_'.$item['color']]['ordered'] = $qty;
 		}
-
-	    $cartobj['items'][$item['productId']][$item['size'].'_'.$item['color']] = $item;
+	    $cartobj['items'][$item['productId']][$item['size'].'_'.$item['color']]['actual'] = $actual_count;
 
 	    return $cartobj;
 
@@ -682,6 +924,7 @@ class Shop_Controller extends Base_Controller {
 		$thecart['lastUpdate'] = new MongoDate();
 		$thecart['cartStatus'] = 'open';
 		$thecart['buyerDetail'] = Auth::shopper();
+		$thecart['confirmationCode'] = '';
 
 		$cart = new Cart();
 
@@ -704,57 +947,176 @@ class Shop_Controller extends Base_Controller {
 	}
 
 	public function get_cart(){
+
+		$this->filter('before','auth');
+
 		$form = new Formly();
-		return View::make('shop.cart')
-		->with('ajaxsource',URL::to('shop/cartloader'))
-		->with('ajaxdel',URL::to('shop/itemdel'))
-		->with('form',$form);
-	}
 
-	public function post_cartloader(){
+		$active_cart = new MongoId(Auth::shopper()->activeCart);
 
-		/*
-          <td class="span3 image"><img src="{{ URL::base() }}/images/pic3.jpg"></td>
-          <td class="span3">Dazel And Angle Orange Long Sleeve Shirt</td>
-          <td class="span1">XL</td>
-          <td class="span2"><select class="span1" size="1" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
-          <td class="span2">IDR 350,000</td>
-          <td class="span2">IDR 350,000</td>
-          <td class="span1">[x]</td>
-		*/
+		$carts = new Cart();
 
-        if(isset(Auth::shopper()->active_cart) && Auth::shopper()->active_cart != '')
-        {	
-        	$_id = new MongoId(Auth::shopper()->active_cart);
-			$carts = new Cart();
+		$cart = $carts->get(array('_id'=>$active_cart));
 
-			$cart = $carts->get(array('_id'=>$_id));
-        }
-
-		$counter = 1;
-		foreach ($cart['items'] as $item) {
-
-			$aadata[] = array(
-				'<img src="{{ URL::base() }}/images/pic3.jpg">',
-				'Dazel And Angle Orange Long Sleeve Shirt',
-				'XL',
-				'<select class="span1" size="1" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>',
-				'IDR 350,000',
-				'IDR 350,000',
-				'<i class="foundicon-trash action del" id="'.$doc['_id'].'"></i>'
-			);
-			$counter++;
+		$or = array();
+		foreach($cart['items'] as $key=>$val){
+			$or[] = array('_id'=>new MongoId($key));
 		}
 
-		
-		$result = array(
-			'iTotalRecords'=>10,
-			'iTotalDisplayRecords'=> 10,
-			'aaData'=>$aadata
-		);
+		$prods = new Product();
 
-		return Response::json($result);
+		$products = $prods->find(array('$or'=>$or));
 
+		$prices = $this->recalculate($cart);
+
+		$carts->update(array('_id'=>$active_cart),array('$set'=>array('prices'=>$prices)));		
+
+		return View::make('shop.cart')
+			->with('ajaxsource',URL::to('shop/cartloader'))
+			->with('ajaxdel',URL::to('shop/itemdel'))
+			->with('products',$products)
+			->with('prices',$prices)
+			->with('cart',$cart)
+			->with('form',$form);
+	}
+
+	public function post_checkout()
+	{
+		//print_r(Input::get());
+		$this->filter('before','auth');
+
+		$form = new Formly();
+
+		$in = Input::get();
+
+		$active_cart = new MongoId($in['cartId']);
+
+		$carts = new Cart();
+
+		$cart = $carts->get(array('_id'=>$active_cart));
+
+		$or = array();
+		foreach($cart['items'] as $key=>$val){
+			$or[] = array('_id'=>new MongoId($key));
+		}
+
+		$prods = new Product();
+
+		$products = $prods->find(array('$or'=>$or));
+
+		$shippingFee = 30000;
+
+		return View::make('shop.checkout')
+			->with('ajaxsource',URL::to('shop/cartloader'))
+			->with('ajaxdel',URL::to('shop/itemdel'))
+			->with('postdata',$in)
+			->with('products',$products)
+			->with('shippingFee',$shippingFee)
+			->with('cart',$cart)
+			->with('form',$form);
 
 	}
+
+	public function post_commit()
+	{
+		//print_r(Input::get());
+		$this->filter('before','auth');
+
+		$form = new Formly();
+
+		$in = Input::get();
+
+		$shoppers = new Shopper();
+
+		$active_cart = new MongoId($in['cartId']);
+
+		$carts = new Cart();
+
+		$cart = $carts->get(array('_id'=>$active_cart));
+
+		$or = array();
+		foreach($cart['items'] as $key=>$val){
+			$or[] = array('_id'=>new MongoId($key));
+		}
+
+		$prods = new Product();
+
+		$products = $prods->find(array('$or'=>$or));
+
+		$shippingFee = 30000;
+
+		$confirmcode = strtoupper(Str::random(8, 'alpha'));
+
+		$carts->update(array('_id'=>$active_cart),array('$set'=>array( 'cartStatus'=>'checkedout','confirmationCode'=>$confirmcode, 'lastUpdate'=>new MongoDate() )));
+
+		$cart = $carts->get(array('_id'=>$active_cart));
+
+		$shoppers->update(array('_id'=>new MongoId(Auth::shopper()->id)),
+			array('$set'=>array('activeCart'=>'','prevCart'=>$in['cartId'] )), 
+			array('upsert'=>true) );
+
+		Event::fire('commit.checkout',array(Auth::shopper()->id,$in['cartId']));
+
+		return View::make('shop.commit')
+			->with('postdata',$in)
+			->with('products',$products)
+			->with('shippingFee',$shippingFee)
+			->with('cart',$cart)
+			->with('form',$form);
+
+	}
+
+	public function get_confirm(){
+
+		//$this->filter('before','auth');
+
+		$form = new Formly();
+
+		return View::make('shop.confirm')
+			->with('form',$form);
+	}
+
+	public function post_confirm(){
+
+		//$this->filter('before','auth');
+
+		$form = new Formly();
+
+		$in = Input::get();
+
+		$shoppers = new Shopper();
+
+		$active_cart = new MongoId($in['cartId']);
+
+		$carts = new Cart();
+
+		$cart = $carts->get(array('_id'=>$active_cart));
+
+		$or = array();
+		foreach($cart['items'] as $key=>$val){
+			$or[] = array('_id'=>new MongoId($key));
+		}
+
+		$prods = new Product();
+
+		$products = $prods->find(array('$or'=>$or));
+
+		$shippingFee = 30000;
+
+		Event::fire('commit.checkout',array(Auth::shopper()->id,$in['cartId']));
+
+		$carts->update(array('_id'=>$active_cart),array('$set'=>array( 'cartStatus'=>'checkedout', 'lastUpdate'=>new MongoDate() )));
+
+		$shoppers->update(array('_id'=>new MongoId(Auth::shopper()->id)),
+			array('$set'=>array('activeCart'=>'','prevCart'=>$in['cartId'] )), 
+			array('upsert'=>true) );
+
+		return View::make('shop.confirm')
+			->with('postdata',$in)
+			->with('products',$products)
+			->with('shippingFee',$shippingFee)
+			->with('cart',$cart)
+			->with('form',$form);
+	}
+
 }

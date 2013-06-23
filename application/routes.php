@@ -132,34 +132,10 @@ Route::get('cps',function(){
     }
 });
 
-Route::get('barcode/(:any)',function($text){
-    $barcode = new Barcode();
-    $barcode->make($text,'code39',40);
-    return $barcode->render('jpg');
-});
-
-Route::get('barcode128/(:any)',function($text){
-    $barcode = new Code128();
-    $barcode->draw($text);
-    return View::make('bartest')->with('text',$text);
-});
 
 Route::get('maintenance',function(){
     
     return View::make('maintenance');
-});
-
-Route::get('barcode39/(:any)',function($text){
-    $barcode = new Code39();
-    $barcode->draw($text);
-
-    $barcode->render();
-
-    //return View::make('bartest')->with('text',$text);
-});
-
-Route::get('bartest/(:any)',function($text){
-    return View::make('bartest')->with('text',$text);
 });
 
 Route::get('general',array('uses'=>'content@public'));
@@ -173,45 +149,14 @@ Route::post('myprofile/edit',array('uses'=>'shopper@edit'));
 Route::get('reset',array('uses'=>'shopper@reset'));
 Route::post('reset',array('uses'=>'shopper@reset'));
 
-Route::get('exhibitor/profile',array('uses'=>'exhibition@profile'));
-Route::get('exhibitor/login',array('uses'=>'exhibition@login'));
-Route::get('exhibitor/profile/edit',array('uses'=>'exhibition@edit'));
-Route::post('exhibitor/profile/edit',array('uses'=>'exhibition@edit'));
-
 
 Route::get('myprofile',array('uses'=>'shopper@profile'));
 
-
-Route::get('payment/checkout',array('before'=>'auth','uses'=>'register@checkout'));
-
-Route::get('payment/(:any)',array('uses'=>'register@payment'));
-Route::post('payment/(:any)',array('uses'=>'register@payment'));
-
 Route::get('paymentsubmitted',array('uses'=>'shopper@paymentsubmitted'));
-Route::get('register-success',array('uses'=>'shopper@success'));
-Route::get('register-landing',array('uses'=>'shopper@landing'));
 
 Route::get('article/(:any)',array('uses'=>'reader@article'));
 Route::get('news/(:any)',array('uses'=>'reader@news'));
 Route::get('sponsor/(:any)',array('uses'=>'reader@sponsor'));
-
-/*
-Route::get('/',  function(){
-    $heads = array('Home','Action');
-    //$searchinput = array(false,'title','created','last update','creator','project manager','tags',false);
-    $searchinput = array(false,'project','tags',false);
-
-    $crumb = new Breadcrumb();
-
-    return View::make('tables.event')
-        ->with('title','')
-        ->with('newbutton','New Event')
-        ->with('disablesort','0')
-        ->with('crumb',$crumb)
-        ->with('searchinput',$searchinput)
-        ->with('ajaxsource',URL::to('activity'));
-});
-*/
 
 Route::get('hashme/(:any)',function($mypass){
 
@@ -239,7 +184,7 @@ Route::get('commander/login', function()
     return View::make('auth.login');
 });
 
-Route::post('login', function()
+Route::post('commander/login', function()
 {
     // get POST data
     $username = Input::get('username');
@@ -300,30 +245,6 @@ Route::get('about',function(){
     Redirect::to('reader/article/about');
 });
 
-Route::post('exhibitor/login', function()
-{
-    // get POST data
-    $username = Input::get('username');
-    $password = Input::get('password');
-
-    if ( $userdata = Auth::exhibitorattempt(array('username'=>$username, 'password'=>$password)) )
-    {
-        //print_r($userdata);
-        // we are now logged in, go to home
-        return Redirect::to('exhibitor/profile');
-
-    }
-    else
-    {
-        // auth failure! lets go back to the login
-        return Redirect::to('exhibitor/login')
-            ->with('login_errors', true);
-        // pass any error notification you want
-        // i like to do it this way  
-    }
-
-});
-
 Route::get('passwd', array('before'=>'auth',function(){
     return View::make('auth.password');
 }));
@@ -359,20 +280,9 @@ Route::get('logout',function(){
     return Redirect::to('/');
 });
 
-Route::get('requests',array('before'=>'auth','uses'=>'requests@incoming'));
-
-Route::get('user/profile',array('before'=>'auth','uses'=>'user@profile'));
-
-//Route::get('users',array('before'=>'auth','uses'=>'user@users'));
-
-//Route::post('users',array('before'=>'auth','uses'=>'user@users'));
-
-Route::get('hr',array('before'=>'auth','uses'=>'hr@users'));
-
-Route::post('hr',array('before'=>'auth','uses'=>'hr@users'));
-
-/*
-Route::get('document',array('before'=>'auth','uses'=>'document@index'));
-*/
+Route::get('commander/logout',function(){
+    Auth::logout();
+    return Redirect::to('commander/login');
+});
 
 

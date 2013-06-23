@@ -7,9 +7,9 @@ class Sponsors_Controller extends Admin_Controller {
 		parent::__construct();
 
 		$this->controller_name = str_replace('_Controller', '', get_class());
-		
+
 		$this->crumb = new Breadcrumb();
-		$this->crumb->add(strtolower($this->controller_name),ucfirst($this->controller_name));
+		$this->crumb->add(strtolower($this->controller_name),'Partners & Sponsors');
 
 		$this->model = new Sponsor();
 

@@ -31,7 +31,7 @@
             <li>{{ HTML::link('products','Products')}}</li>
             <li>{{ HTML::link('promotions','Promotions')}}</li>
             <li>{{ HTML::link('auctions','Auctions')}}</li>
-            <li>{{ HTML::link('sponsors','Sponsors')}}</li>
+            <li>{{ HTML::link('sponsors','Partners & Sponsors')}}</li>
         @elseif(Auth::user()->role == 'onsite')
             <li>{{ HTML::link('onsite/report','Onsite Report')}}</li>
             

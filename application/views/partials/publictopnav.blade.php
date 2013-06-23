@@ -22,6 +22,24 @@
       <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">FESTIVAL</a></li>
       <li><a >//</a></li>
       <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">SHOPPING TIPS</a></li>
+
+  @if(Auth::shoppercheck())
+    @if(isset(Auth::shopper()->activeCart) && Auth::shopper()->activeCart != '')
+      <li><a >//</a></li>
+      <li><a href="{{ URL::to('shop/cart') }}">SHOPPING CART</a></li>
+    @endif
+      <li><a >//</a></li>
+      <li><a href="{{ URL::to('shop/confirm') }}">CONFIRM</a></li>
+      <li><a >//</a></li>
+      <li><a href="{{ URL::to('logout') }}">LOG OUT</a></li>
+  @else
+      <li><a >//</a></li>
+      <li><a href="{{ URL::to('signup') }}">SIGN UP</a></li>
+      <li><a >//</a></li>
+      <li><a href="{{ URL::to('signin') }}">SIGN IN</a></li>
+  @endif
+
+
     </ul>
   </section>
 </nav>

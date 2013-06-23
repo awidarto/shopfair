@@ -1,4 +1,4 @@
-@layout('public')
+@layout('publiccommon')
 
 
 @section('content')
@@ -10,23 +10,23 @@
 {{$form->open('register','POST')}}
 
 <div class="row">
-    <div class="span6">
+    <div class="small-6 columns">
 
         <fieldset>
-            <legend>Billing & Shipping Information</legend>
+            <legend>Shopper's Information</legend>
 
 
                 <div class="row">
-                    <div class="span6">
+                    <div class="small-6 columns">
                       Salutation
                     </div>
-                    <div class="span2">
+                    <div class="small-2 columns">
                       {{ $form->radio('salutation','Mr','Mr',true)}}
                     </div>
-                    <div class="span2">
+                    <div class="small-2 columns">
                       {{ $form->radio('salutation','Mrs','Mrs')}}
                     </div>
-                    <div class="span2">
+                    <div class="small-2 columns">
                       {{ $form->radio('salutation','Ms','Ms')}}
                     </div>
                 </div>
@@ -53,7 +53,7 @@
         </fieldset>
     </div>
 
-    <div class="span6">
+    <div class="small-6 columns">
 
         <fieldset>
             <legend>Transfer Payment Information</legend>
@@ -72,13 +72,6 @@
                 {{ $form->text('expiremonth','Expiration date','',array('class'=>'text','id'=>'cardnumber','placeholder'=>'mm')) }}
 
                 {{ $form->text('expireyear','','',array('class'=>'text','id'=>'cardnumber','placeholder'=>'yyyy')) }}
-
-
-        </fieldset>
-
-        <fieldset>
-            <legend>Paypal</legend>
-
 
 
         </fieldset>
