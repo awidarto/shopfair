@@ -68,10 +68,8 @@
           @endif
             I WANT THIS !
           </a>
-          <p>This Item is :</br>
-            - Only 10 units available</br>
-            - Slashed down 30% from retail price</br>
-          </p>
+          <div class="clear"></div>
+          {{ $m['description']}}
         </div>
       </div>
 
