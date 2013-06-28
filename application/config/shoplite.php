@@ -48,6 +48,7 @@ return array(
 		),
 
 	'picsizes'=>array(
+		array('prefix'=>'poster_land_','w'=>876,'h'=>320,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'splogo_','w'=>125,'h'=>90,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'sm_','w'=>50,'h'=>90,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'med_','w'=>270,'h'=>251,'opt'=>'fit','ext'=>'.jpg','q'=>90),

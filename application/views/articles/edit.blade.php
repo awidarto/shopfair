@@ -35,6 +35,8 @@
         <fieldset>
             <legend>Publishing</legend>
 
+                {{ $form->checkbox('setposter','Set As Home Poster','Yes',null)}}
+
                 {{ $form->select('publishStatus','Publish Status',Config::get('kickstart.publishstatus'),'online',array('id'=>'publishStatus'))}}<br />
 
                 {{ $form->text('publishFrom','','',array('class'=>'text codePhone date','id'=>'publishFrom','placeholder'=>'From')) }}
@@ -43,7 +45,7 @@
         </fieldset>
         <fieldset>
             <legend>Details</legend>
-                {{ $form->select('section','Default Section',Config::get('content.articles.sections'),'all',array('id'=>'section'))}}
+                {{ $form->select('section','Default Section',Config::get('content.articles.sections'),null,array('id'=>'section'))}}
 
                 {{ $form->select('category','Category',Config::get('content.articles.categories'),null,array('id'=>'category'))}}<br />
 
@@ -66,7 +68,12 @@
                       {{ $form->file('pic0'.$i,'Picture #'.$i)}}
                    </div>
                     <div class="span3">
-                      {{ $form->radio('defaultpic','Default',$i)}}
+                      {{ $form->radio('defaultpic','Default',$i)}}<br />
+                      {{ $form->radio('homeposterpic','Home Poster',$i)}}<br />
+                      {{ $form->radio('wideproduct','Wide Product Image',$i)}}<br />
+                      {{ $form->radio('squarethumb','Square Thumb',$i)}}<br />
+                      {{ $form->radio('landthumb','Landscape Thumb',$i)}}<br />
+                      {{ $form->radio('portthumb','Portrait Thumb',$i)}}
                     </div>
 
                   </div>

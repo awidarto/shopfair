@@ -34,6 +34,8 @@
 
 Route::controller(array('register','track','connect','shop','shoppers','shopper','merchants','feed','reader','sponsors','news','articles','carts','auctions','promotions','products','report','import','export','dashboard','user','users','message','search','activity','category','content','ajax'));
 
+Route::get('shop',array('uses'=>'shop@home'));
+
 Route::get('shopping',array('uses'=>'shop@sales'));
 
 Route::get('/',function(){
@@ -46,12 +48,11 @@ Route::get('/',function(){
         }
     }else{
         //return Redirect::to('shop');
-        return Route::forward('get','shopping');
+        return Route::forward('get','shop');
     }
 });
 
 
-Route::get('shop',array('uses'=>'shop@home'));
 
 
 Route::get('feeds/(:any?)/(:any?)',array('uses'=>'feed@feeds'));

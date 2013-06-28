@@ -33,6 +33,8 @@
         <fieldset>
             <legend>Publishing</legend>
 
+                {{ $form->checkbox('setposter','Set As Home Poster','Yes',null)}}
+
                 {{ $form->select('publishStatus','Publish Status',Config::get('kickstart.publishstatus'),'online',array('id'=>'publishStatus'))}}<br />
 
                 {{ $form->text('publishFrom','Scheduled','',array('class'=>'text codePhone date','id'=>'publishFrom','placeholder'=>'From')) }}
@@ -58,11 +60,21 @@
                       {{ $form->file('pic0'.$i,'Picture #'.$i)}}
                    </div>
                     <div class="span4">
-                      @if($i == 1)
-                        {{ $form->radio('defaultpic','Default',$i,true)}}
-                      @else
-                        {{ $form->radio('defaultpic','Default',$i)}}
-                      @endif
+                        <?php
+                          if($i == 1){
+                            $state = true;
+                          }else{
+                            $state = false;
+                          }
+                        ?>
+                        {{ $form->radio('defaultpic','Default',$i,$state)}}<br />
+                        {{ $form->radio('homeposterpic','Home Poster',$i,$state)}}<br />
+                        {{ $form->radio('wideproduct','Wide Product Image',$i,$state)}}<br />
+                        {{ $form->radio('squarethumb','Square Thumb',$i,$state)}}<br />
+                        {{ $form->radio('landthumb','Landscape Thumb',$i,$state)}}<br />
+                        {{ $form->radio('portthumb','Portrait Thumb',$i,$state)}}
+
+
                     </div>
                   </div>
               @endfor

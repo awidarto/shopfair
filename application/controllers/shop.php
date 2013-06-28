@@ -200,15 +200,24 @@ class Shop_Controller extends Base_Controller {
 
 		//$results = $model->find(array(),array(),array($sort_col=>$sort_dir),$limit);
 
-		$pagelength= 9;
+		$pagelength= 6;
 		$pagestart = 0;
+
+		
 
 		$limit = array($pagelength, $pagestart);
 
+		$poster = $articles->get(array('section'=>'events','category'=>'events','setposter'=>true));
+
+		$shopfairmonday = $products->find(array('section'=>'sale','category'=>'shopfairmonday'),array(),array('createdDate'=>-1),$limit);
 		$featured = $products->find(array('section'=>'sale','category'=>'featured'),array(),array('createdDate'=>-1),$limit);
+		$allseason = $products->find(array('section'=>'sale','category'=>'allseason'),array(),array('createdDate'=>-1),$limit);
+
+		$shopfairmondayhead = $products->get(array('section'=>'sale','category'=>'shopfairmonday'),array(),array('createdDate'=>-1));
 
 		return View::make('shop.home')
 			->with('featured',$featured)
+			->with('poster',$poster)
 			
 			;
 	}

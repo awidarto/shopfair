@@ -3,65 +3,49 @@ return array(
 	'articles'=>array(
 			'sections'=>array(
 					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'events'=>'Events',
+					'tips'=> 'Tips'
 				),
 			'categories'=>array(
 					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'events'=>'Events',
+					'tips'=> 'Tips'
 				),
 			'search_sections'=>array(
 					''=>'All',
 					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'events'=>'Events',
+					'tips'=> 'Tips'
 				),
 			'search_categories'=>array(
 					''=>'All',
 					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'events'=>'Events',
+					'tips'=> 'Tips'
 				)
 		),
 	'news'=>array(
 			'sections'=>array(
 					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'events'=>'Events',
+					'tips'=> 'Tips'
 				),
 			'categories'=>array(
 					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'events'=>'Events',
+					'tips'=> 'Tips'
 				),
 			'search_sections'=>array(
 					''=>'All',
 					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'events'=>'Events',
+					'tips'=> 'Tips'
 				),
 			'search_categories'=>array(
 					''=>'All',
 					'general'=>'General',
-					'mixmatch'=>'Mix n Match',
-					'pow'=> 'Pick of The Week',
-					'otb'=> 'Out of The Box',
-					'kind'=> 'One of A Kind'
+					'events'=>'Events',
+					'tips'=> 'Tips'
 				)
 		),
 	'sponsors'=>array(

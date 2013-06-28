@@ -89,6 +89,8 @@ class Articles_Controller extends Admin_Controller {
 		// deal with tags
 		$data['tags'] = explode(',',$data['tags']);
 
+		$data['setposter'] = (isset($data['setposter']) && $data['setposter'] == 'Yes')?true:false;
+
 		if(count($data['tags']) > 0){
 			$tag = new Tag();
 			foreach($data['tags'] as $t){
@@ -99,6 +101,29 @@ class Articles_Controller extends Admin_Controller {
 
 		return parent::post_add($data);
 	}
+
+	public function post_edit($id,$data = null)
+	{
+		//print_r(Input::get());
+
+
+		$this->validator = array(
+		    'title' => 'required', 
+		    'shorts' => 'required',
+		    'slug' => 'required',
+		    'section' => 'required',
+		    'category' => 'required'
+	    );
+
+		//transform data before actually save it
+
+		$data = Input::get();
+
+		$data['setposter'] = (isset($data['setposter']) && $data['setposter'] == 'Yes')?true:false;
+
+		return parent::post_edit($id,$data);
+	}
+
 
 	public function makeActions($data){
 		$delete = '<a class="action icon-"><i>&#xe001;</i><span class="del" id="'.$data['_id'].'" >Delete</span>';
@@ -123,7 +148,7 @@ class Articles_Controller extends Admin_Controller {
 		return $population;
 	}
 
-	public function afterUpdate($id,$data = null)
+	public function afterUpdate($id,$population = null)
 	{
 
 		$files = Input::file();

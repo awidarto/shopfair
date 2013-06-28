@@ -19,9 +19,9 @@
       <li><a >//</a></li>
       <li><a href="{{ URL::to('auction') }}">AUCTION</a></li>
       <li><a >//</a></li>
-      <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">FESTIVAL</a></li>
+      <li><a href="{{ URL::to('reader/articles/events') }}">EVENTS</a></li>
       <li><a >//</a></li>
-      <li><a href="{{ URL::to('reader/article/shopfair-festival') }}">SHOPPING TIPS</a></li>
+      <li><a href="{{ URL::to('reader/articles/tips') }}">SHOPPING TIPS</a></li>
 
   @if(Auth::shoppercheck())
     @if(isset(Auth::shopper()->activeCart) && Auth::shopper()->activeCart != '')

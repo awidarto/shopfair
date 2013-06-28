@@ -191,6 +191,19 @@ class Reader_Controller extends Base_Controller {
 
 	}
 
+	public function get_collection($type = 'article',$section = 'general',$category = 'general')
+	{
+		if($type == 'article'){
+			$model = new Article();
+		}
+		if($type == 'news'){
+			$model = new News();
+		}
+		if($type == 'article'){
+			$model = Article();
+		}
+	}
+
 	public function get_article($slug){
 
 		$model = new Article();

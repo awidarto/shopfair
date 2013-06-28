@@ -53,15 +53,19 @@
         <!-- End Navigation -->
         </div>
     </div>
-     
     <div class="row show-for-medium-up" style="width:1168px;">
         <div id="featured" class="large-9 columns">
-            {{ HTML::image('images/banners/bannerhome1.jpg','shopfair',array()) }}
+            <a href="{{ URL::to('reader/article/'.$poster['slug'])}}">
+                <img src="{{ URL::base().'/storage/articles/'.$poster['_id'].'/poster_land_pic0'.$poster['homeposterpic'].'.jpg' }}" alt="{{ $poster['title']}}" />
+            </a>
+
+        <!--
             <div class="titlefeatured">
-              <h1>THE BEST OF GIORGIO ARMANI</h1>
-              <p>Whether you're packing for a short work trip or an extended getaway</p>
-              <a class="button mainbuttonshopfair round">VIEW THIS DEAL</a>
+              <h1>{{ $poster['title']}}</h1>
+              <p>{{ $poster['shorts'] }}</p>
+              <a class="button mainbuttonshopfair round" href="{{ URL::to('reader/article/'.$poster['slug'])}}" >MORE</a>
             </div>
+        -->
         </div>
         <div id="auction-featured" class="large-3 columns">
 
@@ -77,6 +81,7 @@
 
     <br>
      
+    <!-- 
     <div class="row">
         <div class="large-12 columns">
 
@@ -91,7 +96,7 @@
 
         </div>
     </div>
-
+    -->
 
 
       @yield('content')
