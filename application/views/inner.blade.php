@@ -36,27 +36,11 @@
 
 </head>
 <body>
-<div class="row headercontainer show-for-medium-up" style="width:1168px;">
-    <div class="large-12 columns">
 
-        <!-- Navigation -->
-        @yield('topnav')
+@yield('topnav')     
 
-        <!-- End Navigation -->
-
-    </div>
-</div>
-
-<div class="row headercontainer show-for-small">
-    <div class="large-12 columns">
-        <!-- Navigation -->
-        @yield('topnav')     
-        <!-- End Navigation -->
-    </div>
-</div>
-
-<div class="row">
-    <div class="large-3 columns  show-for-medium-up">
+<div class="row show-for-large">
+    <div class="large-3 columns">
         <div class="boxcontainer">
             <div class="box-inner">
                 <h4>SUBSCRIBE</h4>
@@ -76,7 +60,15 @@
         @yield('content')    
     </div>
 
-    <div class="large-3 columns show-for-small">
+
+</div>
+<div class="row show-for-medium-down">
+    <div class="contentinner large-12 columns">
+        @yield('content')    
+    </div>
+</div>
+<div class="row show-for-medium-down">
+    <div class="large-12 columns">
         <div class="boxcontainer">
             <div class="box-inner">
                 <h4>SUBSCRIBE</h4>
@@ -91,7 +83,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <!--
     @yield('sponsorshome')

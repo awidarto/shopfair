@@ -36,18 +36,8 @@
 
   </head>
   <body>
-    <div class="row headercontainer">
-      <div class="large-12 columns">
-     
-        <!-- Navigation -->
-          @yield('topnav')
-     
-        <!-- End Navigation -->
 
-        </div>
-      </div>
-
-
+      @yield('topnav')
 
       @yield('content')
      
