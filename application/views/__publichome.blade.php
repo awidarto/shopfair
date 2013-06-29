@@ -53,10 +53,6 @@
         <!-- End Navigation -->
         </div>
     </div>
-
-<?php
-/*
-
     <div class="row show-for-medium-up" style="width:1168px;">
         <div id="featured" class="large-9 columns">
             <a href="{{ URL::to('reader/article/'.$poster['slug'])}}">
@@ -77,34 +73,13 @@
         </div>
     </div>
 
-    <div class="row show-for-small">
-        <div id="featured" class="large-12 columns">
-            <a href="{{ URL::to('reader/article/'.$poster['slug'])}}">
-                <img src="{{ URL::base().'/storage/articles/'.$poster['_id'].'/poster_land_pic0'.$poster['homeposterpic'].'.jpg' }}" alt="{{ $poster['title']}}" />
-            </a>
+    <div class="row-fluid show-for-small">
+        <div class="small-12"><br>
+            <img src="http://placehold.it/1000x600&text=For Small Screens" />
         </div>
     </div>     
 
     <br>
-
-*/
-
-?>
-    <div class="row">
-        <div id="featured" class="large-12 columns">
-            <a href="{{ URL::to('reader/article/'.$poster['slug'])}}">
-                <img src="{{ URL::base().'/storage/articles/'.$poster['_id'].'/poster_land_sa_pic0'.$poster['homeposterpic'].'.jpg' }}" alt="{{ $poster['title']}}" />
-            </a>
-        </div>
-    </div>     
-    <div class="row">
-        <div class="large-12 columns" id="poster-body">
-
-            {{ $poster['bodycopy']}}
-
-        </div>
-    </div>
-
      
     <!-- 
     <div class="row">
@@ -124,24 +99,17 @@
     -->
 
 
-    @yield('content')
+      @yield('content')
      
-
-<?php
-/*
       @yield('festivalhome')
+
 
       @yield('sponsorshome')
      
      
-
-
-*/
-
-?>
+      <!-- Footer -->
+      @yield('footer')
      
-    <!-- Footer -->
-    @yield('footer')
 
     
 

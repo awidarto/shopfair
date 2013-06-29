@@ -70,6 +70,19 @@ h1.titleshopfair{
 	margin-bottom: 20px;
 	font-family: 'proxima_nova_rgregular';
 }
+
+h1,h2,h3,h4,h5,h6,p,li{
+	font-family: 'proxima_nova_rgregular';	
+}
+
+h1,h2{
+	color: #f04f73;
+}
+
+#poster-body ul{
+	margin-left: 1.5em;
+}
+
 /*header
 */
 .top-bar{
@@ -144,7 +157,6 @@ h1.titleshopfair{
 }
 
 #featured img{
-	height: 320px;
 	margin: 0px;
 }
 
