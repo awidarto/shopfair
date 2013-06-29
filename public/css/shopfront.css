@@ -79,7 +79,7 @@ h1,h2{
 	color: #f04f73;
 }
 
-#poster-body ul{
+#poster-body ul, .contentinner ul{
 	margin-left: 1.5em;
 }
 
