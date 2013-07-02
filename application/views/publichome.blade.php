@@ -106,13 +106,13 @@
         </div>
     </div>
     -->
+<?php
+/*
 
 
     @yield('content')
      
 
-<?php
-/*
       @yield('festivalhome')
 
       @yield('sponsorshome')
@@ -120,13 +120,13 @@
      
 
 
-*/
-
-?>
      
     <!-- Footer -->
     @yield('footer')
 
+*/
+
+?>
     
 
     {{ HTML::script('js/jquery-ui-1.9.2.custom.min.js') }}

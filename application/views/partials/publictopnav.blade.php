@@ -7,12 +7,17 @@
         </a>
     </div>
     <div class="large-10 columns">
-        {{ HTML::image('images/banner_header.jpg','',array('class'=>'right bannerHeader show-for-medium-up')) }}<br/>
+        <?php
+            /*
+            {{ HTML::image('images/banner_header.jpg','',array('class'=>'right bannerHeader show-for-medium-up')) }}<br/>
+            */
+        ?>
     </div>
 </div>
 
 
-<nav class="top-bar">
+
+<nav class="top-bar show-for-small">
     <ul class="title-area">
         <!-- Title Area -->
         <li class="name">
@@ -20,8 +25,14 @@
                 <h1>{{ HTML::image('images/mobile-logo.png','shopfair',array('class'=>'show-for-small')) }}</h1>
             </a>
         </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+        <?php
+        /*
+            <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+        */
+        ?>
     </ul>
+<?php
+/*
 
     <section class="top-bar-section">
         <ul class="right">
@@ -42,5 +53,8 @@
         @endif
         </ul>
     </section>
+*/
+?>
+
 </nav>
 @endsection
