@@ -35,12 +35,8 @@
 
   </head>
   <body>
-<?php
-/* active poster
 
     @yield('topnav')
-
-
 
     <div class="row show-for-medium-up" style="width:1168px;">
         <div id="featured" class="large-9 columns">
@@ -68,14 +64,13 @@
                 <img src="{{ URL::base().'/storage/articles/'.$poster['_id'].'/poster_land_pic0'.$poster['homeposterpic'].'.jpg' }}" alt="{{ $poster['title']}}" />
             </a>
         </div>
-    </div>
+    </div>     
 
     <br>
 
+<?php
+/*
 
-*/
-
-?>
 
     <div class="row-fluid">
         <div id="featured" class="large-12 columns">
@@ -83,7 +78,7 @@
                 <img src="{{ URL::base().'/storage/articles/'.$poster['_id'].'/poster_land_sa_pic0'.$poster['homeposterpic'].'.jpg' }}" alt="{{ $poster['title']}}" />
             </a>
         </div>
-    </div>
+    </div>     
     <div class="row">
         <div class="large-12 columns" id="poster-body">
 
@@ -93,8 +88,12 @@
     </div>
 
 
+*/
 
-    <!--
+?>
+
+     
+    <!-- 
     <div class="row">
         <div class="large-12 columns">
 
@@ -110,21 +109,19 @@
         </div>
     </div>
     -->
-<?php
-/* active poster
+
 
     @yield('content')
 
     @yield('festivalhome')
 
     @yield('sponsorshome')
+     
     <!-- Footer -->
     @yield('footer')
-*/
-?>
 
     {{ HTML::script('js/jquery-ui-1.9.2.custom.min.js') }}
-
+  
     {{ HTML::script('js/jquery.dataTables.min.js') }}
 
     {{ HTML::script('js/foundation/foundation/foundation.js') }}
@@ -142,7 +139,7 @@
     {{ HTML::script('js/foundation/foundation/foundation.tooltips.js') }}
     {{ HTML::script('js/foundation/foundation/foundation.topbar.js') }}
 
-
+    
 
     {{ HTML::script('js/select2.min.js') }}
     {{ HTML::script('js/jquery.smartWizard-2.0.js') }}

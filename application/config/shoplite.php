@@ -12,7 +12,7 @@ return array(
 		),
 	'sections'=>array(
 			'sale'=>'Sale',
-			'auction'=>'Auction',			
+			'auction'=>'Auction',
 		),
 	'search_sections'=>array(
 			''=>'All',
@@ -23,7 +23,7 @@ return array(
 			'allseason'=>'All Season',
 			'featured'=>'Featured',
 			'shopfairmonday'=>'ShopFair Monday'
-			
+
 		),
 	'search_categories'=>array(
 			''=>'All',
@@ -48,7 +48,7 @@ return array(
 		),
 
 	'picsizes'=>array(
-		array('prefix'=>'poster_land_sa_','w'=>1000,'h'=>710,'opt'=>'fit','ext'=>'.jpg','q'=>90),
+		array('prefix'=>'poster_land_sa_','w'=>1170,'h'=>879,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'poster_land_','w'=>876,'h'=>320,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'splogo_','w'=>125,'h'=>90,'opt'=>'fit','ext'=>'.jpg','q'=>90),
 		array('prefix'=>'sm_','w'=>50,'h'=>90,'opt'=>'fit','ext'=>'.jpg','q'=>90),

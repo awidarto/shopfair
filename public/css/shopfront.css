@@ -176,6 +176,7 @@ h1,h2{
 }
 .top-bar-section ul{
 	background: #fff;	
+	list-style-type:none;
 }
 
 .acc-content{

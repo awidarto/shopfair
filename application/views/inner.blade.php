@@ -39,7 +39,7 @@
 
 @yield('topnav')     
 
-<div class="row show-for-large">
+<div class="row show-for-medium-up">
     <div class="large-3 columns">
         <div class="boxcontainer">
             <div class="box-inner">
@@ -62,12 +62,13 @@
 
 
 </div>
-<div class="row show-for-medium-down">
+
+<div class="row show-for-small">
     <div class="contentinner large-12 columns">
         @yield('content')    
     </div>
 </div>
-<div class="row show-for-medium-down">
+<div class="row show-for-small">
     <div class="large-12 columns">
         <div class="boxcontainer">
             <div class="box-inner">
